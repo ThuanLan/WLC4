@@ -1,0 +1,27 @@
+{
+   "passwordCommon":"Mobio123",
+   
+   "allAccount":"Tất cả",
+   
+   "managerAccount":"admin@testauto",   
+   "managerInfo":"Admin (admin@testauto)",
+   
+   "memberAccount":"thuannt5@testauto",   
+   "memberInfo":"Thuannt5 (thuannt5@testauto)",
+   
+   "memberInTeamAccount":"thuan1@testauto",   
+   "MemberInTeamInfo":"thuan1 (thuan1@testauto)",
+   
+   "memberOtherAccount":"thuannt@testauto",   
+   "memberOtherInfo":"Thuannt (thuannt@testauto)",
+   
+   "memberOtherToView":"thuannt6@testauto",
+   "memberOtherViewInfo":"thuannt6 (thuannt6@testauto)",
+   
+   "memberOtherUser":"thuan3@testauto",
+   "memberOtherUserInfo":"thuan3 (thuan3@testauto)",
+
+   "managerTeam": "Auto_Thuannt",
+   
+   "userTeam":"TeamUser"
+}
