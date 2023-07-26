@@ -305,7 +305,7 @@ Feature: Web Live Chat Counter
     And Back to the Content
     And Logout from Mobio site
     And Login by "Admin" account
-
+@counttl
   Scenario: BL_013_14_FBCounter notify_comment ones
     Given Go to Mobio site by "Admin" account
     And Go to "wlc0003 " web live chat site on other browser

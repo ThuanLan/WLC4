@@ -97,7 +97,7 @@ public class LoginPageObject extends mobioLibs {
             waitToElementClickable(driver, CommonPageUI.ACCOUNT_AVATAR_BTN);
             clickToElementByJS(driver, CommonPageUI.ACCOUNT_AVATAR_BTN);
             sleepInSecond(1);
-            if (isElementDisplayed(driver, CommonPageUI.WEBSITE_ACCOUNT_LBL, account)) {
+            if (isElementDisplayed(driver, CommonPageUI.LOGIN_ACCOUNT_LBL, account)) {
 //                clickToElement(driver, CommonPageUI.RIGHT_SIDER_BAR);
             	refreshPage(driver);
             	waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);

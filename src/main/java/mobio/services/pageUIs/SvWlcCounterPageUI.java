@@ -72,11 +72,11 @@ public class SvWlcCounterPageUI {
     public static final String ASSIGNED_HISTORY_ITEM = "//div[@class='mo-lib-overflow-hidden mo-lib-tooltip-content-inner']//div[contains(text(),'%s')]";
 
     // Column 2
-    public static final String NOTIFY_ICON = "//mo-libs-shared-components-layout-menu-right-notification//div[contains(@class,'mo-icn-push-in-app')]";
+    public static final String NOTIFY_ICON = "//mo-libs-shared-components-layout-menu-right-notification//mo-libs-shared-components-icons-notification-new";
     public static final String NEW_COMMENT_CONTENT = "//mo-libs-shared-components-layout-menu-right-notification-popup//mo-libs-shared-components-content_view_more//div[text()='%s']";
     public static final String SECOND_COMMENT_HEADER = "//mo-libs-social-share-view-comment//mo-libs-social-share-view-comment//div[contains(@class,'mo-lib-font-head-4s')]/mo-libs-shared-components-tooltip";
     
-    public static final String NOTIFY_COMMENT_CONTENT = "(//mo-libs-shared-components-layout-menu-right-notification-popup//mo-libs-shared-components-content_view_more//div[contains(@class,'mo-lib-font-head-4s')])[1]";
+    public static final String NOTIFY_COMMENT_CONTENT = "(//mo-libs-shared-components-layout-menu-right-notification-popup//mo-libs-shared-components-content_view_more//div[contains(@class,'mo-lib-content-view-more-content')])[1]";
     public static final String CONTENT_IN_COLUMN2_LBL = "//mo-libs-social-share-chat_reply//mo-libs-social-share-chat_reply-content-conversation-message//div[contains(@class,'text-break')]";
     public static final String TEMPLATE_REPLY_BTN = "//mo-libs-shared-components-button//button[contains(@class,'mo-lib-button-text')]/i[contains(@class,'mo-icn-sms')]";
 

@@ -26,8 +26,8 @@ import mobio.pageObjects.CommonPageObject;
 		
 		//tags = "@fbloginsuccess,@getwebvs, @fbdeletealldata, @fblogin, @loginMobioAndCreadData")
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
-		//tags = "@loginsuccess ,  @check")		
-		tags = "@chatdata")		
+		tags = "@loginsuccess ,@chatsocket1")		
+		//tags = "@chatdata")		
 
 public class FunctionsRunner {
 	@AfterClass

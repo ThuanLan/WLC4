@@ -2,7 +2,7 @@ package mobio.pageUIs;
 
 public class SettingsPageUI {
 
-	public static final String SETTING_BTN = "//mo-libs-shared-components-layout-menu-left_temp//span[contains(@class,'mo-icn-setting')]";
+	public static final String SETTING_BTN = "//mo-libs-shared-components-layout-menu-left//mo-libs-shared-components-icons-setting";
 	public static final String SETTING_SOCIAL_DOWN_ARROW = "//mo-libs-tenant_setting-display_type-social//div[contains(text(),'Online & mạng xã hội')]/parent::div//i[contains(@class,'mo-icn-down-arrow')]";
 	public static final String SETTING_SOCIAL_LINK = "//mo-libs-tenant_setting-display_type-social//div[contains(text(),'Online & mạng xã hội')]";
 
