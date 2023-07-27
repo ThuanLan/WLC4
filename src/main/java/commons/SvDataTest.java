@@ -34,7 +34,7 @@ public class SvDataTest {
 	public String getAllAcc() {
 		return allAccount;
 	}
-	
+
 	@JsonProperty("managerAccount")
 	private String managerAccount;
 
@@ -65,18 +65,18 @@ public class SvDataTest {
 
 	@JsonProperty("memberInTeamAccount")
 	private String memberInTeamAccount;
-	
+
 	public String getMemberInTeam() {
 		return memberInTeamAccount;
 	}
-	
+
 	@JsonProperty("MemberInTeamInfo")
 	private String MemberInTeamInfo;
-	
+
 	public String getMemberInTeamInfo() {
 		return MemberInTeamInfo;
 	}
-	
+
 	@JsonProperty("memberOtherAccount")
 	private String memberOtherAccount;
 
@@ -104,7 +104,7 @@ public class SvDataTest {
 	public String getMemberOtherViewInfo() {
 		return memberOtherViewInfo;
 	}
-	
+
 	@JsonProperty("memberOtherUser")
 	private String memberOtherUser;
 
@@ -118,17 +118,17 @@ public class SvDataTest {
 	public String getMemberOtherUserInfo() {
 		return memberOtherUserInfo;
 	}
-	
+
 	@JsonProperty("managerTeam")
 	private String managerTeam;
-	
+
 	public String getManagerTeam() {
 		return managerTeam;
 	}
-	
+
 	@JsonProperty("userTeam")
 	private String userTeam;
-	
+
 	public String getUserTeam() {
 		return userTeam;
 	}

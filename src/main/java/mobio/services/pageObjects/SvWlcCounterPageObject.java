@@ -65,7 +65,6 @@ public class SvWlcCounterPageObject extends mobioLibs {
 
     public void clickOneComment(String randomElement) {
         sleepInSecond(5);
-        System.out.println("hiển thị thông tin " +  isElementDisplayed(driver, randomElement));
         if (isElementDisplayed(driver, randomElement)) {
             int totalRow = countElementNumber(driver, randomElement);
             int rowNumber = randomRowNumber(totalRow);
@@ -90,7 +89,6 @@ public class SvWlcCounterPageObject extends mobioLibs {
 //            waitToElementClickable(driver, locator);
 //            scrollToElement(driver, locator);
 //            getContent = getTextElement(driver, locator);
-            System.out.println("Giá trị content " + getContent);
             clickToElement(driver, locator);
             sleepInSecond(3);
         }
@@ -127,7 +125,6 @@ public class SvWlcCounterPageObject extends mobioLibs {
         sleepInSecond(2);
         waitToElementVisible(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         itemCount = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
-        System.out.println("So item:: " + itemCount);
         waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
     }
@@ -137,7 +134,6 @@ public class SvWlcCounterPageObject extends mobioLibs {
         sleepInSecond(20);
         waitToElementVisible(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         itemCount = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
-        System.out.println("So item:: " + itemCount);
     }
 
     public void assignTask(String userAccount, String itemInListLocator) {

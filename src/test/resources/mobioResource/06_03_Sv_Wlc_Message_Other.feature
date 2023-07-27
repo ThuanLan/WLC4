@@ -155,7 +155,7 @@ Feature: Web live chat and Others
       | WLCSite |
       | wlc0003 |
 
- 
+
   Scenario Outline: WLC_084_86_Add deal and delete deal
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
@@ -165,7 +165,7 @@ Feature: Web live chat and Others
     And Click on wlc icon
     And Click one wlc item
     And Click on Config Column3 button
-    And Config for "Đơn hàng" value
+    And Config for "Cơ hội bán " value
     And Click on "Lưu" button
     And Click Deal icon
     And Click Add deal button

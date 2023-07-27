@@ -57,7 +57,7 @@ public class GlobalConstants {
     
     public static final String REQUEST_URL_TO_DELETE_DATA = "https://api-uat.mobio.vn/social/api/v1.0/merchant/{merchantID}/remove-data-assign-by-merchant?social_type={socialTypeID}&object_type={objectTypeID}";
     public static final String MERCHAN_ID = "564efc46-71be-44df-b8c7-0198082b3555";
-    //	public static final String ZALO_SOCIAL_TYPE_ID = "2";
+//  public static final String ZALO_SOCIAL_TYPE_ID = "2";
 //	public static final String INSTAGRAM_SOCIAL_TYPE_ID = "3";
 //	public static final String YOUTUBE_SOCIAL_TYPE_ID = "4";
 //	public static final String APP_SOCIAL_TYPE_ID = "5";

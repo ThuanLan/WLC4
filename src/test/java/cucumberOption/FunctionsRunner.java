@@ -26,10 +26,11 @@ import mobio.pageObjects.CommonPageObject;
 		
 		//tags = "@fbloginsuccess,@getwebvs, @fbdeletealldata, @fblogin, @loginMobioAndCreadData")
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
-		tags = "@loginsuccess ,@chatsocket1")		
+		tags = "@loginsuccess ,@chat3")		
 		//tags = "@chatdata")		
 
 public class FunctionsRunner {
+	 
 	@AfterClass
 	public static void setup()
 	{

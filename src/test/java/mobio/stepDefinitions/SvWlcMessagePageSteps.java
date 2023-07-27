@@ -145,6 +145,7 @@ public class SvWlcMessagePageSteps {
         wlcMessagePage.hoverMouseToElement(driver, SvWlcCounterPageUI.COLUMN1_TAG_ICON);
         Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN1_TAG_CONTENT_LBL, tagName));
         wlcMessagePage.hoverMouseToElement(driver, SvWlcCounterPageUI.COLUMN2_TAG_ICON);
+        wlcMessagePage.sleepInSecond(3);
         Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN2_TAG_CONTENT_LBL, tagName));
     }
 

@@ -34,7 +34,6 @@ public class SvWlcFilterPageObject extends mobioLibs {
 
     public void selectAllSupportDropdown(String itemName) {
         waitToElementVisible(driver, SvWlcFilterPageUI.SUPPORT_DROP);
-        //scrollToItemInList(driver, SvWlcFilterPageUI.SUPPORT_DROP, SvWlcFilterPageUI.SUPPORT_ALLITEM_DROP, itemName);
         selectItemInCustomDropdown(driver, SvWlcFilterPageUI.SUPPORT_DROP,
                 SvWlcFilterPageUI.SUPPORT_ALLITEM_DROP, itemName);
         sleepInSecond(2);

@@ -64,15 +64,11 @@ public class SvWlcMessagePageObject extends mobioLibs {
 
     public boolean isReplyByTeamMember(String userid) {
         sleepInSecond(1);
-       // switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         boolean msgContent = isElementDisplayed(driver, SvWlcMessagePageUI.COTENT_IN_COLUMN2_LBL,
                 SvWlcCounterPageObject.randomReply);
         boolean successReplyIcon = isElementDisplayed(driver, SvWlcMessagePageUI.WLC_REPLY_SUCCESS_ICON);
         boolean respondent = isElementDisplayed(driver, SvWlcCounterPageUI.REPLY_ITEM_OWNER,
-                commonPage.getAccount(userid));
-        System.out.println(msgContent);
-        System.out.println(successReplyIcon);
-        System.out.println(respondent);
+                commonPage.getAccount(userid));       
         return msgContent && successReplyIcon && respondent;
     }
 
@@ -94,16 +90,13 @@ public class SvWlcMessagePageObject extends mobioLibs {
     }
 
     public boolean isRepliedItemInTeamByCustomer() {
-       // backToDefault(driver);
         switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         sleepInSecond(7);
-        System.out.println("Tin nhắn " + SvWlcCounterPageObject.randomReply );
         return isElementDisplayed(driver, SvWlcMessagePageUI.COTENT_IN_COLUMN2_LBL,
                SvWlcCounterPageObject.randomReply);
     }
 
     public void clickOldWlcItem() {
-        //System.out.println("Giá trị msg cần lấy " + SvWebLiveChatPageObject.wlcMessage);
         sleepInSecond(3);
         waitToElementVisible(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ITEM, SvWebLiveChatPageObject.wlcMessage);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ITEM, SvWebLiveChatPageObject.wlcMessage);
@@ -157,7 +150,6 @@ public class SvWlcMessagePageObject extends mobioLibs {
     }
 
     public void clickOldWlcItemOtherDriver() {
-        System.out.println("Giá trị content để click lại " + getContent);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ITEM, getContent);
         sleepInSecond(2);
     }

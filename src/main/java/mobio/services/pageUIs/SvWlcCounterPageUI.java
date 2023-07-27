@@ -24,9 +24,7 @@ public class SvWlcCounterPageUI {
     public static final String FB_FORWARD_REPLY_BTN = "//mo-libs-social-share-chat_reply-content-news-facebook//button/i[contains(@class,'mo-icn-forward-to')]";
     public static final String ASSIGNED_DROP = "//mo-libs-shared-components-tooltip[text()='Chọn người tiếp nhận']";
     public static final String ASSIGNED_ALL_ITEMS_DROP = "//mo-libs-shared-components-list_view-templates-text//mo-libs-shared-components-tooltip";
-    
-    
-    
+      
     public static final String MSG_FORWARD_REPLY_BTN = "//mo-libs-social-share-chat_reply-content-conversation//button/i[contains(@class,'mo-icn-forward-to')]";
 
     public static final String SOCIAL_ITEM_NOT_REPLY = "(//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-social-share-chat_reply-assignment-item)";
@@ -113,8 +111,10 @@ public class SvWlcCounterPageUI {
     public static final String DEAL_ALL_STATE_DROP = "//mo-libs-shared-components-list_view-templates-text//mo-libs-shared-components-tooltip";
     public static final String DEAL_REDIRECT_DETAIL_PAGE = "//mo-libs-cdp-box-components-deal//mo-libs-shared-components-tooltip[text()='%s']//ancestor::div[contains(@class,'mo-lib-border-general')]//i[contains(@class,'mo-icn-New-page')]";
 
-    public static final String DEAL_STATUS_LBL = "//mo-libs-cdp-box//div[text()='Trạng thái đơn hàng']/following-sibling::div[text()='%s']";
-    public static final String DEAL_VALUE_LBL = "//mo-libs-cdp-box//div[text()='Giá trị đơn hàng']/following-sibling::div[text()='%s']";
+//    public static final String DEAL_STATUS_LBL = "//mo-libs-cdp-box//div[text()='Trạng thái đơn hàng']/following-sibling::div[text()='%s']";
+//    public static final String DEAL_VALUE_LBL = "//mo-libs-cdp-box//div[text()='Giá trị đơn hàng']/following-sibling::div[text()='%s']";
+    public static final String DEAL_STATUS_LBL = "//div[not(contains(@class,' d-none'))]/div[contains(@class,' mo-lib-right')]//div[text()='Trạng thái Cơ hội bán']/following-sibling::div[text()='%s']";
+    public static final String DEAL_VALUE_LBL = "//div[not(contains(@class,' d-none'))]/div[contains(@class,' mo-lib-right')]//div[text()='Giá trị Cơ hội bán']/following-sibling::div[text()='1.000.000 VNĐ']";
     public static final String DEAL_DETAIL_FORM = "//div[contains(@class,'mutil-page-right-box') and not(contains(@class,'d-none'))]//mo-cdp-block-right-item-deal//span[text()='%s']";
 
     public static final String DELETE_BTN = "//mo-libs-shared-components-tooltip[text()='%s']//ancestor::div[contains(@class,'mo-lib-border-general')]//i[@class='mo-icn-close-popup']";

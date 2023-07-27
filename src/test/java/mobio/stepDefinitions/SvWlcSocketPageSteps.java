@@ -22,7 +22,7 @@ public class SvWlcSocketPageSteps {
 
     @Then("^Verify the task assignment message wlc$")
     public void verifyTheTaskAssignment() {
-        wlcSocketPage.sleepInSecond(10);
+        wlcSocketPage.sleepInSecond(5);
         Assert.assertTrue(wlcSocketPage.isContentInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM,
                 SvWlcSocketPageObject.getContentInTop));
     }

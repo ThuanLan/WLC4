@@ -20,7 +20,7 @@ public class SvOtherFunctionPageObject extends mobioLibs {
     WebDriver driver;
     public static String ticketName;
     public static String noteContent;
-
+    public static String dealName;
     String email = "mobio" + randomNumber() + "@mobio.vn";
     String configAtributeValue;
 
@@ -36,10 +36,23 @@ public class SvOtherFunctionPageObject extends mobioLibs {
 
     public void clickAddDealButton() {
         sleepInSecond(5);
-        waitToElementClickable(driver, SvOtherFunctionsPageUI.DYNAMIC_ADD_BUTTON, "Thêm đơn hàng");
-        clickToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_ADD_BUTTON, "Thêm đơn hàng");
+        waitToElementClickable(driver, SvOtherFunctionsPageUI.DYNAMIC_ADD_BUTTON, "Thêm cơ hội bán ");
+        clickToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_ADD_BUTTON, "Thêm cơ hội bán ");
     }
 
+    public void addDealInfo() {
+        dealName = "Deal " + randomNumber();
+        System.out.println("in ra " + dealName);
+        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+        sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, dealName,"Tên Cơ hội bán");
+        sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, "1000000", "Giá trị Cơ hội bán");
+        scrollToElement(driver, CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán");
+        selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán"), CommonPageUI.ALL_ITEM_DROP, CommonPageUI.ITEM_SEARCH_DROP, "Thành công");
+        scrollToElement(driver, CommonPageUI.CHECKBOX_DROP,"Profile");
+        selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), CommonPageUI.ALL_ITEM_CHECKBOX_DROP, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), GlobalConstants.PROFILE_NAME);
+        clickToElement(driver, CommonPageUI.DYNAMIC_LBL, "Profile");
+		sleepInSecond(1);
+    }
 
     public void addTicketInfo() {
         SvDataTest dataTest;
@@ -48,43 +61,6 @@ public class SvOtherFunctionPageObject extends mobioLibs {
         waitToElementVisible(driver, SvOtherFunctionsPageUI.DYNAMIC_TEXTBOX, "Tên ticket");
         sendkeyToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_TEXTBOX, ticketName, "Tên ticket");
 
-//        waitToElementClickable(driver, SvOtherFunctionsPageUI.RECIEVER_TICKET_DROP);
-//        scrollToElement(driver, SvOtherFunctionsPageUI.RECIEVER_TICKET_DROP);
-//        clickToElement(driver, SvOtherFunctionsPageUI.RECIEVER_TICKET_DROP);
-//        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//        sleepInSecond(2);
-//        clickToElement(driver, SvOtherFunctionsPageUI.VALUE_DYNAMIC_DROPDOWN, "Admin  (admin@testauto)");
-//        sleepInSecond(2);
-//        waitToElementVisible(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));
-//		scrollToElement(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));
-//		selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, dataTest.getMemberAcc());
-
-//        waitToElementClickable(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Trạng thái xử lý");
-//        scrollToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Trạng thái xử lý");
-//        clickToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Trạng thái xử lý");
-//        clickToElement(driver, SvOtherFunctionsPageUI.VALUE_DYNAMIC_DROPDOWN, "Hoàn tất");
-//        sleepInSecond(1);
-//
-//        waitToElementClickable(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Kiểu ticket");
-//        clickToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Kiểu ticket");
-//        clickToElement(driver, SvOtherFunctionsPageUI.VALUE_DYNAMIC_DROPDOWN, "Khác");
-//        sleepInSecond(1);
-//
-//        waitToElementClickable(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Mức độ ưu tiên");
-//        scrollToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Mức độ ưu tiên");
-//        clickToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_DROPDOWN_TICKET, "Mức độ ưu tiên");
-//        clickToElement(driver, SvOtherFunctionsPageUI.VALUE_DYNAMIC_DROPDOWN, "Cao");
-//        sleepInSecond(1);
-//
-//        waitToElementClickable(driver, SvOtherFunctionsPageUI.PROFILE_DROPDOWN_TICKET);
-//        scrollToElement(driver, SvOtherFunctionsPageUI.PROFILE_DROPDOWN_TICKET);
-//        clickToElement(driver, SvOtherFunctionsPageUI.PROFILE_DROPDOWN_TICKET);
-//        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//        sendkeyToElement(driver, SvOtherFunctionsPageUI.PROFILE_DROPDOWN_TICKET, GlobalConstants.FB_ACCOUNT_NAME);
-//        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//        sleepInSecond(3);
-//        sendkeyControl(driver, SvOtherFunctionsPageUI.PROFILE_DROPDOWN_TICKET, Keys.ENTER);
-//        sleepInSecond(1);
 		selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Trạng thái xử lý", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Mở");
 
 		selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Kiểu ticket", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Khác");
@@ -194,4 +170,5 @@ public class SvOtherFunctionPageObject extends mobioLibs {
                 configAtributeValue = "can not found!";
         }
     }
+
 }

@@ -16,7 +16,6 @@ import mobio.services.pageUIs.SvWlcCounterPageUI;
 public class SvOtherFunctionsPageSteps {
 	WebDriver driver;
 	SvOtherFunctionPageObject svOtherFunctionPage;
-	public static String dealName;
 
 	public SvOtherFunctionsPageSteps() {
 		driver = Hooks.getAndCloseBrowser();
@@ -98,30 +97,16 @@ public class SvOtherFunctionsPageSteps {
 	}
 
 	@Then("^Verify deal updated information at the column3$")
-	public void verifyDealUpdatedInformationAtTheColumn3() {
-		Assert.assertTrue(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Thành công"));
-		Assert.assertTrue(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_VALUE_LBL, "1.000.000 VNĐ"));
+    public void verifyDealUpdatedInformationAtTheColumn3() {
+        Assert.assertTrue(
+                svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Thành công"));
+        Assert.assertTrue(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_VALUE_LBL));
+    }
 
-	}
 
 	@And("^Add deal information$")
 	public void addDealInformationWithValidInformation() {
-		dealName = "Deal " + svOtherFunctionPage.randomNumber();
-		System.out.println("in ra " + dealName);
-		svOtherFunctionPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		svOtherFunctionPage.sendkeyToElement(driver, SvWlcCounterPageUI.DEAL_TITLE_TXT, dealName);
-		svOtherFunctionPage.sendkeyToElement(driver, SvWlcCounterPageUI.DEAL_VALUE_TXT, "1000000");
-		svOtherFunctionPage.selectItemInCustomDropdown(driver, SvWlcCounterPageUI.DEAL_STATE_DROP, SvWlcCounterPageUI.DEAL_ALL_STATE_DROP, "Thành công");
-		svOtherFunctionPage.selectItemInCustomDropdownBySearching(driver, SvWlcCounterPageUI.DEAL_PROFILE, SvWlcCounterPageUI.DEAL_PROFILE_ITEM, SvWlcCounterPageUI.DEAL_PROFILE, GlobalConstants.PROFILE_NAME);
-//        svOtherFunctionPage.scrollToElement(driver, SvWlcCounterPageUI.DEAL_PROFILE);
-//        svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DEAL_PROFILE);
-//        svOtherFunctionPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//        svOtherFunctionPage.sendkeyToElement(driver, SvWlcCounterPageUI.DEAL_PROFILE_TXT1, GlobalConstants.PROFILE_NAME);
-//        svOtherFunctionPage.sleepInSecond(2);
-//        svOtherFunctionPage.waitToElementClickable(driver, SvWlcCounterPageUI.DEAL_PROFILE_ITEM, GlobalConstants.PROFILE_NAME);
-//        svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DEAL_PROFILE_ITEM, GlobalConstants.PROFILE_NAME);
-
-		svOtherFunctionPage.sleepInSecond(1);
+		svOtherFunctionPage.addDealInfo();		
 	}
 
 	@Then("^Verify redirected deal page$")
@@ -135,22 +120,22 @@ public class SvOtherFunctionsPageSteps {
 	@And("^Click to View deal detail$")
 	public void clickToViewDealDetail() {
 		svOtherFunctionPage.sleepInSecond(9);
-		svOtherFunctionPage.waitToElementVisible(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, dealName);
-		svOtherFunctionPage.waitToElementClickable(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, dealName);
-		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, dealName);
+		svOtherFunctionPage.waitToElementVisible(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, SvOtherFunctionPageObject.dealName);
+		svOtherFunctionPage.waitToElementClickable(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, SvOtherFunctionPageObject.dealName);
+		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.RIGHT_BOX_TITLE_ITEM, SvOtherFunctionPageObject.dealName);
 		svOtherFunctionPage.sleepInSecond(3);
 	}
 
 	@And("^Click to redirect deal detail$")
 	public void clickOnViewDealDetailButton() {
-		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DEAL_REDIRECT_DETAIL_PAGE, dealName);
+		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DEAL_REDIRECT_DETAIL_PAGE, SvOtherFunctionPageObject.dealName);
 		svOtherFunctionPage.sleepInSecond(3);
 	}
 
 	@And("^Click to delete a deal$")
 	public void clickToDeleteADeal() {
 		svOtherFunctionPage.switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
-		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DELETE_BTN, dealName);
+		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.DELETE_BTN, SvOtherFunctionPageObject.dealName);
 		svOtherFunctionPage.sleepInSecond(3);
 	}
 
@@ -179,8 +164,8 @@ public class SvOtherFunctionsPageSteps {
 //		Assert.assertTrue(svFbCommentCounterPage.isElementUndisplayed(driver, SvFbCommentCounterPageUI.DEAL_DETAIL_FORM,
 //				SvFbMessageColumn3PageObject.orderName));
 		svOtherFunctionPage.sleepInSecond(5);
-		System.out.println("check deal name" + svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_DETAIL_FORM, dealName));
-		Assert.assertFalse(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_DETAIL_FORM, dealName));
+		System.out.println("check deal name" + svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_DETAIL_FORM, SvOtherFunctionPageObject.dealName));
+		Assert.assertFalse(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_DETAIL_FORM, SvOtherFunctionPageObject.dealName));
 	}
 
 	@And("^Add ticket information$")

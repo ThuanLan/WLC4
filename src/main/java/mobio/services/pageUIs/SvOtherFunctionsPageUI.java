@@ -10,11 +10,9 @@ public class SvOtherFunctionsPageUI {
     public static final String DYNAMIC_TEXTBOX = "//mo-libs-shared-components-tooltip[text()='%s']//ancestor::mo-libs-shared-components-input-valid//mo-libs-shared-components-input//input";
     public static final String DYNAMIC_DROPDOWN_TICKET = "//mo-lib-components-tooltip[contains(@class,'lib-font-head') and contains(text(),'%s')]/ancestor::div[contains(@class,'row')]//mo-lib-components-tooltip[contains(.,'Chọn')]";
 
-    //public static final String RECIEVER_TICKET_DROP = "//mo-lib-components-tooltip[text()='Nhân viên phụ trách']/ancestor::div[contains(@class,'mo-form-row-custom')]//mo-dynamic_field-support_old_config-add_edit-dropdown_multi-assignee//mo-lib-components-tooltip[contains(.,'Chọn')]";
     public static final String ADD_STAFF_IN_CHARGE_DROP = "//mo-libs-shared-components-tooltip[text()='%s']/ancestor::mo-libs-shared-components-label/following-sibling::mo-libs-dynamic_field-template_cms-template-multi_optional_field//mo-libs-shared-components-dropdown//mo-libs-shared-components-tooltip[text()='%s']";
     public static final String ADD_NEW_SEARCH_TXT = "//mo-libs-shared-components-tooltip-content//mo-libs-shared-components-input-search//input";
 	
-	//public static final String ADD_PARENT_DROP = "//mo-libs-shared-components-tooltip[text()='%s']/ancestor::mo-libs-shared-components-label/following-sibling::mo-libs-dynamic_field-template_cms-template-single_dropdown//mo-libs-shared-components-dropdown//mo-libs-shared-components-tooltip[text()='%s']";
 	public static final String ADD_CHILD_LIST_DROP = "//mo-libs-shared-components-list_view-templates-text//mo-libs-shared-components-tooltip";
 	
     public static final String NOTE_TEXTA = "//mo-libs-popup_action-note-content//div[contains(@class,'ql-editor')]";
@@ -27,7 +25,6 @@ public class SvOtherFunctionsPageUI {
     public static final String ADD_TICKET_MENU = "//div[@class='mo-lib-tooltip-content-inner']//li//span[text()='%s']";
 	
 	public static final String ADD_NEW_LBL = "//mo-libs-shared-components-label//mo-libs-shared-components-tooltip[text()='%s']";
-	//public static final String ADD_NEW_TXT = "//mo-libs-ticket-dashboard-add_edit-group//input[@placeholder='Nhập nội dung']";
 	public static final String ADD_NEW_STAFF_IN_CHARGE_DROP = "//mo-libs-shared-components-tooltip[text()='Nhân viên phụ trách']/ancestor::mo-libs-shared-components-label/following-sibling::mo-libs-dynamic_field-template_cms-template-multi_optional_field//mo-libs-shared-components-dropdown//mo-libs-shared-components-tooltip[text()='Chọn thông tin']";
 	public static final String ADD_NEW_ROLE_DROP = "//mo-libs-shared-components-tooltip[text()='Nhân viên phụ trách']/ancestor::mo-libs-shared-components-label/following-sibling::mo-libs-dynamic_field-template_cms-template-multi_optional_field//mo-libs-shared-components-dropdown//mo-libs-shared-components-tooltip[text()='%s']";
 	

@@ -34,7 +34,7 @@ Feature: Web live chat filter
     Then Verify comments of team member
     When Click one comment
     Then Verify the feature of selected wlc
-@fil1
+
   Scenario: WLC_018_FBFilter Check support dropdown list_Share view
     Given Go to Mobio site by "Member in Team" account
     And Click on Setting menu
@@ -53,7 +53,7 @@ Feature: Web live chat filter
     And Click on filter button
     And Click on list of social page dropdown
     Then Verify list of social page of team member
-@fil1
+
   Scenario: WLC_018_1_FBFilter Check support dropdown list by manager account in a team
     Given Go to Mobio site by "Member in other Team" account
     And Click on Setting menu
@@ -265,7 +265,7 @@ Feature: Web live chat filter
     Then Verify content of searching at column2
     And Send invalid content to search at clolumn2
     Then Verify invalid content of searching at column2
-@fil1
+
   Scenario: WLC_032_FBFilter Pin comment_Assign pin task
     Given Go to Mobio site by "Admin" account
     And Go to the Social chat screen

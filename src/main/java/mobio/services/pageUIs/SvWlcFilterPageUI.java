@@ -47,16 +47,11 @@ public class SvWlcFilterPageUI {
     public static final String FILTER_TAG_NAME_ALL_ITEM = "//mo-libs-shared-components-list_view-templates-checkbox//mo-libs-shared-components-tooltip";
     public static final String ACCOUNT_SEARCH_BOX_DROP = "//div[@class='scrollable-content']//div[contains(@class,'d-flex flex-column')]//mo-libs-shared-components-tooltip[contains(text(),'%s')]";
     public static final String CHOSE_TAG_ITEM = "//mo-libs-shared-components-tags//div[@class='mo-lib-tags-item']";
-    //public static final String POST_TAGNAME_ITEM = "//mo-lib-components-tags-item//span[@class='text-break' and text()='%s']";
     public static final String CLOSE_TAGNAME_ITEM = "//mo-lib-components-tags-item//span[@class='text-break' and text()='%s']/following-sibling::div[@class='mo-icn-close-popup']";
     public static final String All_SELECTED_TAG_ITEM = "//mo-libs-shared-components-tags//mo-libs-shared-components-tooltip//div[@class='mo-lib-tags']";
     public static final String FORWARD_TAG_TXT = "//mo-lib-components-tags-social-assign/div//input[@class='mo-lib-tags-input']";
     
     // Search
-//    public static final String SEARCH_BOX_TXT = "//mo-libs-social-share-chat_reply-filter//mo-libs-shared-components-input-search//input[@placeholder='Nhập tên']";
-//    public static final String SEARCH_CONTENT_TXT = "//mo-libs-social-share-chat_reply-filter//mo-libs-shared-components-input-search//input";
-//    public static final String SEARCH_STYLE_DROP = "//mo-libs-social-share-chat_reply-filter//mo-libs-shared-components-dropdown//mo-libs-shared-components-tooltip[text()='Tên Profile']";
-//    public static final String SEARCH_STYLE_AlL_ITEM_DROP = "//div[@class='mo-lib-tooltip-content-inner']//mo-libs-shared-components-list_view//mo-libs-shared-components-tooltip";
     public static final String SEARCH_COLUMN2_BTN = "//button/i[contains(@class,'mo-icn-Search1')]";
     public static final String SEARCH_COLUMN2_TXT = "//mo-libs-social-share-chat_reply-content-conversation//mo-libs-shared-components-input-search//mo-libs-shared-components-input//input";
     public static final String SEARCH_RESULT_LBL = "//div[contains(@class,'mo-libs-social-share-chat_reply-content-conversation-template-search')]//div[@class='d-flex align-items-center']/div[1]";
