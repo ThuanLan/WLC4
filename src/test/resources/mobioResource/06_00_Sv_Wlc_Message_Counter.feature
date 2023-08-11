@@ -167,6 +167,7 @@ Feature: Web Live Chat Counter
     Then Verify item count is unchanged
 
   # Cấu hình hiển thị tin chưa đọc
+  
   Scenario: TC04_FBCounter_Set counter on the job processing page
     Given Go to Mobio site by "Admin" account
     Given Click on Setting button

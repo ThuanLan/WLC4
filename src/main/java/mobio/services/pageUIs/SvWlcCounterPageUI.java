@@ -48,6 +48,7 @@ public class SvWlcCounterPageUI {
 
     // Sort
     public static final String FB_SORT_MENU = "//mo-libs-shared-components-dropdown//span[contains(@class,'mo-icn-sort_list')]";
+   
     public static final String FB_SORT_NEWEST_ITEM = "//virtual-scroller//mo-libs-shared-components-tooltip[contains(text(),'Từ mới đến cũ')]";
     public static final String FB_SORT_OLDEST_ITEM = "//virtual-scroller//mo-libs-shared-components-tooltip[contains(text(),'Từ cũ đến mới')]";
     public static final String MSG_FINISH_BTN = "//mo-libs-social-share-chat_reply-content-conversation//mo-libs-shared-components-button/mo-libs-shared-components-tooltip/button[contains(@class,'mo-lib-button mo-lib-button-blue-solid')]";
@@ -147,8 +148,7 @@ public class SvWlcCounterPageUI {
     public static final String MESSAGE_TEXT_IN_COLUMN2_LBL = "(//div[contains(@class,'mo-lib-overflow')]//mo-libs-social-share-chat_reply-content-conversation-message)[last()]//div[contains(@class,'text-break')]";
     public static final String ZOOM_VIDEO = "//mo-lib-components-modal//div[contains(@class,'align-items-center justify-content-center')]//video";
     public static final String SOCIAL_CONTENT_TOP_ITEM = "(//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis'])[1]//span";
-    public static final String SORT_NEWEST_LBL = "//span[contains(@class,'mo-icn-sort_list')]//ancestor::div[contains(@class,'d-flex mo-lib-border-top-general')]//div[contains(text(),'Từ mới đến cũ')]";
-    public static final String SORT_OLDEST_LBL = "//span[contains(@class,'mo-icn-sort_list')]//ancestor::div[contains(@class,'d-flex mo-lib-border-top-general')]//div[contains(text(),'Từ cũ đến mới')]";
-
+    public static final String SORT_NEWEST_LBL = "//div[@key='comments']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ mới đến cũ ']";
+    public static final String SORT_OLDEST_LBL = "//div[@key='comments']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ cũ đến mới ']";
 
 }
