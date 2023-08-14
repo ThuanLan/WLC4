@@ -22,7 +22,7 @@ import mobio.pageObjects.CommonPageObject;
 						"json:target/site/mobio.json" },
 		snippets = SnippetType.CAMELCASE,
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
-		tags = "@chatsocket2")
+		tags = "@chatsocket1")
 		
 public class MobioTestRunner {
 	
