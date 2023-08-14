@@ -24,10 +24,9 @@ import mobio.pageObjects.CommonPageObject;
 				"json:target/site/mobio.json" },
 		snippets = SnippetType.CAMELCASE,
 		
-		//tags = "@fbloginsuccess,@getwebvs, @fbdeletealldata, @fblogin, @loginMobioAndCreadData")
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
 		//tags = "@loginsuccess ,@chat3")		
-		tags = "@cout1")		
+		tags = "@chatsocket1")		
 
 public class FunctionsRunner {
 	 

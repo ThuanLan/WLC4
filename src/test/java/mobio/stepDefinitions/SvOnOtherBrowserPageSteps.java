@@ -75,8 +75,9 @@ public class SvOnOtherBrowserPageSteps {
             chromePrefs.put("profile.default_content_settings.popups", 0);
             chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FOLDER);
             options.setExperimentalOption("prefs", chromePrefs);
+            commonPage.sleepInSecond(1);
             driverSecond = new ChromeDriver(options);
-
+            commonPage.sleepInSecond(1);
         } finally {
             Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
         }
