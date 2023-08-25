@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -319,6 +320,7 @@ public class mobioLibs {
 	public void clickToElement(WebDriver driver, String locator) {
 		highlightElement(driver, locator);
 		element = findElementByXpath(driver, locator);
+		// System.out.println("click vào " + element);
 		if (driver.toString().contains("internet explorer")) {
 			clickToElementByJS(driver, locator);
 			sleepInSecond(1);
@@ -448,7 +450,8 @@ public class mobioLibs {
 	 */
 	public void dragAndDropElement(WebDriver driver, String startPointLocator, String endPointLocator) {
 		Actions act = new Actions(driver);
-		act.dragAndDrop(findElementByXpath(driver, startPointLocator), findElementByXpath(driver, endPointLocator)).build().perform();
+		act.dragAndDrop(findElementByXpath(driver, startPointLocator), findElementByXpath(driver, endPointLocator))
+				.build().perform();
 	}
 
 	/**
@@ -517,7 +520,8 @@ public class mobioLibs {
 			sleepInSecond(1);
 			// Drag events require more than one movement to register
 			// Just appearing at destination doesn't work so move halfway first
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
+					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -584,7 +588,8 @@ public class mobioLibs {
 			toLocation.x += xYOffset + xCentreTo;
 			toLocation.y += 2 * xYOffset + yCentreTo;
 
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
+					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -606,7 +611,8 @@ public class mobioLibs {
 	 * @param xYOffset        the x Y offset
 	 * @param values          the values
 	 */
-	public void dndElementToAddBtn(WebDriver driver, WebElement dragFrom, String endPointLocator, int xYOffset, String... values) {
+	public void dndElementToAddBtn(WebDriver driver, WebElement dragFrom, String endPointLocator, int xYOffset,
+			String... values) {
 		// Setup robot
 		Robot robot;
 		try {
@@ -651,7 +657,8 @@ public class mobioLibs {
 			toLocation.x += xYOffset + xCentreTo;
 			toLocation.y += 2 * xYOffset + yCentreTo;
 
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
+					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -795,7 +802,6 @@ public class mobioLibs {
 			WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 			element = driver.findElement(By.xpath(locator));
-			//System.out.println("hien thi el " + element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;
@@ -863,7 +869,10 @@ public class mobioLibs {
 	 */
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		try {
+//			System.out.println("EL show 1: " + locator);
+//			System.out.println("EL show : " + values);
 			element = driver.findElement(byXpathLocator(locator, values));
+//			System.out.println("EL show: " + element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;
@@ -1388,7 +1397,8 @@ public class mobioLibs {
 	 * @return true, if successful
 	 */
 	public boolean verifyTextInnerText(WebDriver driver, String textExpected) {
-		String textActual = (String) js.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) js
+				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -1620,6 +1630,25 @@ public class mobioLibs {
 	 * @param expectedText the expected text
 	 */
 	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath, String expectedText) {
+		waitToElementVisible(driver, parentXpath);
+		driver.findElement(By.xpath(parentXpath)).click();
+		waitToElementVisible(driver, allItemXpath);
+		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
+		if (allItems.size() > 0) {
+			for (WebElement item : allItems) {
+				if (item.getText().equals(expectedText)) {
+					item.click();
+					sleepInSecond(1);
+					break;
+				}
+			}
+		} else {
+			throw new NoSuchElementException("Unable to located: " + allItemXpath);
+		}
+	}
+
+	public void selectItemInCustomDropdownByPass(WebDriver driver, String parentXpath, String allItemXpath,
+			String expectedText) {
 		driver.findElement(By.xpath(parentXpath)).click();
 		// waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
@@ -1636,7 +1665,6 @@ public class mobioLibs {
 		} else {
 			throw new IllegalAddException("No data found!");
 		}
-
 	}
 
 	/**
@@ -1649,6 +1677,28 @@ public class mobioLibs {
 	 * @param expectedText the expected text
 	 */
 	public void selectItemInCustomDropdownBySearching(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
+		waitToElementClickable(driver, parentXpath);
+		clickToElement(driver, parentXpath);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+		sendkeyToElement(driver, searchXpath, expectedText);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
+		if (allItems.size() > 0) {
+			for (WebElement item : allItems) {
+				if (item.getText().equals(expectedText)) {
+					item.click();
+					sleepInSecond(1);
+					break;
+				}
+			}
+
+		} else {
+			throw new NoSuchElementException("Unable to located: " + allItemXpath);
+		}
+	}
+
+	public void selectItemInCustomDropdownBySearchingByPass(WebDriver driver, String parentXpath, String allItemXpath,
+			String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		sendkeyToElement(driver, searchXpath, expectedText);
@@ -1677,6 +1727,27 @@ public class mobioLibs {
 	 * @param expectedText the expected text
 	 */
 	public void selectItemInDropdownBySearchingNoWait(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
+		waitToElementClickable(driver, parentXpath);
+		clickToElement(driver, parentXpath);
+		waitToElementVisible(driver, searchXpath);
+		sendkeyToElement(driver, searchXpath, expectedText);
+		waitToElementVisible(driver, allItemXpath);
+		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
+		if (allItems.size() > 0) {
+			for (WebElement item : allItems) {
+				if (item.getText().equals(expectedText)) {
+					item.click();
+					sleepInSecond(1);
+					break;
+				}
+			}
+		} else {
+			throw new NoSuchElementException("Unable to located: " + allItemXpath);
+		}
+	}
+
+	public void selectItemInDropdownBySearchingNoWaitByPass(WebDriver driver, String parentXpath, String allItemXpath,
+			String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath, expectedText);
 		sendkeyToElement(driver, searchXpath, expectedText);
@@ -1685,7 +1756,7 @@ public class mobioLibs {
 			for (WebElement item : allItems) {
 				if (item.getText().equals(expectedText)) {
 					item.click();
-					sleepInSecond(1);
+					sleepInSecond(3);
 					break;
 				}
 			}
@@ -1704,7 +1775,8 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", "border: 2px solid #f20060; border-style: dashed;");
+		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style",
+				"border: 2px solid #f20060; border-style: dashed;");
 		sleepInSecond(1);
 		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", originalStyle);
 	}
@@ -1720,7 +1792,8 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator, values);
 		String originalStyle = element.getAttribute("style");
-		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", "border: 2px solid #f20060; border-style: dashed;");
+		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style",
+				"border: 2px solid #f20060; border-style: dashed;");
 		sleepInSecond(1);
 		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", originalStyle);
 	}
@@ -1852,6 +1925,13 @@ public class mobioLibs {
 		calendar.add(Calendar.HOUR, 0);
 		Date today = calendar.getTime();
 		return dateFormat.format(today).toString();
+	}
+
+	public String getDayOfWeek() {
+		LocalDate localDate = LocalDate.now(); // today
+		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+		dayOfWeek.getValue(); // 4
+		return sentenceCase(dayOfWeek.toString());
 	}
 
 	/**
@@ -2117,10 +2197,12 @@ public class mobioLibs {
 	 * @param driver          the driver
 	 * @param allItemsXpath   the all items xpath
 	 * @param unreadXpath     the unread xpath
-	 * @param unReadTailXpath the unread tail xpath. Unread Xpath contains allItemXpath add tail of unread Xpath
+	 * @param unReadTailXpath the unread tail xpath. Unread Xpath contains
+	 *                        allItemXpath add tail of unread Xpath
 	 * @return the int
 	 */
-	public int countItemUnreadInPage(WebDriver driver, String allItemsXpath, String unreadXpath, String unReadTailXpath) {
+	public int countItemUnreadInPage(WebDriver driver, String allItemsXpath, String unreadXpath,
+			String unReadTailXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 		int countNotRead = 0;
@@ -2233,7 +2315,7 @@ public class mobioLibs {
 			scrollToElement(driver, allItemXpath + '[' + size + "]");
 			sleepInSecond(3);
 		}
-		System.out.println("Original list to compare : " + contentAllStartList);
+		System.out.println("List to compare: " + contentAllStartList);
 		return contentAllStartList;
 	}
 
@@ -2272,7 +2354,9 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allGetElementXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailGetElement)) {
-								contentGetList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailGetElement).getText());
+								contentGetList
+										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailGetElement)
+												.getText());
 							}
 						}
 					}
@@ -2297,7 +2381,8 @@ public class mobioLibs {
 	 * @return true, if is new list compare
 	 */
 // lấy list compare
-	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath, String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
+	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath,
+			String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 
@@ -2334,7 +2419,7 @@ public class mobioLibs {
 				contentGetUnAnswerNoPinList.add(content.getText());
 			}
 
-			System.out.println("The first loading unanswer: " + contentGetUnAnswerNoPinList);
+//			 System.out.println("The first loading unanswer: " + contentGetUnAnswerNoPinList);
 		}
 
 		if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
@@ -2345,7 +2430,7 @@ public class mobioLibs {
 			}
 		}
 
-		System.out.println("Loadmore đầu tiên luôn =1 " + loadMoreItem);
+//		 System.out.println("Loadmore đầu tiên luôn =1 " + loadMoreItem);
 
 		while (loadMoreItem != 0) {
 			List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemXpath);
@@ -2355,7 +2440,8 @@ public class mobioLibs {
 
 				WebElement el = webElementListTemp.get((i));
 
-				// System.out.println("Last item = null tức chưa load lần nào thì cho chạy tiếp");
+				// System.out.println("Last item = null tức chưa load lần nào thì cho chạy
+				// tiếp");
 				if (lastItem == null) {
 					continue;
 				}
@@ -2370,12 +2456,14 @@ public class mobioLibs {
 						contentTotalList.add(el1.getText());
 					}
 
-					System.out.println("Giá trị chuỗ tiếp theo sau kéo scroll: " + contentTotalList);
+//					 System.out.println("Giá trị chuỗ tiếp theo sau kéo scroll: " + contentTotalList);
 
 					if (isElementDisplayed(driver, allGetPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailPinXpath)) {
-								contentGetPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath).getText());
+								contentGetPinList
+										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath)
+												.getText());
 							}
 						}
 					}
@@ -2383,7 +2471,8 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath)) {
-								contentGetUnAnswerNoPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
+								contentGetUnAnswerNoPinList.add(findElementByXpath(driver,
+										allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
 							}
 						}
 
@@ -2393,7 +2482,9 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)) {
-								contentGetAnswerNoPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath).getText());
+								contentGetAnswerNoPinList.add(
+										findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)
+												.getText());
 							}
 						}
 					}
@@ -2401,7 +2492,7 @@ public class mobioLibs {
 				}
 			}
 			lastItem = webElementListTemp.get(size - 1);
-			System.out.println("Số item sau " + lastItem.getText());
+//			System.out.println("Số item sau " + lastItem.getText());
 			scrollToElement(driver, allItemXpath + '[' + size + "]");
 			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 			sleepInSecond(3);
@@ -2560,7 +2651,7 @@ public class mobioLibs {
 		List<String> listItem = new ArrayList<String>();
 		for (WebElement item : els) {
 			listItem.add(item.getText().trim());
-			System.out.println("Số item trong ds: " + listItem);
+//			System.out.println("Số item trong ds: " + listItem);
 		}
 		return listItem;
 	}
@@ -2573,7 +2664,8 @@ public class mobioLibs {
 	 * @param theSecondListLocator the the second list locator
 	 * @return true, if is compare 2 lists
 	 */
-	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent, List<String> theSecondListLocator) {
+	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent,
+			List<String> theSecondListLocator) {
 		return theSecondListLocator.containsAll(theFirstListContent);
 	}
 
@@ -2586,13 +2678,11 @@ public class mobioLibs {
 	 * @return true, if is content in list
 	 */
 	public boolean isContentInList(WebDriver driver, String listContentXpath, String getContentToCompare) {
-		System.out.println("Có dữ liệu không " + isElementDisplayed(driver, listContentXpath));
 		if (isElementDisplayed(driver, listContentXpath)) {
 			List<WebElement> finishedContent = findElementsByXpath(driver, listContentXpath);
 			List<String> contentList = new ArrayList<String>();
 			for (WebElement content : finishedContent) {
 				contentList.add(content.getText());
-				System.out.println("Danh sách: " + contentList);
 			}
 			return contentList.contains(getContentToCompare);
 		} else {
@@ -2614,10 +2704,12 @@ public class mobioLibs {
 	 * @param objectTypeValue the object type value
 	 */
 //	
-	public void deleteDataToReset(String requestUrl, String merchantValue, String socialTypeValue, String objectTypeValue) {
+	public void deleteDataToReset(String requestUrl, String merchantValue, String socialTypeValue,
+			String objectTypeValue) {
 		String editApi = requestUrl;
 		try {
-			Unirest.delete(editApi).routeParam("merchantID", merchantValue).routeParam("socialTypeID", socialTypeValue).routeParam("objectTypeID", objectTypeValue).asJson();
+			Unirest.delete(editApi).routeParam("merchantID", merchantValue).routeParam("socialTypeID", socialTypeValue)
+					.routeParam("objectTypeID", objectTypeValue).asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
@@ -2634,9 +2726,12 @@ public class mobioLibs {
 	 * @param account       the account
 	 * @param password      the password
 	 */
-	public void deleteAllTicket(String requestUrl, String urlDomain, String pathAPI, String merchantValue, String account, String password) {
+	public void deleteAllTicket(String requestUrl, String urlDomain, String pathAPI, String merchantValue,
+			String account, String password) {
 		try {
-			Unirest.delete(requestUrl).header("Authorization", "Bearer " + getTokenSite(urlDomain, pathAPI, account, password)).header("x-merchant-id", merchantValue).asJson();
+			Unirest.delete(requestUrl)
+					.header("Authorization", "Bearer " + getTokenSite(urlDomain, pathAPI, account, password))
+					.header("x-merchant-id", merchantValue).asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
@@ -2673,7 +2768,6 @@ public class mobioLibs {
 	public void switchToNewTab(WebDriver driver) {
 		ArrayList<String> numberOfTabs = new ArrayList<String>(driver.getWindowHandles());
 		int tabNumber = numberOfTabs.size();
-		System.out.println("số tab: " + tabNumber);
 		driver.switchTo().window(numberOfTabs.get(tabNumber - 1));
 		sleepInSecond(3);
 	}
@@ -2685,6 +2779,28 @@ public class mobioLibs {
 	 */
 	public void closeNewTab(WebDriver driver) {
 		driver.close();
+	}
+
+	public ArrayList<String> splitItem(List<String> originalList) {
+		ArrayList<String> arrSplit = new ArrayList<>();
+		String[] arr = null;
+		for (String splitString : originalList) {
+			arr = splitString.split("[ \n]");
+			for (String item : arr) {
+				arrSplit.add(item.trim());
+			}
+		}
+		return arrSplit;
+	}
+
+	public List<String> removeDuplicatedItem(List<String> originalList, List<String> removeList) {
+		List<String> stringList = new ArrayList<>();
+		for (String originalItem : originalList) {
+			if (!removeList.contains(originalItem.trim())) {
+				stringList.add(originalItem.trim());
+			}
+		}
+		return stringList;
 	}
 
 	/**

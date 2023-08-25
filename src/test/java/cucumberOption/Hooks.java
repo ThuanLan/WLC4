@@ -108,32 +108,6 @@ public class Hooks {
 		return driver;
 	}
 
-//	@After("@browser")
-//	public static void afterScenario() {
-//		System.out.println("Tên scenario là " + "toi");
-//		if (scenario.isFailed()) {
-//			String screenshotName = "thuan";// scenario.getName().replaceAll(" ", "_");
-//			System.out.println("Tên scenario là " + screenshotName);
-//			try {
-//				// This takes a screenshot from the driver at save it to the specified location
-//
-//				File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//
-//				// Building up the destination path for the screenshot to save
-//				// Also make sure to create a folder 'screenshots' with in the cucumber-report
-//				// folder
-//				File destinationPath = new File(System.getProperty("user.dir") + "/target" + screenshotName + ".png");
-//
-//				// Copy taken screenshot from source location to destination location
-//				Files.copy(sourcePath, destinationPath);
-//
-//				// This attach the specified screenshot to the test
-//				Reporter.addScreenCaptureFromPath(destinationPath.toString());
-//			} catch (IOException e) {
-//			}
-//		}
-//	}
-	
 	@After("@browser")
 	public void tearDown(Scenario scenario) {
 	    if (scenario.isFailed()) {
