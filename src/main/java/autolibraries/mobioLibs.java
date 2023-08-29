@@ -848,7 +848,7 @@ public class mobioLibs {
 	 * @return true, if is element displayed
 	 */
 	public boolean isElementDisplayed(WebDriver driver, String locator, int shortTimeOut) {
-		overriderGlobalTimeout(driver, shortTimeOut);
+		getWaitTimeOut(driver, shortTimeOut);
 		try {
 			element = driver.findElement(byXpathLocator(locator));
 			WebDriverWait wait = new WebDriverWait(driver, shortTimeOut);
@@ -1138,7 +1138,7 @@ public class mobioLibs {
 	public void waitToElementVisible(WebDriver driver, String locator, int timeOut) {
 		byXpath = byXpathLocator(locator);
 		waitExplicit = new WebDriverWait(driver, timeOut);
-		overriderGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.SHORT_TIMEOUT);
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1151,7 +1151,7 @@ public class mobioLibs {
 	public void waitToElementClickable(WebDriver driver, String locator) {
 		By byLocator = byXpathLocator(locator);
 		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
-		overriderGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.SHORT_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.elementToBeClickable(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
@@ -1186,7 +1186,7 @@ public class mobioLibs {
 	public void waitToElementInVisible(WebDriver driver, String locator) {
 		By byLocator = byXpathLocator(locator);
 		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
@@ -1223,13 +1223,13 @@ public class mobioLibs {
 	public void waitToElementInVisible(WebDriver driver, String locator, String... values) {
 		By byLocator = byXpathLocator(locator, values);
 		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
 			ex.printStackTrace();
 		}
-		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	/**
@@ -1247,7 +1247,7 @@ public class mobioLibs {
 		} catch (org.openqa.selenium.TimeoutException ex) {
 			ex.printStackTrace();
 		}
-		overriderGlobalTimeout(driver, longTimeOut);
+		getWaitTimeOut(driver, longTimeOut);
 	}
 
 	/**
@@ -1258,28 +1258,28 @@ public class mobioLibs {
 	 * @return true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
-		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 		List<WebElement> elements = driver.findElements(By.xpath(locator));
 		if (elements.size() == 0) {
-			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 			return true;
 
 		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
-			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 			return true;
 		} else {
-			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 			return false;
 		}
 	}
 
 	/**
-	 * Overrider global timeout.
+	 * global timeout.
 	 *
 	 * @param driver  the driver
 	 * @param timeOut the time out
 	 */
-	private void overriderGlobalTimeout(WebDriver driver, long timeOut) {
+	private void getWaitTimeOut(WebDriver driver, int timeOut) {
 		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
 	}
 
@@ -1292,7 +1292,7 @@ public class mobioLibs {
 	 * @return true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
-		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
 		locator = String.format(locator, (Object[]) values);
 		List<WebElement> elements = driver.findElements(By.xpath(locator));
 		if (elements.size() == 0) {
