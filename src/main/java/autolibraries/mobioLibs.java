@@ -1731,7 +1731,8 @@ public class mobioLibs {
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
-		waitToElementVisible(driver, allItemXpath);
+		//waitToElementVisible(driver, allItemXpath);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		if (allItems.size() > 0) {
 			for (WebElement item : allItems) {
