@@ -6,7 +6,7 @@ Feature: Web live chat Socket3
 
   # Kiểm tra tin nhắn phân công đúng người
 
-  Scenario: WLC_036_Socket Check assignment_message ones
+  Scenario: WLC_036_Socket Check assignment_one message
     Given Go to Mobio site by "Member" account
     And Click on Setting menu
     And Click on "Cài đặt doanh nghiệp" settings

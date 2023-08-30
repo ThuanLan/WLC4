@@ -80,8 +80,6 @@ public class SvSocketPageSteps {
 
     @Then("^Verify recipient group dropdown default$")
     public void verifyRecipientGroupDropdownDefault() {
-//		svWlcSocketPage.backToDefaultContent(driver);
-//		svWlcSocketPage.switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         svWlcSocketPage.sleepInSecond(3);
         svWlcSocketPage.waitToElementVisible(driver, SvWlcCounterPageUI.FORWARD_GROUP_DEFAULT_DROP);
         Assert.assertEquals("Auto_Thuannt", (svWlcSocketPage.getTextElement(driver, SvWlcCounterPageUI.FORWARD_GROUP_DEFAULT_DROP)));
