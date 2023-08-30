@@ -96,6 +96,7 @@ Feature: WLC Message Socket
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on the message tab
+    And Sort in order from new to old
     And Click on filter button
     And Check on the unanswered checkbox
     And Click on the Apply button
@@ -129,7 +130,6 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0003 |
-
 
   Scenario Outline: WLC_059_Wlc Reply message by member of other team
     Given Go to Mobio site by "Member" account
@@ -225,7 +225,7 @@ Feature: WLC Message Socket
     And Switch to Mobio site
     And Close all windows without parent
     Then Verify the replied item by team member then view it by the customer
- 
+
   Scenario: WLC_062_Wlc comment_reply one by customer
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site
@@ -241,7 +241,7 @@ Feature: WLC Message Socket
     And Switch to Mobio site
     And Close all windows without parent
     Then Verify the replied item by team member then view it by the customer
- 
+
   Scenario: WLC_063_Socket Forward comment
     Given Go to Mobio site by "Member in Team" account
     And Go to "wlc0002" web live chat site on other browser
@@ -266,7 +266,7 @@ Feature: WLC Message Socket
     And Click on recipient dropdown
     Then Verify recipient dropdown
     And Close dialog
- 
+
   Scenario: WLC_064_Socket Forward comment to team2
     Given Go to Mobio site by "Admin" account
     And Go to "wlc0002" web live chat site on other browser
