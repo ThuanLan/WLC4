@@ -26,7 +26,7 @@ import mobio.pageObjects.CommonPageObject;
 		
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
 		//tags = "@loginsuccess ,@chat3")		
-		tags = "@chatsocket3")		
+		tags = "@chatsocket1")		
 
 public class FunctionsRunner {
 	 
