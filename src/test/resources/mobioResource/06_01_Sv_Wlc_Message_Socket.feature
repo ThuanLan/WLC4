@@ -55,7 +55,7 @@ Feature: WLC Message Socket
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
-    And Click one unanswer wlc item
+    And Click one wlc item
     And Copy and paste text to reply
     Then Verify the content of a replied item
 
@@ -131,8 +131,22 @@ Feature: WLC Message Socket
       | WLCSite |
       | wlc0003 |
 
+  
+  
+  
+  
   Scenario Outline: WLC_059_Wlc Reply message by member of other team
     Given Go to Mobio site by "Member" account
+    And Click on Setting menu
+    And Click on "Cài đặt doanh nghiệp" settings
+    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Select "UserTeam" Team that you want to config
+    And Click on "Thành viên trong Team" config type to assign in a team
+    And Select "Specific Member" other member in the "ManagerTeam" Team that "Specific user other Team" member want to view
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
+    
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -241,6 +255,22 @@ Feature: WLC Message Socket
     And Switch to Mobio site
     And Close all windows without parent
     Then Verify the replied item by team member then view it by the customer
+
+
+Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
+    Given Go to Mobio site by "Admin" account
+    And Close all windows without parent
+    When Click on Setting menu
+    And Click on "Cài đặt doanh nghiệp" settings
+    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select only assign to online member
+    And Back to default screen
+    And Back to the Content
+    And Go to Mobio login page
+    And Login by "Admin" account
 
   Scenario: WLC_063_Socket Forward comment
     Given Go to Mobio site by "Member in Team" account
