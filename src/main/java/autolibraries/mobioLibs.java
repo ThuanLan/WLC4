@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -51,7 +51,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import mobio.pageUIs.CommonPageUI;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MobioLibs.
  */
@@ -321,13 +320,13 @@ public class mobioLibs {
 		highlightElement(driver, locator);
 		element = findElementByXpath(driver, locator);
 		// System.out.println("click vào " + element);
-		if (driver.toString().contains("internet explorer")) {
-			clickToElementByJS(driver, locator);
-			sleepInSecond(1);
-		} else {// FF// Chrome// Safari// Edge
+//		if (driver.toString().contains("internet explorer")) {
+//			clickToElementByJS(driver, locator);
+//			sleepInSecond(1);
+//		} else {// FF// Chrome// Safari// Edge
 			element.click();
-			sleepInSecond(1);
-		}
+			sleepInSecond(2);
+//		}
 	}
 
 	/**
@@ -340,12 +339,12 @@ public class mobioLibs {
 	public void clickToElement(WebDriver driver, String locator, String... values) {
 		highlightElement(driver, locator, values);
 		element = findElementByXpath(driver, locator, values);
-		if (driver.toString().contains("internet explorer")) {
-			clickToElementByJS(driver, locator, values);
-		} else {// FF// Chrome// Safari// Edge
+//		if (driver.toString().contains("internet explorer")) {
+//			clickToElementByJS(driver, locator, values);
+//		} else {// FF// Chrome// Safari// Edge
 			element.click();
-			sleepInSecond(1);
-		}
+			sleepInSecond(2);
+//		}
 
 	}
 
@@ -375,7 +374,7 @@ public class mobioLibs {
 		highlightElement(driver, locator, values);
 		element = findElementByXpath(driver, locator, values);
 		js.executeScript("arguments[0].click();", element);
-		sleepInSecond(1);
+		sleepInSecond(2);
 	}
 
 	/**
@@ -438,8 +437,15 @@ public class mobioLibs {
 	public void sendkeyControl(WebDriver driver, String locator, Keys keyName) {
 		element = findElementByXpath(driver, locator);
 		element.sendKeys(keyName);
-		sleepInSecond(3);
+		sleepInSecond(1);
 	}
+	
+	public void sendkeyControlAndAKey(WebDriver driver, String locator, String keyName) {
+		element = findElementByXpath(driver, locator);
+		element.sendKeys(Keys.chord(Keys.CONTROL, keyName));
+		sleepInSecond(1);
+	}	
+	
 
 	/**
 	 * Drag and drop element.
@@ -466,7 +472,6 @@ public class mobioLibs {
 			sleepInSecond(2);
 			robot.keyRelease(KeyEvent.VK_F11);
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -735,7 +740,7 @@ public class mobioLibs {
 	 */
 	public boolean isElementNotPresent(WebDriver driver, String locator) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator));
-		WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 		if (elements.size() == 0) {
 			return true;
@@ -752,7 +757,7 @@ public class mobioLibs {
 	 */
 	public boolean isElementPresent(WebDriver driver, String locator) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator));
-		WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 
 		if (elements.size() > 0) {
@@ -771,7 +776,7 @@ public class mobioLibs {
 	 */
 	public boolean isElementPresent(WebDriver driver, String locator, String... values) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator, values));
-		WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 
 		if (elements.size() > 0) {
@@ -789,7 +794,7 @@ public class mobioLibs {
 	 */
 //	public boolean isElementDisplayed(WebDriver driver, String locator) {
 //		try {
-//			WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+//			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 //			element = driver.findElement(By.xpath(locator));
 //			return element.isDisplayed();
@@ -799,7 +804,7 @@ public class mobioLibs {
 //	}
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 			element = driver.findElement(By.xpath(locator));
 			return element.isDisplayed();
@@ -848,10 +853,10 @@ public class mobioLibs {
 	 * @return true, if is element displayed
 	 */
 	public boolean isElementDisplayed(WebDriver driver, String locator, int shortTimeOut) {
-		getWaitTimeOut(driver, shortTimeOut);
+		overriderGlobalTimeout(driver, shortTimeOut);
 		try {
 			element = driver.findElement(byXpathLocator(locator));
-			WebDriverWait wait = new WebDriverWait(driver, shortTimeOut);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeOut));
 			wait.until(ExpectedConditions.visibilityOfAllElements(element));
 			return element.isDisplayed();
 		} catch (Exception ex) {
@@ -872,7 +877,7 @@ public class mobioLibs {
 //			System.out.println("EL show 1: " + locator);
 //			System.out.println("EL show : " + values);
 			element = driver.findElement(byXpathLocator(locator, values));
-//			System.out.println("EL show: " + element);
+			System.out.println("EL show: " + element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;
@@ -1085,7 +1090,7 @@ public class mobioLibs {
 	 * @param driver the driver
 	 */
 	public void waitAlerPresence(WebDriver driver) {
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		waitExplicit.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -1097,7 +1102,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementVisible(WebDriver driver, String locator) {
 		byXpath = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1110,7 +1115,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementVisible(WebDriver driver, String locator, String... values) {
 		byXpath = byXpathLocator(locator, values);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1124,7 +1129,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementVisible(WebDriver driver, String locator, int longTimeOut, String... values) {
 		byXpath = byXpathLocator(locator, values);
-		waitExplicit = new WebDriverWait(driver, longTimeOut);
+		waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(longTimeOut));
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1137,8 +1142,8 @@ public class mobioLibs {
 	 */
 	public void waitToElementVisible(WebDriver driver, String locator, int timeOut) {
 		byXpath = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver, timeOut);
-		getWaitTimeOut(driver, GlobalConstants.SHORT_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		overriderGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1150,8 +1155,8 @@ public class mobioLibs {
 	 */
 	public void waitToElementClickable(WebDriver driver, String locator) {
 		By byLocator = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
-		getWaitTimeOut(driver, GlobalConstants.SHORT_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+		overriderGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.elementToBeClickable(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
@@ -1168,7 +1173,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementClickable(WebDriver driver, String locator, String... values) {
 		By byLocator = byXpathLocator(locator, values);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		// overriderGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.elementToBeClickable(byLocator));
@@ -1185,8 +1190,8 @@ public class mobioLibs {
 	 */
 	public void waitToElementInVisible(WebDriver driver, String locator) {
 		By byLocator = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
@@ -1205,7 +1210,7 @@ public class mobioLibs {
 		By byLocator = byXpathLocator(locator);
 		if (isElementDisplayed(driver, locator)) {
 			try {
-				waitExplicit = new WebDriverWait(driver, GlobalConstants.MID_TIMEOUT);
+				waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(GlobalConstants.MID_TIMEOUT));
 				waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 			} catch (org.openqa.selenium.TimeoutException ex) {
 				ex.printStackTrace();
@@ -1222,14 +1227,14 @@ public class mobioLibs {
 	 */
 	public void waitToElementInVisible(WebDriver driver, String locator, String... values) {
 		By byLocator = byXpathLocator(locator, values);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
 			ex.printStackTrace();
 		}
-		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	/**
@@ -1241,13 +1246,13 @@ public class mobioLibs {
 	 */
 	public void waitToElementInVisible(WebDriver driver, String locator, int longTimeOut) {
 		By byLocator = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver, longTimeOut);
+		waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(longTimeOut));
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
 			ex.printStackTrace();
 		}
-		getWaitTimeOut(driver, longTimeOut);
+		overriderGlobalTimeout(driver, longTimeOut);
 	}
 
 	/**
@@ -1258,29 +1263,29 @@ public class mobioLibs {
 	 * @return true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
-		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		List<WebElement> elements = driver.findElements(By.xpath(locator));
 		if (elements.size() == 0) {
-			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 			return true;
 
 		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
-			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 			return true;
 		} else {
-			getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+			overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 			return false;
 		}
 	}
 
 	/**
-	 * global timeout.
+	 * Overrider global timeout.
 	 *
 	 * @param driver  the driver
 	 * @param timeOut the time out
 	 */
-	private void getWaitTimeOut(WebDriver driver, int timeOut) {
-		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+	private void overriderGlobalTimeout(WebDriver driver, long timeOut) {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
 	}
 
 	/**
@@ -1292,7 +1297,7 @@ public class mobioLibs {
 	 * @return true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
-		getWaitTimeOut(driver, GlobalConstants.LONG_TIMEOUT);
+		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		locator = String.format(locator, (Object[]) values);
 		List<WebElement> elements = driver.findElements(By.xpath(locator));
 		if (elements.size() == 0) {
@@ -1315,7 +1320,7 @@ public class mobioLibs {
 	public boolean isElementSelected(WebDriver driver, String locator) {
 		try {
 			byXpath = byXpathLocator(locator);
-			waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+			waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 			waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 			element = driver.findElement(byXpath);
 			return element.isSelected();
@@ -1336,7 +1341,7 @@ public class mobioLibs {
 	public boolean isElementSelected(WebDriver driver, String locator, String... values) {
 		try {
 			byXpath = byXpathLocator(locator, values);
-			waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+			waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 			waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 			element = driver.findElement(byXpath);
 			return element.isSelected();
@@ -1629,36 +1634,30 @@ public class mobioLibs {
 	 * @param allItemXpath the all item xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath, String expectedText) {
-		waitToElementVisible(driver, parentXpath);
+	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath,
+			String expectedText) {
 		driver.findElement(By.xpath(parentXpath)).click();
 		waitToElementVisible(driver, allItemXpath);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
-		if (allItems.size() > 0) {
-			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
-					item.click();
-					sleepInSecond(1);
-					break;
-				}
+		for (WebElement item : allItems) {
+			if (item.getText().equals(expectedText)) {
+				item.click();
+				sleepInSecond(1);
+				break;
 			}
-		} else {
-			throw new NoSuchElementException("Unable to located: " + allItemXpath);
 		}
 	}
 
 	public void selectItemInCustomDropdownByPass(WebDriver driver, String parentXpath, String allItemXpath,
 			String expectedText) {
 		driver.findElement(By.xpath(parentXpath)).click();
-		// waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		waitExplicit = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
-		waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
+		waitToElementVisible(driver, allItemXpath);		
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 			for (WebElement item : allItems) {
 				if (item.getText().equals(expectedText)) {
 					item.click();
-					sleepInSecond(2);
+					sleepInSecond(1);
 					break;
 				}
 			}
@@ -1676,37 +1675,34 @@ public class mobioLibs {
 	 * @param searchXpath  the search xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInCustomDropdownBySearching(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
-		waitToElementClickable(driver, parentXpath);
+	public void selectItemInCustomDropdownBySearching(WebDriver driver, String parentXpath, String allItemXpath,
+			String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
-		if (allItems.size() > 0) {
-			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
-					item.click();
-					sleepInSecond(1);
-					break;
-				}
+		for (WebElement item : allItems) {
+			if (item.getText().equals(expectedText)) {
+				item.click();
+				sleepInSecond(1);
+				break;
 			}
-
-		} else {
-			throw new NoSuchElementException("Unable to located: " + allItemXpath);
 		}
+
 	}
 
 	public void selectItemInCustomDropdownBySearchingByPass(WebDriver driver, String parentXpath, String allItemXpath,
 			String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
-		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
+				if (item.getText().contains(expectedText)) {
 					item.click();
 					sleepInSecond(1);
 					break;
@@ -1726,31 +1722,27 @@ public class mobioLibs {
 	 * @param searchXpath  the search xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInDropdownBySearchingNoWait(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
+	public void selectItemInDropdownBySearchingNoWait(WebDriver driver, String parentXpath, String allItemXpath,
+			String searchXpath, String expectedText) {
 		waitToElementClickable(driver, parentXpath);
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
-		//waitToElementVisible(driver, allItemXpath);
-		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
-		if (allItems.size() > 0) {
-			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
-					item.click();
-					sleepInSecond(1);
-					break;
-				}
+		for (WebElement item : allItems) {
+			if (item.getText().equals(expectedText)) {
+				item.click();
+				sleepInSecond(1);
+				break;
 			}
-		} else {
-			throw new NoSuchElementException("Unable to located: " + allItemXpath);
 		}
+
 	}
 
 	public void selectItemInDropdownBySearchingNoWaitByPass(WebDriver driver, String parentXpath, String allItemXpath,
 			String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
-		waitToElementVisible(driver, searchXpath, expectedText);
+		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
@@ -1928,6 +1920,15 @@ public class mobioLibs {
 		return dateFormat.format(today).toString();
 	}
 
+	
+	public String getMonth() {
+		DateFormat dateFormat = new SimpleDateFormat("MM");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, 0);
+		Date month = calendar.getTime();
+		return dateFormat.format(month).toString();
+	}
+	
 	public String getDayOfWeek() {
 		LocalDate localDate = LocalDate.now(); // today
 		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
@@ -2104,7 +2105,6 @@ public class mobioLibs {
 				try {
 					throw new EACException("Can not delete file!");
 				} catch (EACException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -2727,16 +2727,27 @@ public class mobioLibs {
 	 * @param account       the account
 	 * @param password      the password
 	 */
-	public void deleteAllTicket(String requestUrl, String urlDomain, String pathAPI, String merchantValue,
-			String account, String password) {
+//	public void deleteAllTicket(String requestUrl, String urlDomain, String pathAPI, String merchantValue,
+//			String account, String password) {
+//		try {
+//			Unirest.delete(requestUrl)
+//			.header("Authorization", "Bearer " + getTokenSite(urlDomain, pathAPI, account, password))
+//			.header("x-merchant-id", merchantValue).asJson();
+//		} catch (UnirestException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+	
+	// Do dev chua by pass dc PEM nen dung tam basic token de by pass thay vi tu dong update token theo website
+	public void deleteAllTicket(String requestUrl, String merchantValue) {
 		try {
 			Unirest.delete(requestUrl)
-					.header("Authorization", "Bearer " + getTokenSite(urlDomain, pathAPI, account, password))
+					.header("Authorization", "Basic f38b67fa-22f3-4680-9d01-c36b23bd0cad")
 					.header("x-merchant-id", merchantValue).asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**

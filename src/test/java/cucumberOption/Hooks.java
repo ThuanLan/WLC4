@@ -1,7 +1,7 @@
 package cucumberOption;
 
+import java.time.Duration;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -16,7 +16,6 @@ import commons.GlobalConstants;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Hooks {
 	private static WebDriver driver;
@@ -39,8 +38,8 @@ public class Hooks {
 
 				switch (browser) {
 				case "chrome":
-					WebDriverManager.chromedriver().setup();
-					System.setProperty("webdriver.chrome.silentOutput", "true");
+					// WebDriverManager.chromedriver().setup();
+					// System.setProperty("webdriver.chrome.silentOutput", "true");
 
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("--disable-popup-blocking");
@@ -52,21 +51,20 @@ public class Hooks {
 					driver = new ChromeDriver(options);
 					break;
 
-					// Allow for notification in chrome browser
-//					WebDriverManager.chromedriver().setup();
-//					System.setProperty("webdriver.chrome.silentOutput", "true");
-//					ChromeOptions options = new ChromeOptions();
-//					HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-//					chromePrefs.put("profile.default_content_setting_values.notifications", 1);
-//					chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FOLDER);
-//					options.setExperimentalOption("prefs", chromePrefs);
-//					driver = new ChromeDriver(options);
-//					break;
+				// Allow for notification in chrome browser
+				// WebDriverManager.chromedriver().setup();
+				// System.setProperty("webdriver.chrome.silentOutput", "true");
+				// ChromeOptions options = new ChromeOptions();
+				// HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+				// chromePrefs.put("profile.default_content_setting_values.notifications", 1);
+				// chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FOLDER);
+				// options.setExperimentalOption("prefs", chromePrefs);
+				// driver = new ChromeDriver(options);
+				// break;
 
 				case "hchrome":
-					WebDriverManager.chromedriver().setup();
+
 					ChromeOptions chromeOptions = new ChromeOptions();
-					chromeOptions.setHeadless(true);
 					chromeOptions.addArguments("--headless");
 					chromeOptions.addArguments("--disable-notifications");
 					chromeOptions.addArguments("window-size=1366x768");
@@ -74,9 +72,9 @@ public class Hooks {
 					break;
 
 				case "firefox":
-					WebDriverManager.firefoxdriver().setup();
-					System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
+
+					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_BINARY, "true");
+					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_PROFILE, "/dev/null");
 
 					FirefoxOptions optionsfx = new FirefoxOptions();
 					optionsfx.addPreference("browser.download.folderList", 2);
@@ -85,11 +83,11 @@ public class Hooks {
 					break;
 
 				case "hfirefox":
-					WebDriverManager.firefoxdriver().setup();
-					System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
+
+					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_BINARY, "true");
+					System.setProperty(FirefoxDriver.SystemProperty.BROWSER_PROFILE, "/dev/null");
 					FirefoxOptions firefoxOptions = new FirefoxOptions();
-					firefoxOptions.setHeadless(true);
+					// firefoxOptions.setHeadless(true);
 					driver = new FirefoxDriver(firefoxOptions);
 					break;
 				default:
@@ -101,7 +99,7 @@ public class Hooks {
 
 			driver.get(GlobalConstants.UAT_URL);
 			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 			log.info("------------- Started the browser -------------");
 
 		}
@@ -110,12 +108,11 @@ public class Hooks {
 
 	@After("@browser")
 	public void tearDown(Scenario scenario) {
-	    if (scenario.isFailed()) {
-	            final byte[] screenshot = ((TakesScreenshot) driver)
-	                        .getScreenshotAs(OutputType.BYTES);
-	            scenario.embed(screenshot, "image/png"); //stick it in the report
-	    }
-	    driver.close();
+		if (scenario.isFailed()) {
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png"); // stick it in the report
+		}
+		driver.close();
 	}
 
 	public static void closeBrowserAndDriver() {

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.dom4j.IllegalAddException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
@@ -378,7 +377,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
                     SvWlcCounterPageUI.TAIL_ANSWERED_NO_PIN_ITEM);
         } else {
             try {
-                throw new ElementNotVisibleException("Not found element!");
+                throw new Exception("Not found element!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
