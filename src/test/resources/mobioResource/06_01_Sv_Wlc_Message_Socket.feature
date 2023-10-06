@@ -7,9 +7,7 @@ Feature: WLC Message Socket
   Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -21,9 +19,7 @@ Feature: WLC Message Socket
 
   Scenario Outline: TC01_Config for assignee group and prioritied page
     Given Go to Mobio site by "Admin" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Click on "Phân công giữa các Team" rule to config
     And Select "<WLCSite>" page name in "Web live chat" social
     And Select priority radio button to handle mesages in "ManagerTeam" team
@@ -131,22 +127,15 @@ Feature: WLC Message Socket
       | WLCSite |
       | wlc0003 |
 
-  
-  
-  
-  
   Scenario Outline: WLC_059_Wlc Reply message by member of other team
     Given Go to Mobio site by "Member" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific Member" other member in the "ManagerTeam" Team that "Specific user other Team" member want to view
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select not assigned to selected members "Specific Member" rule
-    
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -256,13 +245,10 @@ Feature: WLC Message Socket
     And Close all windows without parent
     Then Verify the replied item by team member then view it by the customer
 
-
-Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
+  Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team

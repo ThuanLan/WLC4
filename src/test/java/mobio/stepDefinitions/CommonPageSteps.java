@@ -43,6 +43,11 @@ public class CommonPageSteps {
 		commonPage.goToChildPageFromLink(driver, GlobalConstants.SOCIAL_LINK);
 	}
 
+	 @And("^Go to Social assignment settings screen$")
+		public void goToSocialAssignmentSettingsScreen() {
+	    	commonPage.goToChildPageFromLink(driver, GlobalConstants.SOCIAL_SETTINGS_LINK);
+		}
+	 
 	@And("^Close dialog$")
 	public void closeDialog() {
 		commonPage.clickToElement(driver, CommonPageUI.CLOSE_BTN);

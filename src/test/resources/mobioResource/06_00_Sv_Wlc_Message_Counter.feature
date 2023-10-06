@@ -22,9 +22,7 @@ Feature: Web Live Chat Counter
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    When Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -34,9 +32,7 @@ Feature: Web Live Chat Counter
 
   Scenario Outline: TC01_Config for assignee group and prioritied page
     Given Go to Mobio site by "Admin" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    When Go to Social assignment settings screen
     And Click on "Phân công giữa các Team" rule to config
     And Select "<WLCSite>" page name in "Web live chat" social
     And Select priority radio button to handle mesages in "ManagerTeam" team

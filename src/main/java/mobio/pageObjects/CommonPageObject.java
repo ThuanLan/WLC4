@@ -19,41 +19,41 @@ public class CommonPageObject extends mobioLibs {
 		driver = _driver;
 	}
 
-	public void goToScreenFromMenuInMenu(WebDriver driver, String childMenuName, String parentMenuName,
-			String ancestorMenu) {
+	public void goToScreenFromMenuInMenu(WebDriver driver, String childMenuName, String parentMenuName, String ancestorMenu) {
 		switchToWindowByTitle(driver, "Mobio - CDP & CEM Platform");
+		sleepInSecond(3);
 		driver.navigate().refresh();
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		sleepInSecond(5);
+		sleepInSecond(3);
 		waitToElementClickable(driver, CommonPageUI.HOME_MENU);
 		clickToElement(driver, CommonPageUI.HOME_MENU);
 		waitToElementClickable(driver, CommonPageUI.DYNAMIC_MENU_LINK, ancestorMenu);
 		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_LINK, ancestorMenu);
 		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_LINK, parentMenuName);
 		clickToElement(driver, CommonPageUI.DYNAMIC_CHILD_MENU_LINK, childMenuName);
-		sleepInSecond(3);
+		sleepInSecond(1);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		sleepInSecond(9);
+		sleepInSecond(3);
 		switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
 	}
 
 	public void goToSettingPageFromMenu(WebDriver driver, String childMenuName, String parentMenuName) {
-		sleepInSecond(1);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		waitToElementClickable(driver, CommonPageUI.DYNAMIC_MENU_LINK, parentMenuName);
 		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_LINK, parentMenuName);
 		clickToElement(driver, CommonPageUI.DYNAMIC_CHILD_MENU_LINK, childMenuName);
-		sleepInSecond(3);
-		switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		sleepInSecond(7);
+		backToDefault(driver);
+		refreshPage(driver);
+		sleepInSecond(3);
+		switchToIframe(driver, CommonPageUI.MAIN_IFRAME);		
 	}
 
-	public void goToChildPageFromLink(WebDriver driver,String urlLink) {
+	public void goToChildPageFromLink(WebDriver driver, String urlLink) {
 		openUrl(driver, urlLink);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
-		sleepInSecond(1);
+		sleepInSecond(3);
 	}
 	
 	public boolean isFilterCursor(String locator, String cursor) {

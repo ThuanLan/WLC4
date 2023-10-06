@@ -42,7 +42,7 @@ public class ServicesPageSteps {
 	public void selectTeamThatYouWantToConfig(String teamName) {
 		teamName = commonPage.getAccount(teamName);
 		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		servicesPage.sleepInSecond(2);
+		servicesPage.sleepInSecond(5);
 		servicesPage.waitToElementClickable(driver, ServicesPageUI.SUPPORT_TEAM, teamName);
 		servicesPage.clickToElement(driver, ServicesPageUI.SUPPORT_TEAM, teamName);
 		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);

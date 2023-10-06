@@ -37,9 +37,7 @@ Feature: Web live chat filter
 
   Scenario: WLC_018_FBFilter Check support dropdown list_Share view
     Given Go to Mobio site by "Member in Team" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    When Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific member in other Team" other member in the "UserTeam" Team that "Specific member in Team" member want to view
@@ -56,9 +54,7 @@ Feature: Web live chat filter
 
   Scenario: WLC_018_1_FBFilter Check support dropdown list by manager account in a team
     Given Go to Mobio site by "Member in other Team" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    When Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -86,9 +82,7 @@ Feature: Web live chat filter
 
   Scenario: WLC_019_FBFilter Check support dropdown list by user account in a team
     Given Go to Mobio site by "Member in other Team" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    When Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific member in other Team" other member in the "UserTeam" Team that "Specific user other Team" member want to view
@@ -118,9 +112,7 @@ Feature: Web live chat filter
 
   Scenario: WLC_020_FBFilter Check support dropdown list by normal user_Khong share view
     Given Go to Mobio site by "Member in other Team" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "MXH được phụ trách" config type to assign in a team
@@ -139,9 +131,7 @@ Feature: Web live chat filter
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team

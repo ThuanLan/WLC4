@@ -29,6 +29,7 @@ public class GlobalConstants {
     public static final String UAT_LOGIN_URL = "https://uat.mobio.vn/login";
     public static final String SOCIAL_LINK = "https://uat.mobio.vn/social/chat/web-live-chat";
     public static final String AUTO_REPLY_LINK = "https://uat.mobio.vn/setting/tenant/social/auto-reply";
+    public static final String SOCIAL_SETTINGS_LINK = "https://uat.mobio.vn/setting/tenant/social/assignment-and-answer";
     /**
      * The Constant PASSWORD.
      */
@@ -84,6 +85,8 @@ public class GlobalConstants {
 
     //Behavior tag
     public static final String BH_TAG_NAME = "0_BT_001";
+
+	
 
 
 }

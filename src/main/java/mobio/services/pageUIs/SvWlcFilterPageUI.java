@@ -13,7 +13,7 @@ public class SvWlcFilterPageUI {
 
     public static final String SUPPORT_ONE_ITEM_DROP = "//div[contains(@class,'mo-lib-dropdown ')]//mo-libs-shared-components-tooltip[contains(text(),'%s')]";
     public static final String SUPPORT_ALLITEM_DROP = "(//mo-libs-shared-components-list_view-templates-text//mo-libs-shared-components-tooltip)";
-
+    public static final String SUPPORT_SEARCH_TXT = "//mo-libs-shared-components-tooltip-content//mo-libs-shared-components-input-search//input";
 
     public static final String PAGE_LBL = "//mo-libs-shared-components-label//mo-libs-shared-components-tooltip[text()='Danh sách các trang mạng xã hội']";
     public static final String PAGE_DROP = "//mo-libs-social-share-chat_reply-filter//mo-libs-shared-components-tooltip//div[contains(@class,'mo-lib-tags ')]";
@@ -81,4 +81,5 @@ public class SvWlcFilterPageUI {
     public static final String INFOR_WEB_ACCESS_VERSION_COLUMN2 = "//mo-libs-shared-components-tooltip[text()='Lượt truy cập']";
     public static final String INFOR_WEB_ACCESS_PAGE_COLUMN2 = "//mo-libs-shared-components-tooltip[text()='Lượt chat']";
     public static final String INFOR_WEB_ACCESS_TIME_COLUMN2 = "//mo-libs-shared-components-tooltip[text()='Tổng thời lượng trên website']";
+	
 }

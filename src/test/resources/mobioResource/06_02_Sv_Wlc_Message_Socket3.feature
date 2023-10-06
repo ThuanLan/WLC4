@@ -8,9 +8,7 @@ Feature: Web live chat Socket3
 
   Scenario: WLC_036_Socket Check assignment_one message
     Given Go to Mobio site by "Member" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -31,9 +29,7 @@ Feature: Web live chat Socket3
 
   Scenario: WLC_037_Socket Check assignment_Text message
     Given Go to Mobio site by "Admin" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -53,9 +49,7 @@ Feature: Web live chat Socket3
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -172,9 +166,7 @@ Feature: Web live chat Socket3
  
   Scenario: WLC_046_Wlc Reply comment and view by member in team
     Given Go to Mobio site by "Admin" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -195,9 +187,7 @@ Feature: Web live chat Socket3
 
   Scenario: WLC_047_Wlc Reply comment and view by member in other team
     Given Go to Mobio site by "Other Member" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -218,9 +208,7 @@ Feature: Web live chat Socket3
  
   Scenario: WLC_048_Wlc Reply comment and view by member in team
     Given Go to Mobio site by "Admin" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -242,9 +230,7 @@ Feature: Web live chat Socket3
 
   Scenario: WLC_049_Wlc comment_reply one by customer
     Given Go to Mobio site by "Member" account
-    And Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
@@ -288,9 +274,7 @@ Feature: Web live chat Socket3
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
-    When Click on Setting menu
-    And Click on "Cài đặt doanh nghiệp" settings
-    And Go to "Phân công chat & trả lời" screen from menu "Online & mạng xã hội" Settings
+    And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
