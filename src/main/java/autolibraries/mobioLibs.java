@@ -1728,13 +1728,12 @@ public class mobioLibs {
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
-		sleepInSecond(1);
-		waitToElementVisible(driver, allItemXpath);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		for (WebElement item : allItems) {
 			if (item.getText().equals(expectedText)) {
 				item.click();
-				sleepInSecond(1);
+				sleepInSecond(2);
 				break;
 			}
 		}
