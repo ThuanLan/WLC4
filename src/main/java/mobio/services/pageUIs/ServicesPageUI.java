@@ -7,7 +7,7 @@ public class ServicesPageUI {
 	public static final String SUPPORT_TEAM = "//mo-libs-social-chat_and_reply_assignment-internal_team-filter//mo-libs-shared-components-tooltip[contains(text(),'%s')]";
 	public static final String RULE_OPTION = "//mo-libs-shared-components-radio//mo-libs-shared-components-tooltip[contains(text(),'%s')]";
 	public static final String ASSIGNMENT_CONFIG_TAB = "//mo-libs-shared-components-tab//div[contains(@class,'mo-lib-z-index-1')]//mo-libs-shared-components-tooltip[contains(text(),'%s')]";
-
+	public static final String CLOSE_TAG_MEMBER_ICON = "//mo-libs-shared-components-tags// div[@class='mo-lib-tags-item']//i[contains(@class,'mo-icn-close-popup')]";
 	public static final String RECALL_LAW_TOGGLE = "//mo-libs-shared-components-tooltip[contains(text(),'Sử dụng luật thu hồi')]//preceding-sibling::mo-libs-shared-components-button-toggle";
 	public static final String RECALL_LAW_ACTIVE_TOGGLE = "//mo-libs-shared-components-tooltip[contains(text(),'Sử dụng luật thu hồi')]//preceding-sibling::mo-libs-shared-components-button-toggle//div[contains(@class,'mo-lib-toggle-circle-active')]";
 
