@@ -50,7 +50,6 @@ public class LoginPageObject extends mobioLibs {
     public void clickToLoginButton() {
         waitToElementClickable(driver, LoginPageUI.LOGIN_BTN);
         clickToElementByJS(driver, LoginPageUI.LOGIN_BTN);
-        sleepInSecond(5);
     }
 
     /**
@@ -60,24 +59,22 @@ public class LoginPageObject extends mobioLibs {
      * @param password the password
      */
     public void loginAsAnUser(String userID, String password) {
-        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
+//        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         inputToUserIDTextbox(userID);
         inputToPasswordTextbox(password);
         clickToLoginButton();
-        driver.switchTo().defaultContent();
+//        driver.switchTo().defaultContent();
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
     public void loginToMobio(String userID) {
         accountTest = SvDataTest.getSvDataTest();
-        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
-        sleepInSecond(1);
+//        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         inputToUserIDTextbox(userID);
         inputToPasswordTextbox(accountTest.getPassword());
         clickToLoginButton();
-        driver.switchTo().defaultContent();
+//        driver.switchTo().defaultContent();
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-        sleepInSecond(1);
     }
 
     public void loginAsAnAccount(String userID) {
@@ -91,7 +88,8 @@ public class LoginPageObject extends mobioLibs {
 
     public void login(String account) {
         if (!getCurrentPageUrl(driver).contains("/login")) {
-            openUrl(driver, GlobalConstants.UAT_LOGIN_URL);
+            openUrl(driver, GlobalConstants.UAT_URL);
+            waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         }
         if (isElementDisplayed(driver, CommonPageUI.ACCOUNT_AVATAR_BTN)) {
             waitToElementClickable(driver, CommonPageUI.ACCOUNT_AVATAR_BTN);

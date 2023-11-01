@@ -94,8 +94,8 @@ public class mobioLibs {
 	/**
 	 * Gets the page title.
 	 *
-	 * @param driver the driver
-	 * @return the page title
+	 * @param  driver the driver
+	 * @return        the page title
 	 */
 	public String getPageTitle(WebDriver driver) {
 		return driver.getTitle();
@@ -104,8 +104,8 @@ public class mobioLibs {
 	/**
 	 * Gets the current page url.
 	 *
-	 * @param driver the driver
-	 * @return the current page url
+	 * @param  driver the driver
+	 * @return        the current page url
 	 */
 	public String getCurrentPageUrl(WebDriver driver) {
 		return driver.getCurrentUrl();
@@ -172,8 +172,8 @@ public class mobioLibs {
 	/**
 	 * Gets the text alert.
 	 *
-	 * @param driver the driver
-	 * @return the text alert
+	 * @param  driver the driver
+	 * @return        the text alert
 	 */
 	public String getTextAlert(WebDriver driver) {
 		return driver.switchTo().alert().getText();
@@ -193,9 +193,9 @@ public class mobioLibs {
 	/**
 	 * Gets the text element.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the text element
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the text element
 	 */
 	public String getTextElement(WebDriver driver, String locator) {
 		return findElementByXpath(driver, locator).getText().trim();
@@ -204,10 +204,10 @@ public class mobioLibs {
 	/**
 	 * Gets the text element.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the text element
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the text element
 	 */
 	public String getTextElement(WebDriver driver, String locator, String... values) {
 		return findElementByXpath(driver, locator, values).getText();
@@ -216,9 +216,9 @@ public class mobioLibs {
 	/**
 	 * Gets the overloading locator.
 	 *
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the overloading locator
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the overloading locator
 	 */
 	public String getOverloadingLocator(String locator, String... values) {
 		return String.format(locator, (Object[]) values);
@@ -227,9 +227,9 @@ public class mobioLibs {
 	/**
 	 * Find element by xpath.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the web element
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the web element
 	 */
 	public WebElement findElementByXpath(WebDriver driver, String locator) {
 		return driver.findElement(byXpathLocator(locator));
@@ -238,10 +238,10 @@ public class mobioLibs {
 	/**
 	 * Find element by xpath.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the web element
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the web element
 	 */
 	public WebElement findElementByXpath(WebDriver driver, String locator, String... values) {
 		locator = String.format(locator, (Object[]) values);
@@ -251,10 +251,10 @@ public class mobioLibs {
 	/**
 	 * Find element by xpath any.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the web element
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the web element
 	 */
 	public WebElement findElementByXpathAny(WebDriver driver, String locator, String... values) {
 		locator = String.format(locator, (Object[]) values, (Object[]) values);
@@ -264,10 +264,10 @@ public class mobioLibs {
 	/**
 	 * Find elements by xpath.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the list
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the list
 	 */
 	public List<WebElement> findElementsByXpath(WebDriver driver, String locator, String... values) {
 		highlightElement(driver, locator, values);
@@ -278,9 +278,9 @@ public class mobioLibs {
 	/**
 	 * Find elements by xpath.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the list
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the list
 	 */
 	public List<WebElement> findElementsByXpath(WebDriver driver, String locator) {
 		highlightElement(driver, locator);
@@ -290,8 +290,8 @@ public class mobioLibs {
 	/**
 	 * By xpath locator.
 	 *
-	 * @param locator the locator
-	 * @return the by
+	 * @param  locator the locator
+	 * @return         the by
 	 */
 	public By byXpathLocator(String locator) {
 		return By.xpath(locator);
@@ -300,9 +300,9 @@ public class mobioLibs {
 	/**
 	 * By xpath locator.
 	 *
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the by
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the by
 	 */
 	// By Xpath for dynamic locator
 	public By byXpathLocator(String locator, String... values) {
@@ -319,14 +319,8 @@ public class mobioLibs {
 	public void clickToElement(WebDriver driver, String locator) {
 		highlightElement(driver, locator);
 		element = findElementByXpath(driver, locator);
-		// System.out.println("click vào " + element);
-//		if (driver.toString().contains("internet explorer")) {
-//			clickToElementByJS(driver, locator);
-//			sleepInSecond(1);
-//		} else {// FF// Chrome// Safari// Edge
-			element.click();
-			sleepInSecond(2);
-//		}
+		element.click();
+		sleepInSecond(2);
 	}
 
 	/**
@@ -339,13 +333,7 @@ public class mobioLibs {
 	public void clickToElement(WebDriver driver, String locator, String... values) {
 		highlightElement(driver, locator, values);
 		element = findElementByXpath(driver, locator, values);
-//		if (driver.toString().contains("internet explorer")) {
-//			clickToElementByJS(driver, locator, values);
-//		} else {// FF// Chrome// Safari// Edge
-			element.click();
-			sleepInSecond(2);
-//		}
-
+		element.click();
 	}
 
 	/**
@@ -359,7 +347,6 @@ public class mobioLibs {
 		highlightElement(driver, locator);
 		element = findElementByXpath(driver, locator);
 		js.executeScript("arguments[0].click();", element);
-		sleepInSecond(1);
 	}
 
 	/**
@@ -374,7 +361,6 @@ public class mobioLibs {
 		highlightElement(driver, locator, values);
 		element = findElementByXpath(driver, locator, values);
 		js.executeScript("arguments[0].click();", element);
-		sleepInSecond(2);
 	}
 
 	/**
@@ -401,11 +387,6 @@ public class mobioLibs {
 		highlightElement(driver, locator);
 		findElementByXpath(driver, locator).clear();
 		findElementByXpath(driver, locator).sendKeys(value);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -420,11 +401,6 @@ public class mobioLibs {
 		highlightElement(driver, locator, values);
 		findElementByXpath(driver, locator, values).clear();
 		findElementByXpath(driver, locator, values).sendKeys(valueToSendkey);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -439,13 +415,12 @@ public class mobioLibs {
 		element.sendKeys(keyName);
 		sleepInSecond(1);
 	}
-	
+
 	public void sendkeyControlAndAKey(WebDriver driver, String locator, String keyName) {
 		element = findElementByXpath(driver, locator);
 		element.sendKeys(Keys.chord(Keys.CONTROL, keyName));
 		sleepInSecond(1);
-	}	
-	
+	}
 
 	/**
 	 * Drag and drop element.
@@ -456,8 +431,7 @@ public class mobioLibs {
 	 */
 	public void dragAndDropElement(WebDriver driver, String startPointLocator, String endPointLocator) {
 		Actions act = new Actions(driver);
-		act.dragAndDrop(findElementByXpath(driver, startPointLocator), findElementByXpath(driver, endPointLocator))
-				.build().perform();
+		act.dragAndDrop(findElementByXpath(driver, startPointLocator), findElementByXpath(driver, endPointLocator)).build().perform();
 	}
 
 	/**
@@ -525,8 +499,7 @@ public class mobioLibs {
 			sleepInSecond(1);
 			// Drag events require more than one movement to register
 			// Just appearing at destination doesn't work so move halfway first
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
-					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -593,8 +566,7 @@ public class mobioLibs {
 			toLocation.x += xYOffset + xCentreTo;
 			toLocation.y += 2 * xYOffset + yCentreTo;
 
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
-					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -616,8 +588,7 @@ public class mobioLibs {
 	 * @param xYOffset        the x Y offset
 	 * @param values          the values
 	 */
-	public void dndElementToAddBtn(WebDriver driver, WebElement dragFrom, String endPointLocator, int xYOffset,
-			String... values) {
+	public void dndElementToAddBtn(WebDriver driver, WebElement dragFrom, String endPointLocator, int xYOffset, String... values) {
 		// Setup robot
 		Robot robot;
 		try {
@@ -662,8 +633,7 @@ public class mobioLibs {
 			toLocation.x += xYOffset + xCentreTo;
 			toLocation.y += 2 * xYOffset + yCentreTo;
 
-			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x,
-					((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
+			robot.mouseMove(((toLocation.x - fromLocation.x) / 2) + fromLocation.x, ((toLocation.y - fromLocation.y) / 2) + fromLocation.y);
 			sleepInSecond(1);
 			// Move to final position
 			robot.mouseMove(toLocation.x, toLocation.y);
@@ -723,9 +693,9 @@ public class mobioLibs {
 	/**
 	 * Count element number.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the int
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the int
 	 */
 	public int countElementNumber(WebDriver driver, String locator) {
 		return findElementsByXpath(driver, locator).size();
@@ -734,13 +704,13 @@ public class mobioLibs {
 	/**
 	 * Checks if is element not present.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element not present
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element not present
 	 */
 	public boolean isElementNotPresent(WebDriver driver, String locator) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator));
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 		if (elements.size() == 0) {
 			return true;
@@ -751,13 +721,13 @@ public class mobioLibs {
 	/**
 	 * Checks if is element present.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element present
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element present
 	 */
 	public boolean isElementPresent(WebDriver driver, String locator) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator));
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 
 		if (elements.size() > 0) {
@@ -769,14 +739,14 @@ public class mobioLibs {
 	/**
 	 * Checks if is element present.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is element present
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is element present
 	 */
 	public boolean isElementPresent(WebDriver driver, String locator, String... values) {
 		List<WebElement> elements = driver.findElements(byXpathLocator(locator, values));
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 		wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 
 		if (elements.size() > 0) {
@@ -788,9 +758,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is element displayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element displayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element displayed
 	 */
 //	public boolean isElementDisplayed(WebDriver driver, String locator) {
 //		try {
@@ -804,7 +774,7 @@ public class mobioLibs {
 //	}
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 			element = driver.findElement(By.xpath(locator));
 			return element.isDisplayed();
@@ -816,9 +786,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is elements displayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is elements displayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is elements displayed
 	 */
 	public boolean isElementsDisplayed(WebDriver driver, String locator) {
 		if (driver.findElements(byXpathLocator(locator)).isEmpty()) {
@@ -831,10 +801,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is elements displayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is elements displayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is elements displayed
 	 */
 	public boolean isElementsDisplayed(WebDriver driver, String locator, String... values) {
 		if (driver.findElements(byXpathLocator(locator, values)).isEmpty()) {
@@ -847,10 +817,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is element displayed.
 	 *
-	 * @param driver       the driver
-	 * @param locator      the locator
-	 * @param shortTimeOut the short time out
-	 * @return true, if is element displayed
+	 * @param  driver       the driver
+	 * @param  locator      the locator
+	 * @param  shortTimeOut the short time out
+	 * @return              true, if is element displayed
 	 */
 	public boolean isElementDisplayed(WebDriver driver, String locator, int shortTimeOut) {
 		overriderGlobalTimeout(driver, shortTimeOut);
@@ -867,10 +837,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is element displayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is element displayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is element displayed
 	 */
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		try {
@@ -887,9 +857,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is element enabled.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element enabled
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element enabled
 	 */
 	public boolean isElementEnabled(WebDriver driver, String locator) {
 		try {
@@ -903,10 +873,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is element enabled.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is element enabled
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is element enabled
 	 */
 	public boolean isElementEnabled(WebDriver driver, String locator, String... values) {
 		try {
@@ -920,9 +890,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is integer.
 	 *
-	 * @param driver the driver
-	 * @param input  the input
-	 * @return true, if is integer
+	 * @param  driver the driver
+	 * @param  input  the input
+	 * @return        true, if is integer
 	 */
 	public boolean isInteger(WebDriver driver, String input) {
 		try {
@@ -975,10 +945,10 @@ public class mobioLibs {
 	/**
 	 * Gets the atribute.
 	 *
-	 * @param driver        the driver
-	 * @param locator       the locator
-	 * @param atributeValue the atribute value
-	 * @return the atribute
+	 * @param  driver        the driver
+	 * @param  locator       the locator
+	 * @param  atributeValue the atribute value
+	 * @return               the atribute
 	 */
 	public String getAtribute(WebDriver driver, String locator, String atributeValue) {
 		element = findElementByXpath(driver, locator);
@@ -988,11 +958,11 @@ public class mobioLibs {
 	/**
 	 * Gets the atribute.
 	 *
-	 * @param driver        the driver
-	 * @param locator       the locator
-	 * @param atributeValue the atribute value
-	 * @param values        the values
-	 * @return the atribute
+	 * @param  driver        the driver
+	 * @param  locator       the locator
+	 * @param  atributeValue the atribute value
+	 * @param  values        the values
+	 * @return               the atribute
 	 */
 	public String getAtribute(WebDriver driver, String locator, String atributeValue, String... values) {
 		element = findElementByXpath(driver, locator, values);
@@ -1002,9 +972,9 @@ public class mobioLibs {
 	/**
 	 * Gets the list elements value.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the list elements value
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the list elements value
 	 */
 	public List<String> getListElementsValue(WebDriver driver, String locator) {
 		List<String> listValue = new ArrayList<>();
@@ -1019,10 +989,10 @@ public class mobioLibs {
 	/**
 	 * Gets the list elements value.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return the list elements value
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         the list elements value
 	 */
 	public List<String> getListElementsValue(WebDriver driver, String locator, String... values) {
 		List<String> listValue = new ArrayList<>();
@@ -1129,7 +1099,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementVisible(WebDriver driver, String locator, int longTimeOut, String... values) {
 		byXpath = byXpathLocator(locator, values);
-		waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(longTimeOut));
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(longTimeOut));
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
 	}
 
@@ -1210,7 +1180,7 @@ public class mobioLibs {
 		By byLocator = byXpathLocator(locator);
 		if (isElementDisplayed(driver, locator)) {
 			try {
-				waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(GlobalConstants.MID_TIMEOUT));
+				waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.MID_TIMEOUT));
 				waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 			} catch (org.openqa.selenium.TimeoutException ex) {
 				ex.printStackTrace();
@@ -1246,7 +1216,7 @@ public class mobioLibs {
 	 */
 	public void waitToElementInVisible(WebDriver driver, String locator, int longTimeOut) {
 		By byLocator = byXpathLocator(locator);
-		waitExplicit = new WebDriverWait(driver,  Duration.ofSeconds(longTimeOut));
+		waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(longTimeOut));
 		try {
 			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 		} catch (org.openqa.selenium.TimeoutException ex) {
@@ -1258,9 +1228,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is element undisplayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element undisplayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
 		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
@@ -1291,10 +1261,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is element undisplayed.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is element undisplayed
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is element undisplayed
 	 */
 	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
 		overriderGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
@@ -1312,9 +1282,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is element selected.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return true, if is element selected
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         true, if is element selected
 	 */
 
 	public boolean isElementSelected(WebDriver driver, String locator) {
@@ -1333,10 +1303,10 @@ public class mobioLibs {
 	/**
 	 * Checks if is element selected.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @param values  the values
-	 * @return true, if is element selected
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @param  values  the values
+	 * @return         true, if is element selected
 	 */
 	public boolean isElementSelected(WebDriver driver, String locator, String... values) {
 		try {
@@ -1364,8 +1334,8 @@ public class mobioLibs {
 	/**
 	 * Random string.
 	 *
-	 * @param stringNumber the string number
-	 * @return the string
+	 * @param  stringNumber the string number
+	 * @return              the string
 	 */
 	public String randomString(int stringNumber) {
 
@@ -1375,9 +1345,9 @@ public class mobioLibs {
 	/**
 	 * Gets the text by JS.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the text by JS
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the text by JS
 	 */
 	public String getTextByJS(WebDriver driver, String locator) {
 		return (String) js.executeScript("return document.querySelector('" + locator + "').text");
@@ -1386,9 +1356,9 @@ public class mobioLibs {
 	/**
 	 * Gets the text by JS content.
 	 *
-	 * @param driver  the driver
-	 * @param locator the locator
-	 * @return the text by JS content
+	 * @param  driver  the driver
+	 * @param  locator the locator
+	 * @return         the text by JS content
 	 */
 	public String getTextByJSContent(WebDriver driver, String locator) {
 		return (String) js.executeScript("return document.querySelector('" + locator + "').textContent");
@@ -1397,13 +1367,12 @@ public class mobioLibs {
 	/**
 	 * Verify text inner text.
 	 *
-	 * @param driver       the driver
-	 * @param textExpected the text expected
-	 * @return true, if successful
+	 * @param  driver       the driver
+	 * @param  textExpected the text expected
+	 * @return              true, if successful
 	 */
 	public boolean verifyTextInnerText(WebDriver driver, String textExpected) {
-		String textActual = (String) js
-				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) js.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -1536,9 +1505,9 @@ public class mobioLibs {
 	/**
 	 * Switch to child window by ID.
 	 *
-	 * @param driver the driver
-	 * @param parent the parent
-	 * @return the string
+	 * @param  driver the driver
+	 * @param  parent the parent
+	 * @return        the string
 	 */
 	public String switchToChildWindowByID(WebDriver driver, String parent) {
 		Set<String> allWindows = driver.getWindowHandles();
@@ -1588,8 +1557,8 @@ public class mobioLibs {
 	/**
 	 * Close all windows without parent.
 	 *
-	 * @param driver the driver
-	 * @return true, if successful
+	 * @param  driver the driver
+	 * @return        true, if successful
 	 */
 	public boolean closeAllWindowsWithoutParent(WebDriver driver) {
 		String parentWindow = driver.getWindowHandle();
@@ -1634,8 +1603,7 @@ public class mobioLibs {
 	 * @param allItemXpath the all item xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath,
-			String expectedText) {
+	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath, String expectedText) {
 		driver.findElement(By.xpath(parentXpath)).click();
 		waitToElementVisible(driver, allItemXpath);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
@@ -1648,10 +1616,9 @@ public class mobioLibs {
 		}
 	}
 
-	public void selectItemInCustomDropdownByPass(WebDriver driver, String parentXpath, String allItemXpath,
-			String expectedText) {
+	public void selectItemInCustomDropdownByPass(WebDriver driver, String parentXpath, String allItemXpath, String expectedText) {
 		driver.findElement(By.xpath(parentXpath)).click();
-		waitToElementVisible(driver, allItemXpath);		
+		waitToElementVisible(driver, allItemXpath);
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 			for (WebElement item : allItems) {
@@ -1675,8 +1642,7 @@ public class mobioLibs {
 	 * @param searchXpath  the search xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInCustomDropdownBySearching(WebDriver driver, String parentXpath, String allItemXpath,
-			String searchXpath, String expectedText) {
+	public void selectItemInCustomDropdownBySearching(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		waitToElementVisible(driver, searchXpath);
@@ -1693,8 +1659,7 @@ public class mobioLibs {
 
 	}
 
-	public void selectItemInCustomDropdownBySearchingByPass(WebDriver driver, String parentXpath, String allItemXpath,
-			String searchXpath, String expectedText) {
+	public void selectItemInCustomDropdownBySearchingByPass(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
@@ -1722,8 +1687,7 @@ public class mobioLibs {
 	 * @param searchXpath  the search xpath
 	 * @param expectedText the expected text
 	 */
-	public void selectItemInDropdownBySearchingNoWait(WebDriver driver, String parentXpath, String allItemXpath,
-			String searchXpath, String expectedText) {
+	public void selectItemInDropdownBySearchingNoWait(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
 		waitToElementClickable(driver, parentXpath);
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
@@ -1740,8 +1704,7 @@ public class mobioLibs {
 
 	}
 
-	public void selectItemInDropdownBySearchingNoWaitByPass(WebDriver driver, String parentXpath, String allItemXpath,
-			String searchXpath, String expectedText) {
+	public void selectItemInDropdownBySearchingNoWaitByPass(WebDriver driver, String parentXpath, String allItemXpath, String searchXpath, String expectedText) {
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
 		sendkeyToElement(driver, searchXpath, expectedText);
@@ -1769,9 +1732,7 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style",
-				"border: 2px solid #f20060; border-style: dashed;");
-		sleepInSecond(1);
+		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", "border: 2px solid #f20060; border-style: dashed;");
 		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", originalStyle);
 	}
 
@@ -1786,9 +1747,7 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator, values);
 		String originalStyle = element.getAttribute("style");
-		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style",
-				"border: 2px solid #f20060; border-style: dashed;");
-		sleepInSecond(1);
+		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", "border: 2px solid #f20060; border-style: dashed;");
 		js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", element, "style", originalStyle);
 	}
 
@@ -1803,7 +1762,6 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		js.executeScript("arguments[0].removeAttribute('" + atributeRemove + "');", element);
-		sleepInSecond(1);
 	}
 
 	/**
@@ -1818,16 +1776,15 @@ public class mobioLibs {
 		js = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator, values);
 		js.executeScript("arguments[0].removeAttribute('" + atributeRemove + "');", element);
-		sleepInSecond(1);
 	}
 
 	/**
 	 * Gets the index of column.
 	 *
-	 * @param driver          the driver
-	 * @param listHeaderXpath the list header xpath
-	 * @param headerText      the header text
-	 * @return the index of column
+	 * @param  driver          the driver
+	 * @param  listHeaderXpath the list header xpath
+	 * @param  headerText      the header text
+	 * @return                 the index of column
 	 */
 	public int getIndexOfColumn(WebDriver driver, String listHeaderXpath, String headerText) {
 		List<WebElement> allItems = driver.findElements(By.xpath(listHeaderXpath));
@@ -1847,11 +1804,11 @@ public class mobioLibs {
 	/**
 	 * Gets the index of column.
 	 *
-	 * @param driver          the driver
-	 * @param listHeaderXpath the list header xpath
-	 * @param headerText1     the header text 1
-	 * @param headerText2     the header text 2
-	 * @return the index of column
+	 * @param  driver          the driver
+	 * @param  listHeaderXpath the list header xpath
+	 * @param  headerText1     the header text 1
+	 * @param  headerText2     the header text 2
+	 * @return                 the index of column
 	 */
 	public int getIndexOfColumn(WebDriver driver, String listHeaderXpath, String headerText1, String headerText2) {
 		List<WebElement> allItems = driver.findElements(By.xpath(listHeaderXpath));
@@ -1871,8 +1828,8 @@ public class mobioLibs {
 	/**
 	 * From date.
 	 *
-	 * @param numberOfDaysAgo the number of days ago
-	 * @return the string
+	 * @param  numberOfDaysAgo the number of days ago
+	 * @return                 the string
 	 */
 	public String fromDate(int numberOfDaysAgo) {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -1921,7 +1878,6 @@ public class mobioLibs {
 		return dateFormat.format(today).toString();
 	}
 
-	
 	public String getMonth() {
 		DateFormat dateFormat = new SimpleDateFormat("MM");
 		Calendar calendar = Calendar.getInstance();
@@ -1929,7 +1885,7 @@ public class mobioLibs {
 		Date month = calendar.getTime();
 		return dateFormat.format(month).toString();
 	}
-	
+
 	public String getDayOfWeek() {
 		LocalDate localDate = LocalDate.now(); // today
 		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
@@ -1940,8 +1896,8 @@ public class mobioLibs {
 	/**
 	 * Random row number.
 	 *
-	 * @param rowNumber the row number
-	 * @return the int
+	 * @param  rowNumber the row number
+	 * @return           the int
 	 */
 	public int randomRowNumber(int rowNumber) {
 		Random rand = new Random();
@@ -2115,9 +2071,9 @@ public class mobioLibs {
 	/**
 	 * Export file in the folder.
 	 *
-	 * @param downloadPath the download path
-	 * @param fileName     the file name
-	 * @return true, if successful
+	 * @param  downloadPath the download path
+	 * @param  fileName     the file name
+	 * @return              true, if successful
 	 */
 	public boolean ExportFileInTheFolder(String downloadPath, String fileName) {
 		boolean flag = false;
@@ -2135,8 +2091,8 @@ public class mobioLibs {
 	/**
 	 * List files for folder.
 	 *
-	 * @param folder the folder
-	 * @return the string
+	 * @param  folder the folder
+	 * @return        the string
 	 */
 	public String listFilesForFolder(final File folder) {
 		for (final File fileEntry : folder.listFiles()) {
@@ -2152,10 +2108,10 @@ public class mobioLibs {
 	/**
 	 * Count unanswered items on the page.
 	 *
-	 * @param driver        the driver
-	 * @param allItemsXpath the all items Xpath
-	 * @param unanswerXpath the unanswered Xpath
-	 * @return the int
+	 * @param  driver        the driver
+	 * @param  allItemsXpath the all items Xpath
+	 * @param  unanswerXpath the unanswered Xpath
+	 * @return               the int
 	 */
 	public int countItemUnanswerInPage(WebDriver driver, String allItemsXpath, String unanswerXpath) {
 		WebElement lastItem = null;
@@ -2196,15 +2152,13 @@ public class mobioLibs {
 	/**
 	 * Count unread items on the page.
 	 *
-	 * @param driver          the driver
-	 * @param allItemsXpath   the all items xpath
-	 * @param unreadXpath     the unread xpath
-	 * @param unReadTailXpath the unread tail xpath. Unread Xpath contains
-	 *                        allItemXpath add tail of unread Xpath
-	 * @return the int
+	 * @param  driver          the driver
+	 * @param  allItemsXpath   the all items xpath
+	 * @param  unreadXpath     the unread xpath
+	 * @param  unReadTailXpath the unread tail xpath. Unread Xpath contains allItemXpath add tail of unread Xpath
+	 * @return                 the int
 	 */
-	public int countItemUnreadInPage(WebDriver driver, String allItemsXpath, String unreadXpath,
-			String unReadTailXpath) {
+	public int countItemUnreadInPage(WebDriver driver, String allItemsXpath, String unreadXpath, String unReadTailXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 		int countNotRead = 0;
@@ -2242,9 +2196,9 @@ public class mobioLibs {
 	/**
 	 * Count all item in list.
 	 *
-	 * @param driver       the driver
-	 * @param allItemXpath the all item xpath
-	 * @return the int
+	 * @param  driver       the driver
+	 * @param  allItemXpath the all item xpath
+	 * @return              the int
 	 */
 	public int countAllItemInList(WebDriver driver, String allItemXpath) {
 		WebElement lastItem = null;
@@ -2278,9 +2232,9 @@ public class mobioLibs {
 	/**
 	 * Gets the original list.
 	 *
-	 * @param driver       the driver
-	 * @param allItemXpath the all item xpath
-	 * @return the original list
+	 * @param  driver       the driver
+	 * @param  allItemXpath the all item xpath
+	 * @return              the original list
 	 */
 	public List<String> getOriginalList(WebDriver driver, String allItemXpath) {
 		WebElement lastItem = null;
@@ -2324,10 +2278,10 @@ public class mobioLibs {
 	/**
 	 * Gets the new list.
 	 *
-	 * @param driver         the driver
-	 * @param allItemXpath   the all item xpath
-	 * @param tailGetElement the tail get element
-	 * @return the new list
+	 * @param  driver         the driver
+	 * @param  allItemXpath   the all item xpath
+	 * @param  tailGetElement the tail get element
+	 * @return                the new list
 	 */
 	public List<String> getNewList(WebDriver driver, String allItemXpath, String tailGetElement) {
 		WebElement lastItem = null;
@@ -2356,9 +2310,7 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allGetElementXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailGetElement)) {
-								contentGetList
-										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailGetElement)
-												.getText());
+								contentGetList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailGetElement).getText());
 							}
 						}
 					}
@@ -2375,16 +2327,15 @@ public class mobioLibs {
 	/**
 	 * Checks if is new list compare.
 	 *
-	 * @param driver                 the driver
-	 * @param allItemXpath           the all item xpath
-	 * @param tailPinXpath           the tail pin xpath
-	 * @param tailUnAnswerNoPinXpath the tail un answer no pin xpath
-	 * @param tailAnswerNoPinXpath   the tail answer no pin xpath
-	 * @return true, if is new list compare
+	 * @param  driver                 the driver
+	 * @param  allItemXpath           the all item xpath
+	 * @param  tailPinXpath           the tail pin xpath
+	 * @param  tailUnAnswerNoPinXpath the tail un answer no pin xpath
+	 * @param  tailAnswerNoPinXpath   the tail answer no pin xpath
+	 * @return                        true, if is new list compare
 	 */
 // lấy list compare
-	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath,
-			String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
+	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath, String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 
@@ -2463,9 +2414,7 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allGetPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailPinXpath)) {
-								contentGetPinList
-										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath)
-												.getText());
+								contentGetPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath).getText());
 							}
 						}
 					}
@@ -2473,8 +2422,7 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath)) {
-								contentGetUnAnswerNoPinList.add(findElementByXpath(driver,
-										allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
+								contentGetUnAnswerNoPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
 							}
 						}
 
@@ -2484,9 +2432,7 @@ public class mobioLibs {
 					if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
 						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
 							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)) {
-								contentGetAnswerNoPinList.add(
-										findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)
-												.getText());
+								contentGetAnswerNoPinList.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath).getText());
 							}
 						}
 					}
@@ -2512,9 +2458,9 @@ public class mobioLibs {
 	/**
 	 * Checks if is new list compare.
 	 *
-	 * @param driver              the driver
-	 * @param allXpathItemsInDrop the all xpath items in drop
-	 * @return true, if is new list compare
+	 * @param  driver              the driver
+	 * @param  allXpathItemsInDrop the all xpath items in drop
+	 * @return                     true, if is new list compare
 	 */
 //	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath,
 //			String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
@@ -2644,9 +2590,9 @@ public class mobioLibs {
 	/**
 	 * Gets the list of page name on filter.
 	 *
-	 * @param driver              the driver
-	 * @param allXpathItemsInDrop the all page item in drop
-	 * @return the list item in drop
+	 * @param  driver              the driver
+	 * @param  allXpathItemsInDrop the all page item in drop
+	 * @return                     the list item in drop
 	 */
 	public List<String> getListItemsInDropdown(WebDriver driver, String allXpathItemsInDrop) {
 		List<WebElement> els = findElementsByXpath(driver, allXpathItemsInDrop);
@@ -2661,23 +2607,22 @@ public class mobioLibs {
 	/**
 	 * Checks if is compare 2 lists.
 	 *
-	 * @param driver               the driver
-	 * @param theFirstListContent  the the first list content
-	 * @param theSecondListLocator the the second list locator
-	 * @return true, if is compare 2 lists
+	 * @param  driver               the driver
+	 * @param  theFirstListContent  the the first list content
+	 * @param  theSecondListLocator the the second list locator
+	 * @return                      true, if is compare 2 lists
 	 */
-	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent,
-			List<String> theSecondListLocator) {
+	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent, List<String> theSecondListLocator) {
 		return theSecondListLocator.containsAll(theFirstListContent);
 	}
 
 	/**
 	 * Checks if is content in list.
 	 *
-	 * @param driver              the driver
-	 * @param listContentXpath    the list content xpath
-	 * @param getContentToCompare the get content to compare
-	 * @return true, if is content in list
+	 * @param  driver              the driver
+	 * @param  listContentXpath    the list content xpath
+	 * @param  getContentToCompare the get content to compare
+	 * @return                     true, if is content in list
 	 */
 	public boolean isContentInList(WebDriver driver, String listContentXpath, String getContentToCompare) {
 		if (isElementDisplayed(driver, listContentXpath)) {
@@ -2706,12 +2651,10 @@ public class mobioLibs {
 	 * @param objectTypeValue the object type value
 	 */
 //	
-	public void deleteDataToReset(String requestUrl, String merchantValue, String socialTypeValue,
-			String objectTypeValue) {
+	public void deleteDataToReset(String requestUrl, String merchantValue, String socialTypeValue, String objectTypeValue) {
 		String editApi = requestUrl;
 		try {
-			Unirest.delete(editApi).routeParam("merchantID", merchantValue).routeParam("socialTypeID", socialTypeValue)
-					.routeParam("objectTypeID", objectTypeValue).asJson();
+			Unirest.delete(editApi).routeParam("merchantID", merchantValue).routeParam("socialTypeID", socialTypeValue).routeParam("objectTypeID", objectTypeValue).asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
@@ -2739,13 +2682,11 @@ public class mobioLibs {
 //		}
 //		
 //	}
-	
+
 	// Do dev chua by pass dc PEM nen dung tam basic token de by pass thay vi tu dong update token theo website
 	public void deleteAllTicket(String requestUrl, String merchantValue) {
 		try {
-			Unirest.delete(requestUrl)
-					.header("Authorization", "Basic f38b67fa-22f3-4680-9d01-c36b23bd0cad")
-					.header("x-merchant-id", merchantValue).asJson();
+			Unirest.delete(requestUrl).header("Authorization", "Basic f38b67fa-22f3-4680-9d01-c36b23bd0cad").header("x-merchant-id", merchantValue).asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
@@ -2819,8 +2760,8 @@ public class mobioLibs {
 	/**
 	 * Encode string.
 	 *
-	 * @param message the message
-	 * @return the string
+	 * @param  message the message
+	 * @return         the string
 	 */
 	public String encodeString(String message) {
 		if (message == null)
@@ -2848,8 +2789,8 @@ public class mobioLibs {
 	/**
 	 * Format input text to HTML.
 	 *
-	 * @param message the message
-	 * @return the string has HTML format
+	 * @param  message the message
+	 * @return         the string has HTML format
 	 */
 	public String formatInputedText(String message) {
 		message = encodeString(message);
@@ -2859,8 +2800,8 @@ public class mobioLibs {
 	/**
 	 * Sentence case.
 	 *
-	 * @param sentence the sentence
-	 * @return the string
+	 * @param  sentence the sentence
+	 * @return          the string
 	 */
 	public String sentenceCase(String sentence) {
 		sentence = sentence.toLowerCase();
@@ -2872,8 +2813,8 @@ public class mobioLibs {
 	/**
 	 * Parses the JCON string.
 	 *
-	 * @param postLogin the post login
-	 * @return the string
+	 * @param  postLogin the post login
+	 * @return           the string
 	 */
 	public static String parseJCONString(PostLogin postLogin) {
 		if (postLogin == null) {
@@ -2885,11 +2826,11 @@ public class mobioLibs {
 	/**
 	 * Gets the token site.
 	 *
-	 * @param baseURI      the base URI
-	 * @param pathLoginAPI the path login API
-	 * @param userName     the user name
-	 * @param password     the password
-	 * @return the token site
+	 * @param  baseURI      the base URI
+	 * @param  pathLoginAPI the path login API
+	 * @param  userName     the user name
+	 * @param  password     the password
+	 * @return              the token site
 	 */
 	public String getTokenSite(String baseURI, String pathLoginAPI, String userName, String password) {
 		// Form up request object and header
