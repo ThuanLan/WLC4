@@ -41,14 +41,14 @@ public class GlobalConstants {
     /**
      * The Constant SHORT_TIMEOUT.
      */
-    public static final int SHORT_TIMEOUT = 5;
+    public static final int SHORT_TIMEOUT = 10;
 
     /**
      * The Constant LONG_TIMEOUT.
      */
     public static final int LONG_TIMEOUT = 30;
 
-    public static final int MID_TIMEOUT = 10;
+    public static final int MID_TIMEOUT = 30;
 
     public static final String DOWNLOAD_FOLDER = PROJECT_PATH + "";
 

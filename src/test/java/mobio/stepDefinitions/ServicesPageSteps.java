@@ -116,12 +116,14 @@ public class ServicesPageSteps {
 	public void clickButton(String buttonName) {
 		servicesPage.waitToElementClickable(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
 		servicesPage.clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
+		servicesPage.sleepInSecond(3);
 	}
 	
 	@And("^Click on \"([^\"]*)\" button$")
 	public void clickOnButton(String buttonName) {
 		servicesPage.waitToElementClickable(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
 		servicesPage.clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
+		servicesPage.sleepInSecond(3);
 	}
 
 	@And("^Create new \"([^\"]*)\" behavior tag$")

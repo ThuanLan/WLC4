@@ -126,6 +126,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
         itemCount = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
+        sleepInSecond(2);
     }
 
     public void getNumberOnTab(String tabName) {
