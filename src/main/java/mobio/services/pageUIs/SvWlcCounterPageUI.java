@@ -148,7 +148,7 @@ public class SvWlcCounterPageUI {
     public static final String MESSAGE_TEXT_IN_COLUMN2_LBL = "(//div[contains(@class,'mo-lib-overflow')]//mo-libs-social-share-chat_reply-content-conversation-message)[last()]//div[contains(@class,'text-break')]";
     public static final String ZOOM_VIDEO = "//mo-lib-components-modal//div[contains(@class,'align-items-center justify-content-center')]//video";
     public static final String SOCIAL_CONTENT_TOP_ITEM = "(//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis'])[1]//span";
-    public static final String SORT_NEWEST_LBL = "//div[@key='comments']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ mới đến cũ ']";
-    public static final String SORT_OLDEST_LBL = "//div[@key='comments']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ cũ đến mới ']";
+    public static final String SORT_NEWEST_LBL = "//div[@key='message']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ mới đến cũ ']";
+    public static final String SORT_OLDEST_LBL = "//div[@key='message']//mo-libs-social-share-chat_reply-filter//div[text()=' Từ cũ đến mới ']";
 
 }

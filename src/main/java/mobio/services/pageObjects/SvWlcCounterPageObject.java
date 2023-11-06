@@ -126,7 +126,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
         itemCount = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
-        sleepInSecond(2);
+        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
     public void getNumberOnTab(String tabName) {
@@ -156,7 +156,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
         if (isElementDisplayed(driver, SvWlcCounterPageUI.SORT_OLDEST_LBL)) {
             clickToElement(driver, SvWlcCounterPageUI.FB_SORT_MENU);
             clickToElement(driver, SvWlcCounterPageUI.FB_SORT_NEWEST_ITEM);
-            sleepInSecond(1);
+            waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         }
     }
 
@@ -164,7 +164,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
         if (isElementDisplayed(driver, SvWlcCounterPageUI.SORT_NEWEST_LBL)) {
             clickToElement(driver, SvWlcCounterPageUI.FB_SORT_MENU);
             clickToElement(driver, SvWlcCounterPageUI.FB_SORT_OLDEST_ITEM);
-            sleepInSecond(1);
+            waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         }
     }
 

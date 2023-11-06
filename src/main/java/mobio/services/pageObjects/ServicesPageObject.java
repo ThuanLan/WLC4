@@ -94,6 +94,7 @@ public class ServicesPageObject extends mobioLibs {
 			}
 			waitToElementClickable(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
 			clickToElement(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
+			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		}
 
 		if (isElementDisplayed(driver, ServicesPageUI.SELECTED_TYPE_ASSIGNMENT_LBL)) {
@@ -122,6 +123,7 @@ public class ServicesPageObject extends mobioLibs {
 			selectItemInCustomDropdown(driver, ServicesPageUI.RECALL_ASSIGN_MEMBER_DROP, ServicesPageUI.LIST_MEMBER_DROP, "Admin (admin@testauto)");
 			waitToElementClickable(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
 			clickToElement(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
+			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		} else {
 			clickToElement(driver, ServicesPageUI.RECALL_LAW_TOGGLE);
 			scrollToBottom(driver);
@@ -130,20 +132,25 @@ public class ServicesPageObject extends mobioLibs {
 			selectItemInCustomDropdown(driver, ServicesPageUI.RECALL_ASSIGN_MEMBER_DROP, ServicesPageUI.LIST_MEMBER_DROP, "Admin (admin@testauto)");
 			waitToElementClickable(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
 			clickToElement(driver, ServicesPageUI.ASSIGNMENT_CONFIG_SAVE_BTN);
+			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		}
 	}
 
 	public void chooseTeamAndMemberToView(String memberAccount, String otherMemberAccount, String teamName) {
 		clickToElement(driver, ServicesPageUI.TEAM_NAME_DROP, memberAccount);
+		waitToElementVisible(driver, ServicesPageUI.LIST_MEMBER_DROP);
+    	sleepInSecond(1);
 		if (!isElementDisplayed(driver, ServicesPageUI.LIST_OF_TEAM_CHECKED_ITEM, teamName)) {
 			clickToElement(driver, ServicesPageUI.LIST_OF_TEAM, teamName);
 			clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, "Lưu");
-
+			sleepInSecond(1);
 		}
 		clickToElement(driver, ServicesPageUI.MEMBER_ACC_DROP, memberAccount);
+		waitToElementVisible(driver, ServicesPageUI.LIST_MEMBER_DROP);
 		if (!isElementDisplayed(driver, ServicesPageUI.LIST_OF_ACC_CHECKED_ITEM, otherMemberAccount)) {
 			clickToElement(driver, ServicesPageUI.LIST_OF_ACC, otherMemberAccount);
 			clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, "Lưu");
+			sleepInSecond(1);
 		}
 	}
 

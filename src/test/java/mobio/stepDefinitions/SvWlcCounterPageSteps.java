@@ -70,6 +70,7 @@ public class SvWlcCounterPageSteps {
     public void clickOnNotifyIcon() {
         svWlcCounterPage.backToDefault(driver);
         svWlcCounterPage.clickToElement(driver, SvWlcCounterPageUI.NOTIFY_ICON);
+        svWlcCounterPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
     @Then("^Verify notification after that$")
