@@ -201,6 +201,7 @@ Feature: Web Live Chat Counter
     When Click on wlc icon
     And Click on "Tin nhắn" tab
     And Sort in order from new to old
+    And Click on "Tin nhắn" tab
     When Go to "wlc0002" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser

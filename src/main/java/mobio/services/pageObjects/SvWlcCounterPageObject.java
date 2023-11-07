@@ -121,7 +121,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
 
     public void clickOnAFbTab(String tabName) {
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-        sleepInSecond(2);
+        sleepInSecond(3);
         waitToElementVisible(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         itemCount = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, tabName);
         waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);

@@ -41,8 +41,8 @@ public class ServicesPageSteps {
 	@And("^Select \"([^\"]*)\" Team that you want to config$")
 	public void selectTeamThatYouWantToConfig(String teamName) {
 		teamName = commonPage.getAccount(teamName);
-		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		servicesPage.sleepInSecond(5);
+//		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+//		servicesPage.sleepInSecond(5);
 		servicesPage.waitToElementClickable(driver, ServicesPageUI.SUPPORT_TEAM, teamName);
 		servicesPage.clickToElement(driver, ServicesPageUI.SUPPORT_TEAM, teamName);
 		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
@@ -52,7 +52,7 @@ public class ServicesPageSteps {
 	public void clickRuleToConfig(String ruleNameConfig) {
 		servicesPage.clickToElement(driver, ServicesPageUI.RULE_OPTION, ruleNameConfig);
 		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		servicesPage.sleepInSecond(9);
+//		servicesPage.sleepInSecond(9);
 	}
 
 	@And("^Click on \"([^\"]*)\" config type to assign in a team$")
