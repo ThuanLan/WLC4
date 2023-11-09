@@ -1608,9 +1608,9 @@ public class mobioLibs {
 		waitToElementVisible(driver, allItemXpath);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		for (WebElement item : allItems) {
-			if (item.getText().equals(expectedText)) {
+			if (item.getText().contains(expectedText)) {
 				item.click();
-				sleepInSecond(1);
+				sleepInSecond(2);
 				break;
 			}
 		}
@@ -1622,9 +1622,9 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
+				if (item.getText().contains(expectedText)) {
 					item.click();
-					sleepInSecond(1);
+					sleepInSecond(2);
 					break;
 				}
 			}
@@ -1650,9 +1650,9 @@ public class mobioLibs {
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		for (WebElement item : allItems) {
-			if (item.getText().equals(expectedText)) {
+			if (item.getText().contains(expectedText)) {
 				item.click();
-				sleepInSecond(1);
+				sleepInSecond(2);
 				break;
 			}
 		}
@@ -1669,7 +1669,7 @@ public class mobioLibs {
 			for (WebElement item : allItems) {
 				if (item.getText().contains(expectedText)) {
 					item.click();
-					sleepInSecond(1);
+					sleepInSecond(2);
 					break;
 				}
 			}
@@ -1691,11 +1691,11 @@ public class mobioLibs {
 		waitToElementClickable(driver, parentXpath);
 		clickToElement(driver, parentXpath);
 		waitToElementVisible(driver, searchXpath);
-		sendkeyToElement(driver, searchXpath, expectedText);
+		sendkeyToElementByJS(driver, searchXpath, expectedText);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		for (WebElement item : allItems) {
-			if (item.getText().equals(expectedText)) {
+			if (item.getText().contains(expectedText)) {
 				item.click();
 				sleepInSecond(2);
 				break;
@@ -1711,9 +1711,9 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 			for (WebElement item : allItems) {
-				if (item.getText().equals(expectedText)) {
+				if (item.getText().contains(expectedText)) {
 					item.click();
-					sleepInSecond(3);
+					sleepInSecond(2);
 					break;
 				}
 			}

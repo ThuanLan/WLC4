@@ -126,7 +126,7 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0003 |
-
+@59
   Scenario Outline: WLC_059_Wlc Reply message by member of other team
     Given Go to Mobio site by "Member" account
     And Go to Social assignment settings screen
@@ -143,7 +143,7 @@ Feature: WLC Message Socket
     And Click on wlc icon
     And Sort in order from new to old
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -180,7 +180,7 @@ Feature: WLC Message Socket
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -318,7 +318,7 @@ Feature: WLC Message Socket
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    When Login by "Other Member" account
+    When Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -348,7 +348,7 @@ Feature: WLC Message Socket
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
