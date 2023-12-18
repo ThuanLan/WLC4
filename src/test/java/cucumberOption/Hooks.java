@@ -39,9 +39,7 @@ public class Hooks {
 
 				switch (browser) {
 				case "chrome":
-					// WebDriverManager.chromedriver().setup();
-					// System.setProperty("webdriver.chrome.silentOutput", "true");
-
+					 System.setProperty("webdriver.chrome.silentOutput", "true");
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("--disable-popup-blocking");
 					options.addArguments("--disable-notifications");
