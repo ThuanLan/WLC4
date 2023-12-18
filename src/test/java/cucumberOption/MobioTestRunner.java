@@ -21,8 +21,8 @@ import mobio.pageObjects.CommonPageObject;
 						"com.cucumber.listener.ExtentCucumberFormatter:target/html/MobioExtentReport.html",
 						"json:target/site/mobio.json" },
 		snippets = SnippetType.CAMELCASE,
-		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
-		tags = " @chatsocket1")
+		tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
+		//tags = " @chatsocket1")
 		
 public class MobioTestRunner {
 	
