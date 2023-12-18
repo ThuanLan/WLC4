@@ -3,7 +3,8 @@ package cucumberOption;
 import java.time.Duration;
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 	private static WebDriver driver;
-	private static final Logger log = Logger.getLogger(Hooks.class.getName());
+	private static final Logger log = LogManager.getLogger(Hooks.class.getName());
 	public static Scenario scenario;
 
 	@Before
