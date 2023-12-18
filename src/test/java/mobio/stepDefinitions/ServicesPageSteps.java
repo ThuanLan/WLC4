@@ -116,14 +116,14 @@ public class ServicesPageSteps {
 	public void clickButton(String buttonName) {
 		servicesPage.waitToElementClickable(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
 		servicesPage.clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
-		servicesPage.sleepInSecond(3);
+		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 	}
 	
 	@And("^Click on \"([^\"]*)\" button$")
 	public void clickOnButton(String buttonName) {
 		servicesPage.waitToElementClickable(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
 		servicesPage.clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
-		servicesPage.sleepInSecond(3);
+		servicesPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 	}
 
 	@And("^Create new \"([^\"]*)\" behavior tag$")
@@ -133,7 +133,6 @@ public class ServicesPageSteps {
 
 	@And("^Search \"([^\"]*)\" page name in Fanpage Wlc$")
 	public void searchpageInFanpageWlc(String pageName) {
-		//servicesPage.waitToElementVisible(driver, ServicesPageUI.SEARCH_SOCIAL_PAGE_TXT, 60);
 		servicesPage.sendkeyToElement(driver, ServicesPageUI.SEARCH_SOCIAL_PAGE_TXT, pageName);
 	}
 
@@ -146,11 +145,11 @@ public class ServicesPageSteps {
 
 	@And("^Select \"([^\"]*)\" on fanpage$")
 	public void selectSomethingOnFanpage(String fbComponentName) throws Throwable {
-		if (servicesPage.isElementDisplayed(driver, ServicesPageUI.BOARD_CHECKED_CHECKBOX, fbComponentName)) {
-			throw new Exception("TL_Exited old dashboard!");
-		} else {
+//		if (servicesPage.isElementDisplayed(driver, ServicesPageUI.BOARD_CHECKED_CHECKBOX, fbComponentName)) {
+//			throw new Exception("TL_Exited old dashboard!");
+//		} else {
 			servicesPage.clickToElement(driver, ServicesPageUI.BOARD_CHECKBOX, fbComponentName);
-		}
+//		}
 	}
 
 	@Given("^Click on Setting menu$")

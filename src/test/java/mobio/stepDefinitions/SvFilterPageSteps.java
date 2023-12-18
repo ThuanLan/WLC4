@@ -212,7 +212,7 @@ public class SvFilterPageSteps {
         svWlcFilterPage.clickToElement(driver, SvWlcFilterPageUI.SEARCH_BOX_TXT);
     }
 
-    @And("^Select the search content kind$")
+    @And("^Select the search content type$")
     public void selectTheSearchContentKind() {
         svWlcFilterPage.selectItemInCustomDropdown(driver, SvWlcFilterPageUI.SEARCH_STYLE_DROP,
                 SvWlcFilterPageUI.SEARCH_STYLE_AlL_ITEM_DROP, "Nội dung");
@@ -220,8 +220,10 @@ public class SvFilterPageSteps {
 
     @And("^Send content to search$")
     public void sendContentOfSeaching() {
+    	svWlcFilterPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         svWlcFilterPage.sendkeyToElement(driver, SvWlcFilterPageUI.SEARCH_BOX_TXT, SvWebLiveChatPageObject.wlcMessage);
         svWlcFilterPage.sendkeyControl(driver, SvWlcFilterPageUI.SEARCH_BOX_TXT, Keys.ENTER);
+        svWlcFilterPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
     @And("^Click on search icon at clolumn2$")

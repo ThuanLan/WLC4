@@ -52,15 +52,16 @@ Feature: Web live chat filter
     And Click on list of social page dropdown
     Then Verify list of social page of team member
 
-  Scenario: WLC_018_1_FBFilter Check support dropdown list by manager account in a team
+  Scenario: WLC_018_1_FBFilter Check support dropdown list by manager account in other team
     Given Go to Mobio site by "Member in other Team" account
-    When Go to Social assignment settings screen
+    And Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select not assigned to selected members "Specific member in other Team" rule
-    And Back to default screen
-    And Back to the Content
+    And Click on "Phân công giữa các Team" rule to config
+    And Select "wlc0004" page name in "Web live chat" social
+    And Select priority radio button to handle mesages in "UserTeam" team
     When Go to "wlc0004" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -80,17 +81,18 @@ Feature: Web live chat filter
     When Click one wlc item
     Then Verify the feature of selected wlc of member in another team
 
-  Scenario: WLC_019_FBFilter Check support dropdown list by user account in a team
+  Scenario: WLC_019_FBFilter Check support dropdown list by user account in other team
     Given Go to Mobio site by "Member in other Team" account
-    When Go to Social assignment settings screen
+    And Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific member in other Team" other member in the "UserTeam" Team that "Specific user other Team" member want to view
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select not assigned to selected members "Specific member in other Team" rule
-    And Back to default screen
-    And Back to the Content
+    And Click on "Phân công giữa các Team" rule to config
+    And Select "wlc0005" page name in "Web live chat" social
+    And Select priority radio button to handle mesages in "UserTeam" team
     When Go to "wlc0005" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -235,7 +237,7 @@ Feature: Web live chat filter
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on the message tab
-    And Select the search content kind
+    And Select the search content type
     And Send content to search
     Then Verify content of searching
 

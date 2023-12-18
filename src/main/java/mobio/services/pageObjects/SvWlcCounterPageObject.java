@@ -310,10 +310,9 @@ public class SvWlcCounterPageObject extends mobioLibs {
 			throw new IllegalAddException("No data found!");
 		}
 
-		clickToElement(driver, ServicesPageUI.WORK_TAG_LBL);
-		sleepInSecond(1);
+		clickToElement(driver, ServicesPageUI.WORK_TAG_LBL);		
 		clickToElement(driver, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
-		sleepInSecond(1);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 	}
     
     public void pinMessage(String fbElementNoPin) {
@@ -340,13 +339,13 @@ public class SvWlcCounterPageObject extends mobioLibs {
                 waitToElementVisible(driver, locator);
                 hoverMouseToElement(driver, locator);
                 clickToElement(driver, SvWlcCounterPageUI.SOCIAL_ITEM_3DOTS_ICON);
-                sleepInSecond(2);
+                waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
             }
 
             // Pin this item
             waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_TOOLTIP);
             clickToElement(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_TOOLTIP);
-            sleepInSecond(3);
+            waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }

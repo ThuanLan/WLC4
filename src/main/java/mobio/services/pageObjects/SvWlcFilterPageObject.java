@@ -109,5 +109,6 @@ public class SvWlcFilterPageObject extends mobioLibs {
 				break;
 			}
 		}
+		clickToElement(driver, CommonPageUI.DYNAMIC_LBL, "Tag phân loại công việc");		
 	}
 }

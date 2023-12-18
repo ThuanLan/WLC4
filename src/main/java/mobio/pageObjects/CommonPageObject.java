@@ -31,9 +31,8 @@ public class CommonPageObject extends mobioLibs {
 		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_LINK, ancestorMenu);
 		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_LINK, parentMenuName);
 		clickToElement(driver, CommonPageUI.DYNAMIC_CHILD_MENU_LINK, childMenuName);
-		sleepInSecond(1);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		sleepInSecond(3);
+		sleepInSecond(5);
 		switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
 	}
 

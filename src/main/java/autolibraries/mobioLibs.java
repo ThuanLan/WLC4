@@ -847,7 +847,7 @@ public class mobioLibs {
 //			System.out.println("EL show 1: " + locator);
 //			System.out.println("EL show : " + values);
 			element = driver.findElement(byXpathLocator(locator, values));
-			System.out.println("EL show: " + element);
+			//System.out.println("EL show: " + element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;
@@ -1610,7 +1610,7 @@ public class mobioLibs {
 		for (WebElement item : allItems) {
 			if (item.getText().contains(expectedText)) {
 				item.click();
-				sleepInSecond(2);
+				sleepInSecond(1);
 				break;
 			}
 		}
@@ -1624,7 +1624,7 @@ public class mobioLibs {
 			for (WebElement item : allItems) {
 				if (item.getText().contains(expectedText)) {
 					item.click();
-					sleepInSecond(2);
+					sleepInSecond(1);
 					break;
 				}
 			}
