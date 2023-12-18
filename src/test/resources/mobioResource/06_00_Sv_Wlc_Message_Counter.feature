@@ -163,7 +163,7 @@ Feature: Web Live Chat Counter
     Then Verify item count is unchanged
 
   # Cấu hình hiển thị tin chưa đọc
-  @count
+ 
   Scenario: TC04_FBCounter_Set counter on the job processing page
     Given Go to Mobio site by "Admin" account
     Given Click on Setting button
@@ -179,7 +179,7 @@ Feature: Web Live Chat Counter
     And Login by "Admin" account
 
   #Đếm số message chưa đọc mặc định
-    @count
+  
   Scenario: WLC_005_WLCCounter create one message
     Given Go to Mobio site by "Admin" account
     When Go to "wlc0002" web live chat site on other browser
@@ -195,7 +195,7 @@ Feature: Web Live Chat Counter
     And Create message by wlc on other browser
     And Close the second browser
     Then Verify item count is increased by one
-@count
+
   Scenario: WLC_006_WLCCounter read one message
     Given Go to Mobio site by "Admin" account
     And Go to the Social chat screen
@@ -210,7 +210,7 @@ Feature: Web Live Chat Counter
     And Click on the message tab
     And Click on the top item
     Then Verify item count is unchanged
-@count
+
   Scenario: WLC_007_WLCCounter received one message
     Given Go to Mobio site by "Admin" account
     And Go to the Social chat screen
@@ -291,7 +291,7 @@ Feature: Web Live Chat Counter
     And Create message by wlc on other browser
     And Close the second browser
     Then Verify the focus for new item
- @count
+
   Scenario: TC02_FBCounter_Set counter on the job processing screen
     Given Go to Mobio site by "Admin" account
     And Click on Setting button
