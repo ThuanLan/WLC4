@@ -13,14 +13,22 @@ Feature: WLC Message Socket2
     Then Verify "wlc tag" that added into an item
 
   Scenario Outline: WLC_072_Wlc unanswered comment_reply one by Copy/Paste text
-    Given Go to Mobio site by "Member" account
+    Given Go to Mobio site by "Member" account   
+    And Go to Social assignment settings screen
+    And Select "UserTeam" Team that you want to config
+    And Click on "Thành viên trong Team" config type to assign in a team
+    And Select "Specific Member" other member in the "ManagerTeam" Team that "Specific user other Team" member want to view
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -70,13 +78,21 @@ Feature: WLC Message Socket2
 
   Scenario Outline: WLC_076_Completed by other team member
     Given Go to Mobio site by "Member" account
+    And Go to Social assignment settings screen
+    And Select "UserTeam" Team that you want to config
+    And Click on "Thành viên trong Team" config type to assign in a team
+    And Select "Specific Member" other member in the "ManagerTeam" Team that "Specific user other Team" member want to view
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button

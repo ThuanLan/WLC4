@@ -5,10 +5,22 @@ Feature: Web live chat and Others
   So that verify Web live chat page
 
   Scenario: TC01_FBCounter Delete all data before checking all TCs
-    Given Go to the Social chat screen
+    Given Go to Mobio site by "Admin" account
+    And Go to the Social chat screen
     And Delete data to reset weblivechat module
     And Switch to Mobio site
     And Close all windows without parent
+   
+    Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
+    Given Go to Mobio site by "Admin" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select only assign to online member
+    When Go to "<WLCSite>" web live chat site on other browser
+    And Create message by wlc on other browser
+    And Close the second browser
 # dong 77,78,79
   #Scenario: WLC_077_BlockContact
   #Given Go to the Social chat screen
@@ -107,7 +119,7 @@ Feature: Web live chat and Others
     And Go to the Social chat screen
     And Click on wlc icon
     And Go to Mobio login page
-    And Login by "Other Member" account
+    And Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -127,7 +139,7 @@ Feature: Web live chat and Others
     Examples: 
       | WLCSite |
       | wlc0002 |
-
+@other
   Scenario Outline: WLC_083_Edit profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser

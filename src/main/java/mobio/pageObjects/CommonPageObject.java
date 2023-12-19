@@ -124,12 +124,12 @@ public class CommonPageObject extends mobioLibs {
 			return dataTest.getMemberOtherViewInfo();
 			
 		case "User other Team":
-			// thuannt6: belong to other team and only as a user
+			// thuan3: belong to other team and only as a user
 			assert dataTest != null;
 			return dataTest.getMemberOtherUser();
 
 		case "Specific user other Team":
-			// thuannt6 info: belong to other team and only as a user
+			// thuan3 info: belong to other team and only as a user
 			assert dataTest != null;
 			return dataTest.getMemberOtherUserInfo();
 		}

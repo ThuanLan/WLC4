@@ -59,21 +59,17 @@ public class LoginPageObject extends mobioLibs {
      * @param password the password
      */
     public void loginAsAnUser(String userID, String password) {
-//        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         inputToUserIDTextbox(userID);
         inputToPasswordTextbox(password);
         clickToLoginButton();
-//        driver.switchTo().defaultContent();
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
     public void loginToMobio(String userID) {
         accountTest = SvDataTest.getSvDataTest();
-//        switchToIframe(driver, CommonPageUI.MAIN_IFRAME);
         inputToUserIDTextbox(userID);
         inputToPasswordTextbox(accountTest.getPassword());
         clickToLoginButton();
-//        driver.switchTo().defaultContent();
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
@@ -96,7 +92,6 @@ public class LoginPageObject extends mobioLibs {
             clickToElementByJS(driver, CommonPageUI.ACCOUNT_AVATAR_BTN);
             sleepInSecond(1);
             if (isElementDisplayed(driver, CommonPageUI.LOGIN_ACCOUNT_LBL, account)) {
-//                clickToElement(driver, CommonPageUI.RIGHT_SIDER_BAR);
             	refreshPage(driver);
             	waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
             } else {

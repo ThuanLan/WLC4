@@ -126,20 +126,21 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0003 |
-@59
+
   Scenario Outline: WLC_059_Wlc Reply message by member of other team
     Given Go to Mobio site by "Member" account
     And Go to Social assignment settings screen
     And Select "UserTeam" Team that you want to config
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific Member" other member in the "ManagerTeam" Team that "Specific user other Team" member want to view
+    And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select not assigned to selected members "Specific Member" rule
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
-    And Go to the Social chat screen
+    When Go to the Social chat screen
     And Click on wlc icon
     And Sort in order from new to old
     And Go to Mobio login page
@@ -149,7 +150,7 @@ Feature: WLC Message Socket
     And Click on filter button
     And Select "Specific Member" data support dropdown
     And Click on the Apply button
-    And Click old wlc message
+    And Click old wlc message 
     When Open Mobio on second driver
     And Login by "Member" account on other browser
     And Go to the Social chat screen on other browser
@@ -253,10 +254,7 @@ Feature: WLC Message Socket
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select only assign to online member
-    And Back to default screen
-    And Back to the Content
-    And Go to Mobio login page
-    And Login by "Admin" account
+   
 
   Scenario: WLC_063_Socket Forward comment
     Given Go to Mobio site by "Member in Team" account
@@ -266,9 +264,7 @@ Feature: WLC Message Socket
     And Click on Setting menu
     And Click on "Cài đặt doanh nghiệp" settings
     And Go to "Team" screen from menu
-    And Hover on "ManagerTeam" team and get members
-    And Back to default screen
-    And Back to the Content
+    And Hover on "ManagerTeam" team and get members  
     When Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -393,10 +389,12 @@ Feature: WLC Message Socket
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
+    And Sort in order from new to old
     And Go to Mobio login page
     And Login by "Member in Team" account
     And Go to the Social chat screen
     And Click on wlc icon
+    And Sort in order from new to old
     When Open Mobio on second driver
     And Login by "Admin" account on other browser
     And Go to the Social chat screen on other browser
