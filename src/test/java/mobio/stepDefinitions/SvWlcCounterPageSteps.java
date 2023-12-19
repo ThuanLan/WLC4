@@ -40,7 +40,7 @@ public class SvWlcCounterPageSteps {
     public void verifyItemCountIncreasedOne() {
         svWlcCounterPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         String commentBefore = SvWlcCounterPageObject.itemCount;
-        svWlcCounterPage.sleepInSecond(30);
+        svWlcCounterPage.sleepInSecond(10);
         String commentNumberAfter = svWlcCounterPage.getTextElement(driver,
                 SvWlcCounterPageUI.SOCIAL_TAB_NUMBER_LBL, "Tin nhắn");
         System.out.println(commentNumberAfter);

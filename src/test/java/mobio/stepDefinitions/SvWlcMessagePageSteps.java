@@ -29,10 +29,7 @@ public class SvWlcMessagePageSteps {
 
     @When("^Click on wlc icon$")
     public void clickOnWlcIcon() {
-//        wlcMessagePage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//        wlcMessagePage.sleepInSecond(5);
         wlcMessagePage.clickToElement(driver, SvWlcMessagePageUI.WLC_ICON);
-//        wlcMessagePage.sleepInSecond(1);
         wlcMessagePage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
     }
 
