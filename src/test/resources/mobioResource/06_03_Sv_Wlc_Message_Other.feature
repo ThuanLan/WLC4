@@ -139,7 +139,7 @@ Feature: Web live chat and Others
     Examples: 
       | WLCSite |
       | wlc0002 |
-@other
+
   Scenario Outline: WLC_083_Edit profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
