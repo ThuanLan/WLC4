@@ -180,7 +180,6 @@ Feature: Web Live Chat Counter
     And Login by "Admin" account
 
   #Đếm số message chưa đọc mặc định
-
   Scenario: WLC_005_WLCCounter create one message
     Given Go to Mobio site by "Admin" account
     And Go to the Social chat screen
