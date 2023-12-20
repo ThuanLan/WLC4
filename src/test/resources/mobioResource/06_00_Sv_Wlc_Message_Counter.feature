@@ -19,6 +19,7 @@ Feature: Web Live Chat Counter
     And Login by "Admin" account
 
   #Cấu hình rule phân công bình luận trong team
+
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
@@ -179,18 +180,16 @@ Feature: Web Live Chat Counter
     And Login by "Admin" account
 
   #Đếm số message chưa đọc mặc định
-  
+
   Scenario: WLC_005_WLCCounter create one message
     Given Go to Mobio site by "Admin" account
-    When Go to "wlc0002" web live chat site on other browser
-    And Create message by wlc on other browser
-    And Close the second browser
-    When Go to "wlc0003" web live chat site on other browser
-    And Create message by wlc on other browser
-    And Close the second browser
     And Go to the Social chat screen
     When Click on wlc icon
-    And Click on "Tin nhắn" tab
+    And Sort in order from old to new
+    When Go to "wlc0003" web live chat site on other browser
+    And Create message by wlc on other browser
+    And Close the second browser  
+    And Get number of "Tin nhắn" tab
     When Go to "wlc0002" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser

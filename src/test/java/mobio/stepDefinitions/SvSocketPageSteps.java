@@ -32,7 +32,7 @@ public class SvSocketPageSteps {
     @And("^Click on the top item$")
     public void clickOnTheTopItem() {
         svWlcSocketPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-        svWlcSocketPage.sleepInSecond(15);
+        svWlcSocketPage.sleepInSecond(10);
         svWlcSocketPage.clickOnTheTopItem();
     }
 

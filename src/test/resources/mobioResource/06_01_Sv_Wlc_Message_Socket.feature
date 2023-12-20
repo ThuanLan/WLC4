@@ -150,7 +150,7 @@ Feature: WLC Message Socket
     And Click on filter button
     And Select "Specific Member" data support dropdown
     And Click on the Apply button
-    And Click old wlc message 
+    And Click old wlc message
     When Open Mobio on second driver
     And Login by "Member" account on other browser
     And Go to the Social chat screen on other browser
@@ -254,7 +254,6 @@ Feature: WLC Message Socket
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select only assign to online member
-   
 
   Scenario: WLC_063_Socket Forward comment
     Given Go to Mobio site by "Member in Team" account
@@ -264,7 +263,7 @@ Feature: WLC Message Socket
     And Click on Setting menu
     And Click on "Cài đặt doanh nghiệp" settings
     And Go to "Team" screen from menu
-    And Hover on "ManagerTeam" team and get members  
+    And Hover on "ManagerTeam" team and get members
     When Go to the Social chat screen
     And Click on wlc icon
     And Click on filter button
@@ -308,6 +307,11 @@ Feature: WLC Message Socket
 
   Scenario Outline: WLC_066_Socket Filter other team_forward an item
     Given Go to Mobio site by "Member" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     And Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -317,6 +321,8 @@ Feature: WLC Message Socket
     When Login by "User other Team" account
     And Go to the Social chat screen
     And Click on wlc icon
+    And Click on the message tab
+    And Sort in order from new to old
     And Click on filter button
     And Select "Specific Member" data support dropdown
     And Click on the Apply button
@@ -335,7 +341,7 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0002 |
-
+  
   Scenario: WLC_067_Socket Filter other team_thuannt6 received an item
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser
@@ -361,7 +367,7 @@ Feature: WLC Message Socket
     And Click on "Chuyển tiếp" button on other browser
     And Close the second browser
     Then Verify wlc list of team member after receiving an item
-
+  
   Scenario: WLC_068_Socket Forward comment in the team
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser
@@ -382,8 +388,13 @@ Feature: WLC Message Socket
     And Click on "Chuyển tiếp" button
     Then Verify disable wlc in list
 
-  Scenario: WLC_069_Socket Not read_admin received a comment
+  Scenario: WLC_069_Admin received a comment
     Given Go to Mobio site by "Admin" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Admin" rule
     And Go to "wlc0002" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -407,3 +418,12 @@ Feature: WLC Message Socket
     And Click on the top item
     Then Verify item jumps to list and column2
     Then Verify wlc list of team member
+
+  Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
+    Given Go to Mobio site by "Admin" account
+    And Close all windows without parent
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select only assign to online member

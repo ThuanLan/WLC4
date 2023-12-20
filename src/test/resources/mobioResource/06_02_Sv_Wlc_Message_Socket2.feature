@@ -3,7 +3,7 @@ Feature: WLC Message Socket2
   As a PO
   I want to login to application
   So that verify Web live chat page
- 
+
   Scenario: WLC_071_Add tag
     Given Go to Mobio site by "Admin" account
     When Go to the Social chat screen

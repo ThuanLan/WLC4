@@ -99,7 +99,7 @@ public class SvOtherFunctionsPageSteps {
 	@Then("^Verify deal updated information at the column3$")
     public void verifyDealUpdatedInformationAtTheColumn3() {
         Assert.assertTrue(
-                svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Thành công"));
+                svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Gửi báo giá"));
         Assert.assertTrue(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_VALUE_LBL));
     }
 

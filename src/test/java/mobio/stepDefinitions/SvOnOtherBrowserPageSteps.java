@@ -127,6 +127,7 @@ public class SvOnOtherBrowserPageSteps {
 	public void clickOnSomethingButton(String buttonName) {
 		svWlcCounterPage.waitToElementClickable(driverSecond, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
 		svWlcCounterPage.clickToElement(driverSecond, CommonPageUI.DYNAMIC_BASIC_BUTTON, buttonName);
+		svWlcSocketPage.waitShortToElementInVisible(driverSecond, CommonPageUI.LOADING_ICON);
 	}
 
 	@And("^Click on Done button for message on other browser$")

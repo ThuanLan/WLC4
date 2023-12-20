@@ -49,7 +49,7 @@ public class SvWlcSocketPageObject extends mobioLibs {
      */
     public void assignTaskToUser(String userAccount) {
         waitToElementVisible(driver, SvWlcCounterPageUI.ASSIGNED_DROP);
-        selectItemInCustomDropdown(driver, SvWlcCounterPageUI.ASSIGNED_DROP,
+        selectItemInCustomDropdownByPass(driver, SvWlcCounterPageUI.ASSIGNED_DROP,
                 SvWlcCounterPageUI.ASSIGNED_ALL_ITEMS_DROP, userAccount);
     }
 }
