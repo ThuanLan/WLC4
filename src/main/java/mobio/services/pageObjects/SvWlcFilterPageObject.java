@@ -28,7 +28,7 @@ public class SvWlcFilterPageObject extends mobioLibs {
 		sleepInSecond(2);
 		waitToElementClickable(driver, SvWlcFilterPageUI.FILTER_BTN);
 		clickToElement(driver, SvWlcFilterPageUI.FILTER_BTN);
-		sleepInSecond(2);
+		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 	}
 
 	public void selectAllSupportDropdown(String itemName) {
@@ -94,9 +94,7 @@ public class SvWlcFilterPageObject extends mobioLibs {
 		selectTags(tagName3);
 	}
 
-	public void selectTags(String expectedText) {
-		clickToElement(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT);
-		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+	public void selectTags(String expectedText) {	
 		clickToElement(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT);
 		sendkeyToElement(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT, expectedText);
 		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
@@ -105,7 +103,7 @@ public class SvWlcFilterPageObject extends mobioLibs {
 		for (WebElement item : allItems) {
 			if (item.getText().equals(expectedText)) {
 				item.click();
-				sleepInSecond(3);
+				sleepInSecond(1);
 				break;
 			}
 		}
