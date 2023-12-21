@@ -10,8 +10,8 @@ Feature: Web live chat and Others
     And Delete data to reset weblivechat module
     And Switch to Mobio site
     And Close all windows without parent
-   
-    Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
+
+  Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
@@ -21,14 +21,15 @@ Feature: Web live chat and Others
     When Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
-# dong 77,78,79
+
+  # dong 77,78,79
   #Scenario: WLC_077_BlockContact
   #Given Go to the Social chat screen
   #When Click on wlc icon
   #And Click one wlc item
   #And Click on Block contact button
   #Then Verify block contact of member
-#
+  #
   #Scenario: WLC_078_BlockContact in team
   #Given Logout from Mobio site
   #And Login by "Admin" account
@@ -45,7 +46,7 @@ Feature: Web live chat and Others
   #And Click wlc item on other browser
   #And Click on Block contact button
   #Then Verify the block contact of member in team
-#
+  #
   #Scenario: WLC_079_BlockContact in other team
   #Given Logout from Mobio site
   #And Login by "Other Member" account
@@ -62,7 +63,6 @@ Feature: Web live chat and Others
   #And Click wlc item on other browser
   #And Click on Block contact button
   #Then Verify the block contact of member in other team
- 
   Scenario Outline: WLC_080_Add tag profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
@@ -84,12 +84,17 @@ Feature: Web live chat and Others
 
   Scenario: WLC_081_Add tag in a team _ERR30392
     Given Go to Mobio site by "Member" account
-    And Click one wlc item to add tag
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     When Go to "wlc0003" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
+    And Sort in order from new to old
     And Go to Mobio login page
     And Login by "Admin" account
     And Go to the Social chat screen
@@ -97,6 +102,7 @@ Feature: Web live chat and Others
     And Click on filter button
     And Select "Specific Member" data support dropdown
     And Click on the Apply button
+    And Sort in order from new to old
     And Click old wlc message
     And Open Mobio on second driver
     And Login by "Member" account on other browser
@@ -113,6 +119,11 @@ Feature: Web live chat and Others
 
   Scenario Outline: WLC_082_Tag in other team
     Given Go to Mobio site by "Member" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     When Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -140,6 +151,14 @@ Feature: Web live chat and Others
       | WLCSite |
       | wlc0002 |
 
+  Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
+    Given Go to Mobio site by "Admin" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select only assign to online member
+
   Scenario Outline: WLC_083_Edit profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
@@ -166,7 +185,6 @@ Feature: Web live chat and Others
     Examples: 
       | WLCSite |
       | wlc0003 |
-
 
   Scenario Outline: WLC_084_86_Add deal and delete deal
     Given Go to Mobio site by "Admin" account

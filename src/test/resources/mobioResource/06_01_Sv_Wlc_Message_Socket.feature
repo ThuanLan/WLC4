@@ -4,6 +4,18 @@ Feature: WLC Message Socket
   I want to login to application
   So that verify Web live chat page
 
+  Scenario Outline: TC01_Config for assignee group and prioritied page
+    Given Go to Mobio site by "Admin" account
+    And Go to Social assignment settings screen
+    And Click on "Phân công giữa các Team" rule to config
+    And Select "<WLCSite>" page name in "Web live chat" social
+    And Select priority radio button to handle mesages in "ManagerTeam" team
+
+    Examples: 
+      | WLCSite |
+      | wlc0002 |
+      | wlc0003 |
+
   Scenario: TC_02_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
@@ -12,26 +24,9 @@ Feature: WLC Message Socket
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select only assign to online member
-    And Back to default screen
-    And Back to the Content
-    And Go to Mobio login page
-    And Login by "Admin" account
-
-  Scenario Outline: TC01_Config for assignee group and prioritied page
-    Given Go to Mobio site by "Admin" account
-    And Go to Social assignment settings screen
-    And Click on "Phân công giữa các Team" rule to config
-    And Select "<WLCSite>" page name in "Web live chat" social
-    And Select priority radio button to handle mesages in "ManagerTeam" team
-    And Back to default screen
-    And Back to the Content
-    And Go to Mobio login page
-    And Login by "Admin" account
-
-    Examples: 
-      | WLCSite |
-      | wlc0002 |
-      | wlc0003 |
+    When Go to "wlc0002" web live chat site on other browser
+    And Create message by wlc on other browser
+    And Close the second browser
 
   Scenario: WLC_050_Wlc unanswered comment_reply one with text
     Given Go to Mobio site by "Admin" account
@@ -102,6 +97,11 @@ Feature: WLC Message Socket
 
   Scenario Outline: WLC_058_Wlc Reply comment and view by member in team
     Given Go to Mobio site by "Member" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     When Go to "<WLCSite>" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
@@ -341,7 +341,7 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0002 |
-  
+
   Scenario: WLC_067_Socket Filter other team_thuannt6 received an item
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser
@@ -367,7 +367,7 @@ Feature: WLC Message Socket
     And Click on "Chuyển tiếp" button on other browser
     And Close the second browser
     Then Verify wlc list of team member after receiving an item
-  
+
   Scenario: WLC_068_Socket Forward comment in the team
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser
