@@ -370,6 +370,11 @@ Feature: WLC Message Socket
 
   Scenario: WLC_068_Socket Forward comment in the team
     Given Go to Mobio site by "Member" account
+    And Go to Social assignment settings screen
+    And Select "ManagerTeam" Team that you want to config
+    And Click on "Phân công trong nội bộ Team" rule to config
+    And Click on "Cấu hình phân công Inbox" config type to assign in a team
+    And Select not assigned to selected members "Specific Member" rule
     And Go to "wlc0002" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser

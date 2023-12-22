@@ -1610,7 +1610,7 @@ public class mobioLibs {
 		for (WebElement item : allItems) {
 			if (item.getText().contains(expectedText)) {
 				item.click();
-				sleepInSecond(1);
+				sleepInSecond(2);
 				break;
 			}
 		}
@@ -1624,7 +1624,7 @@ public class mobioLibs {
 			for (WebElement item : allItems) {
 				if (item.getText().contains(expectedText)) {
 					item.click();
-					sleepInSecond(1);
+					sleepInSecond(2);
 					break;
 				}
 			}
