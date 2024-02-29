@@ -19,7 +19,6 @@ Feature: Web Live Chat Counter
     And Login by "Admin" account
 
   #Cấu hình rule phân công bình luận trong team
-
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Close all windows without parent
@@ -28,8 +27,6 @@ Feature: Web Live Chat Counter
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select only assign to online member
-    And Back to default screen
-    And Back to the Content
 
   Scenario Outline: TC01_Config for assignee group and prioritied page
     Given Go to Mobio site by "Admin" account

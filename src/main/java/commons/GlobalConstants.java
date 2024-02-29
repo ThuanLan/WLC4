@@ -69,11 +69,11 @@ public class GlobalConstants {
 //	public static final String RATING_OBJECT_TYPE_ID = "3";
 
     // WLC link
-	public static final String WLC_SITE_0001 = "https://test2.mobio.vn/landing-pages/chat-tool/autowlc0002/";
-	public static final String WLC_SITE_0002 = "https://test2.mobio.vn/landing-pages/chat-tool/autowlc0002/";
-	public static final String WLC_SITE_0003 = "https://test2.mobio.vn/landing-pages/chat-tool/autowlc0003/";
-	public static final String WLC_SITE_0004 = "https://test2.mobio.vn/landing-pages/chat-tool/autowlc0004/";
-	public static final String WLC_SITE_0005 = "https://test2.mobio.vn/landing-pages/chat-tool/autowlc0005/";
+	public static final String WLC_SITE_0001 = "https://test2.mobio.vn/landing-pages/chat-tool/testautowlc0001/";
+	public static final String WLC_SITE_0002 = "https://test2.mobio.vn/landing-pages/chat-tool/testautowlc0002/";
+	public static final String WLC_SITE_0003 = "https://test2.mobio.vn/landing-pages/chat-tool/testautowlc0003/";
+	public static final String WLC_SITE_0004 = "https://test2.mobio.vn/landing-pages/chat-tool/testautowlc0004/";
+	public static final String WLC_SITE_0005 = "https://test2.mobio.vn/landing-pages/chat-tool/testautowlc0005/";
 
 
 //    public static final String WLC_SITE_0001 = "https://test2.mobio.vn/landing-pages/chat-tool/test01/";

@@ -47,7 +47,7 @@ public class SvOtherFunctionPageObject extends mobioLibs {
         sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, dealName,"Tên Cơ hội bán");
         sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, "1000000", "Giá trị Cơ hội bán");
         scrollToElement(driver, CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán");
-        selectItemInDropdownBySearchingNoWaitByPass(driver, getOverloadingLocator(CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán"), CommonPageUI.ALL_ITEM_DROP, CommonPageUI.ITEM_SEARCH_DROP, "Gửi báo giá");
+        selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán"), CommonPageUI.ALL_ITEM_DROP, CommonPageUI.ITEM_SEARCH_DROP, "Gửi báo giá");
         clickToElement(driver, CommonPageUI.DYNAMIC_LBL,"Trạng thái Cơ hội bán");
         scrollToElement(driver, CommonPageUI.DYNAMIC_LBL,"Thông tin Khách hàng");
         selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), CommonPageUI.ALL_ITEM_CHECKBOX_DROP, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), GlobalConstants.PROFILE_NAME);
@@ -62,11 +62,11 @@ public class SvOtherFunctionPageObject extends mobioLibs {
         waitToElementVisible(driver, SvOtherFunctionsPageUI.DYNAMIC_TEXTBOX, "Tên ticket");
         sendkeyToElement(driver, SvOtherFunctionsPageUI.DYNAMIC_TEXTBOX, ticketName, "Tên ticket");
 
-		selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Trạng thái xử lý", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Mở");
+		selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Trạng thái xử lý", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Mở");
 
-		selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Kiểu ticket", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Khác");
+		selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Kiểu ticket", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Khác");
 
-		selectItemInDropdownBySearchingNoWait(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Mức độ ưu tiên", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Cao");
+		selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_PARENT_DROP, "Mức độ ưu tiên", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, "Cao");
 		
 		waitToElementVisible(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));
 		scrollToElement(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));

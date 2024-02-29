@@ -15,7 +15,7 @@ Feature: Web live chat filter
     Then Verify filter form for messages
     And Click on filter collapse link
     Then Verify close filter
-
+@fil
   Scenario: WLC_017_FBFilter Check support dropdown list by manager account in a team
     Given Go to Mobio login page
     And Login by "Member" account
@@ -42,9 +42,7 @@ Feature: Web live chat filter
     And Click on "Thành viên trong Team" config type to assign in a team
     And Select "Specific member in other Team" other member in the "UserTeam" Team that "Specific member in Team" member want to view
     And Click on "MXH được phụ trách" config type to assign in a team
-    And Get pages list of Team in "Web live chat" social network
-    And Back to default screen
-    And Back to the Content
+    And Get pages list of Team in "Web live chat" social network  
     When Go to the Social chat screen
     And Click on wlc icon
     And Click on the message tab

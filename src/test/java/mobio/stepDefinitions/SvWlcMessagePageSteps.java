@@ -155,9 +155,7 @@ public class SvWlcMessagePageSteps {
     public void clickOnForwardButton() {
         wlcMessagePage.waitToElementClickable(driver, SvWlcCounterPageUI.MSG_FORWARD_REPLY_BTN);
         wlcMessagePage.clickToElement(driver, SvWlcCounterPageUI.MSG_FORWARD_REPLY_BTN);
-        wlcMessagePage.sleepInSecond(2);
         wlcMessagePage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-        wlcMessagePage.sleepInSecond(3);
     }
 
     @And("^Add tag \"([^\"]*)\" into an item$")

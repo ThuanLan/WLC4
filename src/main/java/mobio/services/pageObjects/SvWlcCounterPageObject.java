@@ -429,7 +429,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
     }
 
     public void clickOnTheMessageTab(String tabName) {
-        waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+       // waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
         waitToElementClickable(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
         clickToElement(driver, SvWlcCounterPageUI.SOCIAL_TAB_BTN, tabName);
         waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);

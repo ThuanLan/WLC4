@@ -29,7 +29,6 @@ public class CommonPageUI {
  	public static final String ACCOUNT_LOGOUT_MENU = "//div[contains(@class,'mo-lib-layout-menu-top-logout')]//span[contains(text(),'Đăng xuất')]";
  	public static final String LOGIN_ACCOUNT_LBL = "//mo-libs-shared-components-tooltip-content//div[contains(text(),'%s')]";
  	public static final String WEBSITE_ACCOUNT_LBL = "//mo-libs-shared-components-tooltip-content//div[@data-overlayscrollbars-viewport='scrollbarHidden']//div[contains(@class,'mo-lib-border-bottom-general')]//div[contains(text(),'@')]";
-
  	public static final String CLOSE_BTN = "//mo-libs-shared-components-modal//i[contains(@class,'mo-icn-close-popup')]";
  	public static final String CLOSE_DIALOG_TEAM_BTN = "//mo-libs-shared-components-modal//i[contains(@class,'mo-lib-modal-wrapper-header-icon-remove')]";
  	public static final String RIGHT_SIDER_BAR = "//mo-libs-shared-components-layout-menu-left//img";

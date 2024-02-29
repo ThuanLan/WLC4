@@ -341,7 +341,7 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0002 |
-
+@fil
   Scenario: WLC_067_Socket Filter other team_thuannt6 received an item
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser
@@ -367,7 +367,7 @@ Feature: WLC Message Socket
     And Click on "Chuyển tiếp" button on other browser
     And Close the second browser
     Then Verify wlc list of team member after receiving an item
-
+@fil
   Scenario: WLC_068_Socket Forward comment in the team
     Given Go to Mobio site by "Member" account
     And Go to Social assignment settings screen
@@ -392,7 +392,7 @@ Feature: WLC Message Socket
     And Select "Specific Admin" to assign task
     And Click on "Chuyển tiếp" button
     Then Verify disable wlc in list
-
+@fil
   Scenario: WLC_069_Admin received a comment
     Given Go to Mobio site by "Admin" account
     And Go to Social assignment settings screen
