@@ -108,8 +108,8 @@ public class SvSocketPageSteps {
         groupName = commonPage.getAccount(groupName);
         svWlcSocketPage.sleepInSecond(3);
         svWlcSocketPage.waitToElementVisible(driver, SvWlcCounterPageUI.RECIPIENT_GROUP_DROP);
-        svWlcSocketPage.selectItemInCustomDropdown(driver, SvWlcCounterPageUI.RECIPIENT_GROUP_DROP,
-                SvWlcCounterPageUI.LIST_FORWARD_GROUP_DROP, groupName);
+        svWlcSocketPage.selectItemInCustomDropdownBySearching(driver, SvWlcCounterPageUI.RECIPIENT_GROUP_DROP,
+                SvWlcCounterPageUI.LIST_FORWARD_GROUP_DROP,CommonPageUI.ITEM_SEARCH_DROP, groupName);
         svWlcSocketPage.sleepInSecond(2);
     }
 

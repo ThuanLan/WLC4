@@ -341,7 +341,7 @@ Feature: WLC Message Socket
     Examples: 
       | WLCSite |
       | wlc0002 |
-@fil
+
   Scenario: WLC_067_Socket Filter other team_thuannt6 received an item
     Given Go to Mobio site by "Member" account
     And Go to "wlc0002" web live chat site on other browser

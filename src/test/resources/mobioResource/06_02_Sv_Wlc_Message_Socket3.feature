@@ -157,7 +157,7 @@ Feature: Web live chat Socket3
     Examples: 
       | VideoAndImage     |
       | checkfileuat.docx |
-
+@46
   Scenario: WLC_046_Wlc Reply comment and view by member in team
     Given Go to Mobio site by "Admin" account
     And Go to Social assignment settings screen

@@ -140,10 +140,10 @@ public class SvWlcMessagePageSteps {
     @Then("^Verify \"([^\"]*)\" that added into an item$")
     public void verifyThatAddedIntoAnItem(String tagName) {       
         wlcMessagePage.hoverMouseToElement(driver, SvWlcCounterPageUI.COLUMN1_TAG_ICON);
-        Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN1_TAG_CONTENT_LBL, tagName));
+        Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN1_TAG_CONTENT_LBL, wlcMessagePage.formatInputedText(tagName)));
         wlcMessagePage.hoverMouseToElement(driver, SvWlcCounterPageUI.COLUMN2_TAG_ICON);
         wlcMessagePage.sleepInSecond(3);
-        Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN2_TAG_CONTENT_LBL, tagName));
+        Assert.assertTrue(wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN2_TAG_CONTENT_LBL, wlcMessagePage.formatInputedText(tagName)));
     }
 
     @Then("^Verify \"([^\"]*)\" disable tag that added into an item$")

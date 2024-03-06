@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import autolibraries.mobioLibs;
+import mobio.pageUIs.CommonPageUI;
 import mobio.services.pageUIs.SvWlcCounterPageUI;
 
 public class SvWlcSocketPageObject extends mobioLibs {
@@ -49,7 +50,7 @@ public class SvWlcSocketPageObject extends mobioLibs {
      */
     public void assignTaskToUser(String userAccount) {
         waitToElementVisible(driver, SvWlcCounterPageUI.ASSIGNED_DROP);
-        selectItemInCustomDropdownByPass(driver, SvWlcCounterPageUI.ASSIGNED_DROP,
-                SvWlcCounterPageUI.ASSIGNED_ALL_ITEMS_DROP, userAccount);
+        selectItemInCustomDropdownBySearchingByPass(driver, SvWlcCounterPageUI.ASSIGNED_DROP,
+                SvWlcCounterPageUI.ASSIGNED_ALL_ITEMS_DROP,CommonPageUI.ITEM_SEARCH_DROP, userAccount);
     }
 }

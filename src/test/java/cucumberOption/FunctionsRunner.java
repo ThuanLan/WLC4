@@ -25,8 +25,8 @@ import mobio.pageObjects.CommonPageObject;
 		snippets = SnippetType.CAMELCASE,
 		
 		//tags = "@chatdata,@chatcounter, @chatfilter, @chatsocket1, @chatsocket2, @chatother, @chatsocket3 ")
-		//tags = "@fil")		
-		tags = "@chatdata")		
+		tags = "@46")		
+		//tags = "@chatcounter")
 
 public class FunctionsRunner {
 	 

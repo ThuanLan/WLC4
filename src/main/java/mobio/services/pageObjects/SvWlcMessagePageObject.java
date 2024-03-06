@@ -57,6 +57,7 @@ public class SvWlcMessagePageObject extends mobioLibs {
 		boolean successReplyIcon = isElementDisplayed(driver, SvWlcMessagePageUI.WLC_REPLY_SUCCESS_ICON);
 		boolean respondent = isElementDisplayed(driver, SvWlcCounterPageUI.REPLY_ITEM_OWNER, getAccount);
 		boolean repImg = isElementDisplayed(driver, SvWlcMessagePageUI.QUICK_REP_IMG);
+		System.out.println("Trạng thái: " + msgContent + ", " + successReplyIcon + ", " + respondent + ", " + repImg);
 		return msgContent && successReplyIcon && respondent && repImg;
 	}
 

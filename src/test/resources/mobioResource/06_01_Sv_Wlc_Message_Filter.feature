@@ -15,7 +15,7 @@ Feature: Web live chat filter
     Then Verify filter form for messages
     And Click on filter collapse link
     Then Verify close filter
-@fil
+
   Scenario: WLC_017_FBFilter Check support dropdown list by manager account in a team
     Given Go to Mobio login page
     And Login by "Member" account
