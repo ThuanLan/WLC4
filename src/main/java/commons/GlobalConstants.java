@@ -35,7 +35,7 @@ public class GlobalConstants {
      */
     public static final String PASSWORD = "Mobio123";
 
-    public static final String PROFILE_NAME = "Bao Chau";
+    public static final String PROFILE_NAME = "Ngoc Lan";
     public static final String FB_ACCOUNT_NAME = "Ngoc Lan";
 
     /**

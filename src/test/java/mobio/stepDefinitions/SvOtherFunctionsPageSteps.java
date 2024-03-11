@@ -55,6 +55,7 @@ public class SvOtherFunctionsPageSteps {
 	@And("^Click on Add tag profile button$")
 	public void clickOnAddTagProfileButton() {
 		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.ADD_TAG_PROFILE_BTN);
+		svOtherFunctionPage.sleepInSecond(2);
 	}
 
 	@Then("^Verify comment after adding behavior tag by other team$")
@@ -99,7 +100,7 @@ public class SvOtherFunctionsPageSteps {
 	@Then("^Verify deal updated information at the column3$")
     public void verifyDealUpdatedInformationAtTheColumn3() {
         Assert.assertTrue(
-                svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Gửi báo giá"));
+                svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_STATUS_LBL, "Liên lạc"));
         Assert.assertTrue(svOtherFunctionPage.isElementDisplayed(driver, SvWlcCounterPageUI.DEAL_VALUE_LBL));
     }
 

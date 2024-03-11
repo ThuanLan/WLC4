@@ -148,6 +148,7 @@ public class SvOnOtherBrowserPageSteps {
 	@And("^Click on Add tag profile button on other browser$")
 	public void clickOnAddTagProfileButton() {
 		svWlcCounterPage.clickToElement(driverSecond, SvWlcCounterPageUI.ADD_TAG_PROFILE_BTN);
+		svWlcCounterPage.sleepInSecond(5);
 	}
 
 	// wlc

@@ -47,7 +47,7 @@ public class SvOtherFunctionPageObject extends mobioLibs {
         sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, dealName,"Tên Cơ hội bán");
         sendkeyToElement(driver, CommonPageUI.DYNAMIC_MODAL_TXT, "1000000", "Giá trị Cơ hội bán");
         scrollToElement(driver, CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán");
-        selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán"), CommonPageUI.ALL_ITEM_DROP, CommonPageUI.ITEM_SEARCH_DROP, "Gửi báo giá");
+        selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.ITEM_DROP, "Trạng thái Cơ hội bán"), CommonPageUI.ALL_ITEM_DROP, CommonPageUI.ITEM_SEARCH_DROP, "Liên lạc");
         clickToElement(driver, CommonPageUI.DYNAMIC_LBL,"Trạng thái Cơ hội bán");
         scrollToElement(driver, CommonPageUI.DYNAMIC_LBL,"Thông tin Khách hàng");
         selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), CommonPageUI.ALL_ITEM_CHECKBOX_DROP, getOverloadingLocator(CommonPageUI.CHECKBOX_DROP,"Profile"), GlobalConstants.PROFILE_NAME);

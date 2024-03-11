@@ -788,16 +788,6 @@ public class mobioLibs {
 	 * @param locator the locator
 	 * @return true, if is element displayed
 	 */
-//	public boolean isElementDisplayed(WebDriver driver, String locator) {
-//		try {
-//			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
-//			element = driver.findElement(By.xpath(locator));
-//			return element.isDisplayed();
-//		} catch (Exception ex) {
-//			return false;
-//		}
-//	}
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
@@ -871,6 +861,7 @@ public class mobioLibs {
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		try {
 			element = driver.findElement(byXpathLocator(locator, values));
+			System.out.println(element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;

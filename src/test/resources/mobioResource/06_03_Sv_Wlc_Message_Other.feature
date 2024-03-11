@@ -63,6 +63,8 @@ Feature: Web live chat and Others
   #And Click wlc item on other browser
   #And Click on Block contact button
   #Then Verify the block contact of member in other team
+  
+
   Scenario Outline: WLC_080_Add tag profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
@@ -83,7 +85,7 @@ Feature: Web live chat and Others
       | wlc0002 |
 
   Scenario: WLC_081_Add tag in a team _ERR30392
-    Given Go to Mobio site by "Member" account
+    Given Go to Mobio site by "Admin" account
     And Go to Social assignment settings screen
     And Select "ManagerTeam" Team that you want to config
     And Click on "Phân công trong nội bộ Team" rule to config
@@ -94,11 +96,7 @@ Feature: Web live chat and Others
     And Close the second browser
     And Go to the Social chat screen
     And Click on wlc icon
-    And Sort in order from new to old
-    And Go to Mobio login page
-    And Login by "Admin" account
-    And Go to the Social chat screen
-    And Click on wlc icon
+    And Sort in order from new to old   
     And Click on filter button
     And Select "Specific Member" data support dropdown
     And Click on the Apply button
@@ -185,7 +183,7 @@ Feature: Web live chat and Others
     Examples: 
       | WLCSite |
       | wlc0003 |
-
+@80
   Scenario Outline: WLC_084_86_Add deal and delete deal
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser

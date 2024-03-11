@@ -172,9 +172,9 @@ public class SvWlcMessagePageSteps {
 
     @Then("^Verify wlc after adding behavior tag$")
     public void verifyWlcAfterAddingBehaviorTag() {
-        wlcMessagePage.sleepInSecond(10);
-        wlcMessagePage.scrollToElement(driver, SvWlcCounterPageUI.MSG_FINISH_BTN);
-        wlcMessagePage.sleepInSecond(3);
+        wlcMessagePage.sleepInSecond(20);
+//        wlcMessagePage.scrollToElement(driver, SvWlcCounterPageUI.MSG_FINISH_BTN);
+//        wlcMessagePage.sleepInSecond(3);
         Assert.assertTrue(
                 wlcMessagePage.isElementDisplayed(driver, SvWlcCounterPageUI.BEHAVIOR_TAG_MSG_ICON));
         wlcMessagePage.hoverMouseToElement(driver, SvWlcCounterPageUI.BEHAVIOR_TAG_MSG_ICON);

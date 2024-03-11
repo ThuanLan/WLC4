@@ -126,7 +126,7 @@ public class SvSocketPageSteps {
                 SvWlcMessagePageObject.getContent));
         svWlcSocketPage.hoverMouseToElement(driver, SvWlcCounterPageUI.COLUMN2_TAG_ICON);
         Assert.assertTrue(
-                svWlcSocketPage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN2_TAG_CONTENT_LBL, tagName));
+                svWlcSocketPage.isElementDisplayed(driver, SvWlcCounterPageUI.COLUMN2_TAG_CONTENT_LBL, svWlcSocketPage.formatInputedText(tagName)));
         svWlcSocketPage.clickToElement(driver, SvWlcCounterPageUI.COLUMN2_CONTENT_HEADER);
         svWlcSocketPage.waitToElementClickable(driver, SvWlcCounterPageUI.ASSIGN_HISTORY_BTN);
         svWlcSocketPage.clickToElement(driver, SvWlcCounterPageUI.ASSIGN_HISTORY_BTN);
