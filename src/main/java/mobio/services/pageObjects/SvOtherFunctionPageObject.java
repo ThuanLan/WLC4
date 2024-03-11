@@ -70,7 +70,7 @@ public class SvOtherFunctionPageObject extends mobioLibs {
 		
 		waitToElementVisible(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));
 		scrollToElement(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"));
-		selectItemInCustomDropdownBySearching(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, dataTest.getMemberAcc());
+		selectItemInCustomDropdownBySearchingByPass(driver, getOverloadingLocator(SvOtherFunctionsPageUI.ADD_STAFF_IN_CHARGE_DROP, "Nhân viên phụ trách", "Chọn thông tin"), SvOtherFunctionsPageUI.ADD_CHILD_LIST_DROP, SvOtherFunctionsPageUI.ADD_NEW_SEARCH_TXT, dataTest.getMemberAcc());
 
 		waitToElementVisible(driver, SvOtherFunctionsPageUI.ADD_STAFF_PROFILE_DROP, "Profile", "Nhập họ và tên,");
 		scrollToElement(driver, SvOtherFunctionsPageUI.ADD_STAFF_PROFILE_DROP, "Profile", "Nhập họ và tên,");
