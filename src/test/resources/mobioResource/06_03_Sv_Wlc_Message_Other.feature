@@ -182,7 +182,7 @@ Feature: Web live chat and Others
     Examples: 
       | WLCSite |
       | wlc0003 |
-@80
+
   Scenario Outline: WLC_084_86_Add deal and delete deal
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
