@@ -18,7 +18,7 @@ public class SvWlcSocketPageObject extends mobioLibs {
 
     public void clickOnTheTopItem() {
         if (isElementDisplayed(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON)) {
-            int countPin = countAllItemInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
+            int countPin = countElementNumber(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
             String locator = SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM + '[' + (countPin + 1) + ']';
             waitToElementClickable(driver, locator);
             clickToElement(driver, locator);

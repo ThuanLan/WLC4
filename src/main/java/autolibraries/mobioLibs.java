@@ -788,16 +788,6 @@ public class mobioLibs {
 	 * @param locator the locator
 	 * @return true, if is element displayed
 	 */
-//	public boolean isElementDisplayed(WebDriver driver, String locator) {
-//		try {
-//			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
-//			element = driver.findElement(By.xpath(locator));
-//			return element.isDisplayed();
-//		} catch (Exception ex) {
-//			return false;
-//		}
-//	}
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
@@ -1514,17 +1504,6 @@ public class mobioLibs {
 		action.release(element).perform();
 	}
 
-//	/**
-//	 * Switch to iframe.
-//	 *
-//	 * @param driver  the driver
-//	 * @param locator the locator
-//	 */
-//	public void switchToIframe(WebDriver driver, String locator) {
-//		WebElement element = findElementByXpath(driver, locator);
-//		driver.switchTo().frame(element);
-//	}
-
 	/**
 	 * Switch to child window by ID.
 	 *
@@ -1681,10 +1660,10 @@ public class mobioLibs {
 	 * @param expectedText the expected text. This is the expected value that you
 	 *                     want to choose in the drop-down list.
 	 */
-	// Dùng cho th tìm kiếm thấy dl luôn
 	public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String allItemXpath,
 			String expectedText) {
 		int flag = 0;
+		waitToElementClickable(driver, parentXpath);
 		driver.findElement(By.xpath(parentXpath)).click();
 		waitToElementVisible(driver, allItemXpath);
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
@@ -2233,94 +2212,58 @@ public class mobioLibs {
 		return null;
 	}
 
-	/**
-	 * Count unanswered items on the page.
-	 *
-	 * @param driver        the driver
-	 * @param allItemsXpath the all items Xpath
-	 * @param unanswerXpath the unanswered Xpath
-	 * @return the int
-	 */
-	public int countItemUnanswerInPage(WebDriver driver, String allItemsXpath, String unanswerXpath) {
+	public List<String> getAKindOfItemsInHTML5List(WebDriver driver, String allItemXpath, String allContentItemXpath,
+			String tailSpecificItemXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
-		int countNotReply = 0;
-		if (isElementDisplayed(driver, allItemsXpath)) {
-			if ((isElementDisplayed(driver, unanswerXpath))) {
-				countNotReply = countElementNumber(driver, unanswerXpath);
-				while (loadMoreItem != 0) {
-					List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemsXpath);
-					int size = webElementListTemp.size();
-					for (int i = 0; i < size; i++) {
-						WebElement el = webElementListTemp.get((i));
-						if (lastItem == null) {
-							continue;
-						}
-						if (lastItem.equals(el)) {
-							webElementListTemp.add(el);
-							loadMoreItem = size - i - 1;
 
-							for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-								if (isElementDisplayed(driver, unanswerXpath + '[' + j + "]") == true) {
-									countNotReply += 1;
-								}
-							}
-							break;
+		String allSpecificItemXpath = allItemXpath + tailSpecificItemXpath;
+
+		List<String> contentGetSpecificList = new ArrayList<String>();
+
+		if (isElementDisplayed(driver, allSpecificItemXpath)) {
+			List<WebElement> allListContent = findElementsByXpath(driver, allSpecificItemXpath);
+			for (WebElement content : allListContent) {
+				contentGetSpecificList.add(content.getText());
+			}
+//			System.out.println("chưa đọc đầu: " + contentGetSpecificList);
+		}
+
+		while (loadMoreItem != 0) {
+			List<WebElement> webElementListTemp = findElementsByXpath(driver, allContentItemXpath);
+			int size = webElementListTemp.size();
+//			System.out.println("Số lượng item ban đầu " + size);
+			for (int i = 0; i < size; i++) {
+
+				WebElement el = webElementListTemp.get((i));
+
+				if (lastItem == null) {
+//					System.out.println("Last item = null tức chưa load lần nào thì cho chạy tiếp");
+					continue;
+				}
+
+				// waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+
+				if (lastItem.equals(el)) {
+					webElementListTemp.add(el);
+					loadMoreItem = size - i - 1;
+//					System.out.println("KT loadmore keo scroll " + loadMoreItem);					
+					for (int j = (i + 2); j <= size; j++) {
+						if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailSpecificItemXpath)) {
+							contentGetSpecificList.add(
+									findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailSpecificItemXpath)
+											.getText());
 						}
 					}
-					lastItem = webElementListTemp.get(size - 1);
-					scrollToElement(driver, allItemsXpath + '[' + size + "]");
-					sleepInSecond(3);
+					break;
 				}
 			}
+			lastItem = webElementListTemp.get(size - 1);
+//			System.out.println("Số lượng item sau " + (size) + " giá trị: " + lastItem.getText());
+			scrollToElement(driver, allItemXpath + '[' + (size) + "]");
+			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		}
-		return countNotReply;
-	}
-
-	/**
-	 * Count unread items on the page.
-	 *
-	 * @param driver          the driver
-	 * @param allItemsXpath   the all items xpath
-	 * @param unreadXpath     the unread xpath
-	 * @param unReadTailXpath the unread tail xpath. Unread Xpath contains
-	 *                        allItemXpath add tail of unread Xpath
-	 * @return the int
-	 */
-	public int countItemUnreadInPage(WebDriver driver, String allItemsXpath, String unreadXpath,
-			String unReadTailXpath) {
-		WebElement lastItem = null;
-		int loadMoreItem = 1;
-		int countNotRead = 0;
-		if (isElementDisplayed(driver, allItemsXpath)) {
-			if ((isElementDisplayed(driver, unreadXpath))) {
-				countNotRead = countElementNumber(driver, unreadXpath);
-				while (loadMoreItem != 0) {
-					List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemsXpath);
-					int size = webElementListTemp.size();
-					for (int i = 0; i < size; i++) {
-						WebElement el = webElementListTemp.get((i));
-						if (lastItem == null) {
-							continue;
-						}
-						if (lastItem.equals(el)) {
-							webElementListTemp.add(el);
-							loadMoreItem = size - i - 1;
-							for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-								if (isElementDisplayed(driver, allItemsXpath + '[' + j + "]" + unReadTailXpath)) {
-									countNotRead += 1;
-								}
-							}
-							break;
-						}
-					}
-					lastItem = webElementListTemp.get(size - 1);
-					scrollToElement(driver, allItemsXpath + '[' + size + "]");
-					sleepInSecond(3);
-				}
-			}
-		}
-		return countNotRead;
+		return contentGetSpecificList;
 	}
 
 	/**
@@ -2330,7 +2273,7 @@ public class mobioLibs {
 	 * @param allItemXpath the all item xpath
 	 * @return the int
 	 */
-	public int countAllItemInList(WebDriver driver, String allItemXpath) {
+	public int countAllItemInHTML5List(WebDriver driver, String allItemXpath) {
 		WebElement lastItem = null;
 		int loadTimes = 1;
 		int totalCount = 0;
@@ -2353,7 +2296,7 @@ public class mobioLibs {
 				}
 				lastItem = webElementListTemp.get(size - 1);
 				scrollToElement(driver, allItemXpath + '[' + size + "]");
-				sleepInSecond(3);
+				waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 			}
 		}
 		return totalCount;
@@ -2366,15 +2309,15 @@ public class mobioLibs {
 	 * @param allItemXpath the all item xpath
 	 * @return the original list
 	 */
-	public List<String> getOriginalList(WebDriver driver, String allItemXpath) {
+	public List<String> getHTML5List(WebDriver driver, String allItemXpath) {
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 		sleepInSecond(5);
 		List<WebElement> allListContent = findElementsByXpath(driver, allItemXpath);
-		List<String> contentAllStartList = new ArrayList<String>();
+		List<String> originalList = new ArrayList<String>();
 		for (WebElement content : allListContent) {
 			sleepInSecond(3);
-			contentAllStartList.add(content.getText());
+			originalList.add(content.getText());
 		}
 
 		while (loadMoreItem != 0) {
@@ -2389,10 +2332,10 @@ public class mobioLibs {
 				if (lastItem.equals(el)) {
 					webElementListTemp.add(el);
 					loadMoreItem = size - i - 1;
-					List<WebElement> webElementListTemp1 = findElementsByXpath(driver, allItemXpath);
-					for (int j = (size - (loadMoreItem)); j < size; j++) {
-						WebElement el1 = webElementListTemp1.get((j));
-						contentAllStartList.add(el1.getText());
+					List<WebElement> elementLoadListTemp = findElementsByXpath(driver, allItemXpath);
+					for (int j = (i + 1); j < size; j++) {
+						WebElement el1 = elementLoadListTemp.get((j));
+						originalList.add(el1.getText());
 					}
 					break;
 				}
@@ -2401,59 +2344,8 @@ public class mobioLibs {
 			scrollToElement(driver, allItemXpath + '[' + size + "]");
 			sleepInSecond(3);
 		}
-		System.out.println("List to compare: " + contentAllStartList);
-		return contentAllStartList;
-	}
-
-	/**
-	 * Gets the new list.
-	 *
-	 * @param driver         the driver
-	 * @param allItemXpath   the all item xpath
-	 * @param tailGetElement the tail get element
-	 * @return the new list
-	 */
-	public List<String> getNewList(WebDriver driver, String allItemXpath, String tailGetElement) {
-		WebElement lastItem = null;
-		int loadMoreItem = 1;
-		String allGetElementXpath = "(" + allItemXpath + tailGetElement + ")";
-		List<String> contentGetList = new ArrayList<String>();
-		if (isElementDisplayed(driver, allGetElementXpath)) {
-			List<WebElement> allListContent = findElementsByXpath(driver, allGetElementXpath);
-			sleepInSecond(3);
-			for (WebElement content : allListContent) {
-				sleepInSecond(3);
-				contentGetList.add(content.getText());
-			}
-		}
-		while (loadMoreItem != 0) {
-			List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemXpath);
-			int size = webElementListTemp.size();
-			for (int i = 0; i < size; i++) {
-				WebElement el = webElementListTemp.get((i));
-				if (lastItem == null) {
-					continue;
-				}
-				if (lastItem.equals(el)) {
-					webElementListTemp.add(el);
-					loadMoreItem = size - i - 1;
-					if (isElementDisplayed(driver, allGetElementXpath)) {
-						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailGetElement)) {
-								contentGetList
-										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailGetElement)
-												.getText());
-							}
-						}
-					}
-					break;
-				}
-			}
-			lastItem = webElementListTemp.get(size - 1);
-			scrollToElement(driver, allItemXpath + '[' + size + "]");
-			sleepInSecond(3);
-		}
-		return contentGetList;
+		System.out.println("Original List : " + originalList);
+		return originalList;
 	}
 
 	/**
@@ -2493,7 +2385,6 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allItemXpath)) {
 			List<WebElement> totalListContent = findElementsByXpath(driver, allContentItemXpath);
 			for (WebElement content : totalListContent) {
-				sleepInSecond(3);
 				contentTotalList.add(content.getText());
 			}
 		}
@@ -2501,7 +2392,6 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allGetUnAnswerPinXpath)) {
 			List<WebElement> allListContent = findElementsByXpath(driver, allGetUnAnswerPinXpath);
 			for (WebElement content : allListContent) {
-				sleepInSecond(3);
 				contentGetUnAnswerPinList.add(content.getText());
 			}
 
@@ -2511,7 +2401,6 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allGetAnswerPinXpath)) {
 			List<WebElement> allListContent = findElementsByXpath(driver, allGetAnswerPinXpath);
 			for (WebElement content : allListContent) {
-				sleepInSecond(3);
 				contentGetAnswerPinList.add(content.getText());
 			}
 
@@ -2522,7 +2411,6 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
 			List<WebElement> allListContent = findElementsByXpath(driver, allUnAnswerNoPinXpath);
 			for (WebElement content : allListContent) {
-				sleepInSecond(3);
 				contentGetUnAnswerNoPinList.add(content.getText());
 			}
 
@@ -2532,7 +2420,6 @@ public class mobioLibs {
 		if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
 			List<WebElement> allListContent = findElementsByXpath(driver, allAnswerNoPinXpath);
 			for (WebElement content : allListContent) {
-				sleepInSecond(3);
 				contentGetAnswerNoPinList.add(content.getText());
 			}
 //			System.out.println("Answer đầu: " + contentGetAnswerNoPinList);
@@ -2552,8 +2439,6 @@ public class mobioLibs {
 //					System.out.println("Last item = null tức chưa load lần nào thì cho chạy tiếp");
 					continue;
 				}
-
-				waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 
 				if (lastItem.equals(el)) {
 					webElementListTemp.add(el);
@@ -2591,11 +2476,9 @@ public class mobioLibs {
 											.getText());
 //							System.out.println("Answer tiếp " + contentGetAnswerNoPinList);
 						}
-
 					}
 					break;
 				}
-
 			}
 			lastItem = webElementListTemp.get(size - 1);
 //			System.out.println("Số lượng item sau " + (size) + " giá trị: " + lastItem.getText());
@@ -2634,7 +2517,7 @@ public class mobioLibs {
 	 *
 	 * @param driver               the driver
 	 * @param theFirstListContent  the the first list content
-	 * @param theSecondListLocator the the second list locator
+	 * @param theSecondListContent the the second list content
 	 * @return true, if is compare 2 lists
 	 */
 	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent,
@@ -2741,7 +2624,7 @@ public class mobioLibs {
 		action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).build().perform();
 		action.build().perform();
 	}
-
+	
 	/**
 	 * Switch to new tab. Used when you want to switch to a new tab in the same
 	 * driver.

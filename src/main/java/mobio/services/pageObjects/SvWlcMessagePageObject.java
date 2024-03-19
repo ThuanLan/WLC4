@@ -163,7 +163,7 @@ public class SvWlcMessagePageObject extends mobioLibs {
 		sleepInSecond(3);
 
 		if (isElementDisplayed(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON)) {
-			int countPin = countAllItemInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
+			int countPin = countElementNumber(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
 			String compareText = getTextElement(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM + '[' + (countPin + 1) + ']');
 			return compareText.equals(getContent);
 		} else {

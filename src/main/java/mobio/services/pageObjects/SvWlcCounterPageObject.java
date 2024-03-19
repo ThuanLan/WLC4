@@ -48,7 +48,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
 
 	public void holdTopMessage() {
 		if (isElementDisplayed(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON)) {
-			int countPin = countAllItemInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
+			int countPin = countElementNumber(driver, SvWlcCounterPageUI.SOCIAL_ITEM_PIN_ICON);
 			String locator = SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM + '[' + (countPin + 1) + ']';
 			waitToElementClickable(driver, locator);
 			hoverMouseToElement(driver, locator);
@@ -168,7 +168,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
 	public void clickCommentTabAndGetList(String tabName) {
 		clickOnAFbTab(tabName);
 		if (isElementDisplayed(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM))
-			contentAllStartList = getOriginalList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM);
+			contentAllStartList = getHTML5List(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM);
 		else {
 			contentAllStartList = null;
 		}
@@ -283,7 +283,7 @@ public class SvWlcCounterPageObject extends mobioLibs {
 
 	public boolean isContentDisplayInList() {
 		// System.out.println(" Content sau đó " + getContent);
-		return getOriginalList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM).contains(getContent);
+		return getHTML5List(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM).contains(getContent);
 	}
 
 	public void clickToReplyItem() {

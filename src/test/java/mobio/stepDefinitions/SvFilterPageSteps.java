@@ -176,7 +176,7 @@ public class SvFilterPageSteps {
         System.out.println("Số lượng items " + SvWlcCounterPageObject.contentAllStartList);
         
         try {
-            Assert.assertTrue(svWlcFilterPage.getOriginalList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM)
+            Assert.assertTrue(svWlcFilterPage.getHTML5List(driver, SvWlcCounterPageUI.SOCIAL_ITEM_CONTENT_ALL_ITEM)
                     .containsAll(SvWlcCounterPageObject.contentAllStartList));
 		} catch (Exception e) {
 			throw new IllegalArgumentException("*** Can not found any item ***");

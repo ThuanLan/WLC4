@@ -69,10 +69,10 @@ public class SvCounterPageSteps {
     @Then("^Verify the comment number of one page$")
     public void verifyTheCommentNumberOfOnePage() {
         int countAllItem;
-        countAllItem = svWlcCounterPage.countAllItemInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_ALL_ITEM);
+        countAllItem = svWlcCounterPage.countAllItemInHTML5List(driver, SvWlcCounterPageUI.SOCIAL_ITEM_ALL_ITEM);
         //System.out.println(countAllItem);
         int countReplied;
-        countReplied = svWlcCounterPage.countAllItemInList(driver, SvWlcCounterPageUI.SOCIAL_ITEM_REPLIED_SUCCESS);
+        countReplied = svWlcCounterPage.countAllItemInHTML5List(driver, SvWlcCounterPageUI.SOCIAL_ITEM_REPLIED_SUCCESS);
         //System.out.println(countReplied);
         Assert.assertEquals((countAllItem - countReplied), Integer.parseInt(svWlcCounterPage.getTextElement(driver, SvWlcCounterPageUI.SOCIAL_MSG_NUMBER_LBL)));
 
