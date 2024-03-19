@@ -47,15 +47,16 @@ public class SvOtherFunctionsPageSteps {
 		svOtherFunctionPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		svOtherFunctionPage.waitToElementVisible(driver, SvWlcCounterPageUI.SEARCH_BEHAVIOR_TAG);
 		svOtherFunctionPage.sendkeyToElement(driver, SvWlcCounterPageUI.SEARCH_BEHAVIOR_TAG, GlobalConstants.BH_TAG_NAME);
-		svOtherFunctionPage.sleepInSecond(2);
+		svOtherFunctionPage.waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 		svOtherFunctionPage.waitToElementVisible(driver, SvWlcCounterPageUI.BEHAVIOR_TAG, GlobalConstants.BH_TAG_NAME);
 		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.BEHAVIOR_TAG, GlobalConstants.BH_TAG_NAME);
+		svOtherFunctionPage.sleepInSecond(1);
 	}
 
 	@And("^Click on Add tag profile button$")
 	public void clickOnAddTagProfileButton() {
 		svOtherFunctionPage.clickToElement(driver, SvWlcCounterPageUI.ADD_TAG_PROFILE_BTN);
-		svOtherFunctionPage.sleepInSecond(2);
+		svOtherFunctionPage.sleepInSecond(3);
 	}
 
 	@Then("^Verify comment after adding behavior tag by other team$")

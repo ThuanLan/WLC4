@@ -133,8 +133,8 @@ public class SvWlcMessagePageObject extends mobioLibs {
 		while (isElementDisplayed(driver, SvWlcCounterPageUI.DISABLED_BEHAVIOR_TAG)) {
 			waitToElementClickable(driver, SvWlcCounterPageUI.MSG_FORWARD_REPLY_BTN);
 			clickToElement(driver, SvWlcCounterPageUI.MSG_FORWARD_REPLY_BTN);
-			sleepInSecond(3);
-			svWlcSocketPage.assignTaskToUser("thuan1 (thuan1@testauto)");
+			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
+			svWlcSocketPage.assignTaskToUser(commonPage.getAccount("Member in Team"));
 			waitToElementClickable(driver, CommonPageUI.DYNAMIC_BUTTON, "Chuyển tiếp");
 			clickToElement(driver, CommonPageUI.DYNAMIC_BUTTON, "Chuyển tiếp");
 			clickOneWlc(randomElement);
