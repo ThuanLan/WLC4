@@ -1,9 +1,6 @@
 package mobio.services.pageObjects;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import autolibraries.mobioLibs;
 import mobio.pageUIs.CommonPageUI;
@@ -33,8 +30,8 @@ public class SvWlcFilterPageObject extends mobioLibs {
 
 	public void selectAllSupportDropdown(String itemName) {
 		waitToElementVisible(driver, SvWlcFilterPageUI.SUPPORT_DROP);
-		selectItemInCustomDropdownBySearching(driver, SvWlcFilterPageUI.SUPPORT_DROP, SvWlcFilterPageUI.SUPPORT_ALLITEM_DROP, SvWlcFilterPageUI.SUPPORT_SEARCH_TXT, itemName);
-		//selectItemInCustomDropdown(driver, SvWlcFilterPageUI.SUPPORT_DROP, SvWlcFilterPageUI.SUPPORT_ALLITEM_DROP, itemName);
+		selectItemInCustomDropdownBySearching(driver, SvWlcFilterPageUI.SUPPORT_DROP,
+				SvWlcFilterPageUI.SUPPORT_ALLITEM_DROP, SvWlcFilterPageUI.SUPPORT_SEARCH_TXT, itemName);
 		sleepInSecond(1);
 	}
 
@@ -95,19 +92,9 @@ public class SvWlcFilterPageObject extends mobioLibs {
 		selectTags(tagName3);
 	}
 
-	public void selectTags(String expectedText) {	
-		clickToElement(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT);
-		sendkeyToElement(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT, expectedText);
-		waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-		waitToElementVisible(driver, SvWlcFilterPageUI.FILTER_TAG_NAME_ALL_ITEM);
-		List<WebElement> allItems = findElementsByXpath(driver, SvWlcFilterPageUI.FILTER_TAG_NAME_ALL_ITEM);
-		for (WebElement item : allItems) {
-			if (item.getText().equals(expectedText)) {
-				item.click();
-				sleepInSecond(1);
-				break;
-			}
-		}
-		clickToElement(driver, CommonPageUI.DYNAMIC_LBL, "Tag phân loại công việc");		
+	public void selectTags(String expectedText) {
+		selectItemInCustomDropdownBySearching(driver, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT,
+				SvWlcFilterPageUI.FILTER_TAG_NAME_ALL_ITEM, SvWlcCounterPageUI.FB_ADD_TAG_REPLY_TXT, expectedText);
+		clickToElement(driver, CommonPageUI.DYNAMIC_LBL, "Tag phân loại công việc");
 	}
 }

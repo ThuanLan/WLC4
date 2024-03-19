@@ -788,6 +788,16 @@ public class mobioLibs {
 	 * @param locator the locator
 	 * @return true, if is element displayed
 	 */
+//	public boolean isElementDisplayed(WebDriver driver, String locator) {
+//		try {
+//			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+//			element = driver.findElement(By.xpath(locator));
+//			return element.isDisplayed();
+//		} catch (Exception ex) {
+//			return false;
+//		}
+//	}
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
@@ -861,7 +871,6 @@ public class mobioLibs {
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		try {
 			element = driver.findElement(byXpathLocator(locator, values));
-			System.out.println(element);
 			return element.isDisplayed();
 		} catch (Exception ex) {
 			return false;
@@ -1645,6 +1654,7 @@ public class mobioLibs {
 	 * @param childItemXpath the child item Xpath. This is the dynamic locator that
 	 *                       contains expected text (for example childItemXpath :
 	 *                       //mo-libs-shared-components-list_view-templates-text//mo-libs-shared-components-tooltip[text()='%s'])
+	 * @param scrollElement  the scroll element
 	 * @param expectedText   the expected text. This is the expected value that you
 	 *                       want to choose in the drop-down list.
 	 */
@@ -2447,43 +2457,65 @@ public class mobioLibs {
 	}
 
 	/**
-	 * Checks if is new list compare. Get list to compare
+	 * Check if the list is sorted in the correct order by taking the original list
+	 * and comparing it with the list sorted in the specified order. The correct
+	 * order is that: the item has not been answered and has been pinned -> the item
+	 * has been answered and has been pinned -> Item has not replied but has not
+	 * been pinned -> Item has replied but has not been pinned.
 	 *
 	 * @param driver                 the driver
 	 * @param allItemXpath           the all item xpath
-	 * @param tailPinXpath           the tail pin xpath
-	 * @param tailUnAnswerNoPinXpath the tail unanswer no pin xpath
+	 * @param allContentItemXpath    the all content item xpath
+	 * @param tailUnanswerPinXpath   the tail unanswer pin xpath
+	 * @param tailAnswerPinXpath     the tail answer pin xpath
+	 * @param tailUnanswerNoPinXpath the tail unanswer no pin xpath
 	 * @param tailAnswerNoPinXpath   the tail answer no pin xpath
 	 * @return true, if is new list compare
 	 */
-	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath,
-			String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
+	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String allContentItemXpath,
+			String tailUnanswerPinXpath, String tailAnswerPinXpath, String tailUnanswerNoPinXpath,
+			String tailAnswerNoPinXpath) {
+
 		WebElement lastItem = null;
 		int loadMoreItem = 1;
 
-		String allGetPinXpath = tailPinXpath;
-		String allUnAnswerNoPinXpath = tailUnAnswerNoPinXpath;
-		String allAnswerNoPinXpath = tailAnswerNoPinXpath;
+		String allGetUnAnswerPinXpath = allItemXpath + tailUnanswerPinXpath;
+		String allGetAnswerPinXpath = allItemXpath + tailAnswerPinXpath;
+		String allUnAnswerNoPinXpath = allItemXpath + tailUnanswerNoPinXpath;
+		String allAnswerNoPinXpath = allItemXpath + tailAnswerNoPinXpath;
 
 		List<String> contentTotalList = new ArrayList<String>();
-		List<String> contentGetPinList = new ArrayList<String>();
+		List<String> contentGetUnAnswerPinList = new ArrayList<String>();
+		List<String> contentGetAnswerPinList = new ArrayList<String>();
 		List<String> contentGetUnAnswerNoPinList = new ArrayList<String>();
 		List<String> contentGetAnswerNoPinList = new ArrayList<String>();
 
 		if (isElementDisplayed(driver, allItemXpath)) {
-			List<WebElement> totalListContent = findElementsByXpath(driver, allItemXpath);
+			List<WebElement> totalListContent = findElementsByXpath(driver, allContentItemXpath);
 			for (WebElement content : totalListContent) {
 				sleepInSecond(3);
 				contentTotalList.add(content.getText());
 			}
 		}
 
-		if (isElementDisplayed(driver, allGetPinXpath)) {
-			List<WebElement> allListContent = findElementsByXpath(driver, allGetPinXpath);
+		if (isElementDisplayed(driver, allGetUnAnswerPinXpath)) {
+			List<WebElement> allListContent = findElementsByXpath(driver, allGetUnAnswerPinXpath);
 			for (WebElement content : allListContent) {
 				sleepInSecond(3);
-				contentGetPinList.add(content.getText());
+				contentGetUnAnswerPinList.add(content.getText());
 			}
+
+//			System.out.println("Pin ko trả lời đầu: " + contentGetUnAnswerPinList);
+		}
+
+		if (isElementDisplayed(driver, allGetAnswerPinXpath)) {
+			List<WebElement> allListContent = findElementsByXpath(driver, allGetAnswerPinXpath);
+			for (WebElement content : allListContent) {
+				sleepInSecond(3);
+				contentGetAnswerPinList.add(content.getText());
+			}
+
+//			System.out.println("Pin trả lời đầu: " + contentGetAnswerPinList);
 		}
 
 		// check unanswer in the first loading
@@ -2494,7 +2526,7 @@ public class mobioLibs {
 				contentGetUnAnswerNoPinList.add(content.getText());
 			}
 
-//			 System.out.println("The first loading unanswer: " + contentGetUnAnswerNoPinList);
+//			System.out.println("The first loading unanswer: " + contentGetUnAnswerNoPinList);
 		}
 
 		if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
@@ -2503,78 +2535,77 @@ public class mobioLibs {
 				sleepInSecond(3);
 				contentGetAnswerNoPinList.add(content.getText());
 			}
+//			System.out.println("Answer đầu: " + contentGetAnswerNoPinList);
 		}
 
-//		 System.out.println("Loadmore đầu tiên luôn =1 " + loadMoreItem);
+//		System.out.println("Loadmore đầu tiên luôn =1: " + "=====================");
 
 		while (loadMoreItem != 0) {
-			List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemXpath);
+			List<WebElement> webElementListTemp = findElementsByXpath(driver, allContentItemXpath);
 			int size = webElementListTemp.size();
-			// System.out.println("Số lượng item ban đầu " + size);
+//			System.out.println("Số lượng item ban đầu " + size);
 			for (int i = 0; i < size; i++) {
 
 				WebElement el = webElementListTemp.get((i));
 
-				// System.out.println("Last item = null tức chưa load lần nào thì cho chạy
-				// tiếp");
 				if (lastItem == null) {
+//					System.out.println("Last item = null tức chưa load lần nào thì cho chạy tiếp");
 					continue;
 				}
+
+				waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
 
 				if (lastItem.equals(el)) {
 					webElementListTemp.add(el);
 					loadMoreItem = size - i - 1;
-					// System.out.println("KT loadmore keo scroll " + loadMoreItem);
+//					System.out.println("KT loadmore keo scroll " + loadMoreItem);
 
-					for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
+					for (int j = (i + 1); j < size; j++) {
 						WebElement el1 = webElementListTemp.get((j));
 						contentTotalList.add(el1.getText());
 					}
 
-//					 System.out.println("Giá trị chuỗ tiếp theo sau kéo scroll: " + contentTotalList);
+//					System.out.println("Giá trị chuỗi tiếp theo sau kéo scroll: " + contentTotalList);
 
-					if (isElementDisplayed(driver, allGetPinXpath)) {
-						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailPinXpath)) {
-								contentGetPinList
-										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath)
-												.getText());
-							}
-						}
-					}
-
-					if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
-						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath)) {
-								contentGetUnAnswerNoPinList.add(findElementByXpath(driver,
-										allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
-							}
+					for (int j = (i + 2); j <= size; j++) {
+//						System.out.println("có mấy giá trị " + j);
+						if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnanswerPinXpath)) {
+							contentGetUnAnswerPinList
+									.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailUnanswerPinXpath)
+											.getText());
 						}
 
-						// System.out.println("unanswer tiếp " + contentGetUnAnswerNoPinList);
-					}
-
-					if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
-						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)) {
-								contentGetAnswerNoPinList.add(
-										findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)
-												.getText());
-							}
+						if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerPinXpath)) {
+							contentGetAnswerPinList
+									.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerPinXpath)
+											.getText());
 						}
+						if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnanswerNoPinXpath)) {
+							contentGetUnAnswerNoPinList.add(
+									findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailUnanswerNoPinXpath)
+											.getText());
+						}
+						if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)) {
+							contentGetAnswerNoPinList
+									.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)
+											.getText());
+//							System.out.println("Answer tiếp " + contentGetAnswerNoPinList);
+						}
+
 					}
 					break;
 				}
+
 			}
 			lastItem = webElementListTemp.get(size - 1);
-//			System.out.println("Số item sau " + lastItem.getText());
-			scrollToElement(driver, allItemXpath + '[' + size + "]");
+//			System.out.println("Số lượng item sau " + (size) + " giá trị: " + lastItem.getText());
+			scrollToElement(driver, allItemXpath + '[' + (size) + "]");
 			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-			sleepInSecond(3);
 		}
 
 		List<String> webElementAllCompare = new ArrayList<String>();
-		webElementAllCompare.addAll(contentGetPinList);
+		webElementAllCompare.addAll(contentGetUnAnswerPinList);
+		webElementAllCompare.addAll(contentGetAnswerPinList);
 		webElementAllCompare.addAll(contentGetUnAnswerNoPinList);
 		webElementAllCompare.addAll(contentGetAnswerNoPinList);
 		System.out.println("list tổng: " + contentTotalList);
@@ -2583,156 +2614,23 @@ public class mobioLibs {
 	}
 
 	/**
-	 * Checks if is new list compare.
+	 * Gets the content of the list in a drop-down list.
 	 *
 	 * @param driver              the driver
-	 * @param allXpathItemsInDrop the all xpath items in drop
-	 * @return true, if is new list compare
-	 */
-//	public boolean isNewListCompare(WebDriver driver, String allItemXpath, String tailPinXpath,
-//			String tailUnAnswerNoPinXpath, String tailAnswerNoPinXpath) {
-//		WebElement lastItem = null;
-//		int loadMoreItem = 1;
-//
-//		String allGetPinXpath = "(" + allItemXpath + tailPinXpath + ")";
-//		String allUnAnswerNoPinXpath = "(" + allItemXpath + tailUnAnswerNoPinXpath + ")";
-//		String allAnswerNoPinXpath = "(" + allItemXpath + tailAnswerNoPinXpath + ")";
-//
-//		List<String> contentTotalList = new ArrayList<String>();
-//		List<String> contentGetPinList = new ArrayList<String>();
-//		List<String> contentGetUnAnswerNoPinList = new ArrayList<String>();
-//		List<String> contentGetAnswerNoPinList = new ArrayList<String>();
-//
-//		if (isElementDisplayed(driver, allItemXpath)) {
-//			List<WebElement> totalListContent = findElementsByXpath(driver, allItemXpath);
-//			for (WebElement content : totalListContent) {
-//				sleepInSecond(3);
-//				contentTotalList.add(content.getText());
-//			}
-//		}
-//
-//		if (isElementDisplayed(driver, allGetPinXpath)) {
-//			List<WebElement> allListContent = findElementsByXpath(driver, allGetPinXpath);
-//			for (WebElement content : allListContent) {
-//				sleepInSecond(3);
-//				contentGetPinList.add(content.getText());
-//			}
-//		}
-//
-//		// check unanswer in the first loading
-//		if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
-//			List<WebElement> allListContent = findElementsByXpath(driver, allUnAnswerNoPinXpath);
-//			for (WebElement content : allListContent) {
-//				sleepInSecond(3);
-//				contentGetUnAnswerNoPinList.add(content.getText());
-//			}
-//			
-//			System.out.println("The first loading unanswer:  "+ contentGetUnAnswerNoPinList);
-//		}
-//
-//		if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
-//			List<WebElement> allListContent = findElementsByXpath(driver, allAnswerNoPinXpath);
-//			for (WebElement content : allListContent) {
-//				sleepInSecond(3);
-//				contentGetAnswerNoPinList.add(content.getText());
-//			}
-//		}
-//		
-//		System.out.println("Loadmore đầu tiên luôn =1 " +  loadMoreItem);
-//		
-//		while (loadMoreItem != 0) {
-//			List<WebElement> webElementListTemp = findElementsByXpath(driver, allItemXpath);
-//			int size = webElementListTemp.size();
-//			System.out.println("Số lượng item ban đầu " + size);
-//			for (int i = 0; i < size; i++) {
-//				
-//				WebElement el = webElementListTemp.get((i));
-//				
-//				System.out.println("Last item = null tức chưa load lần nào thì cho chạy tiếp ");
-//				if (lastItem == null) {
-//					continue;
-//				}
-//				
-//				if (lastItem.equals(el)) {
-//					webElementListTemp.add(el);
-//					loadMoreItem = size - i - 1;
-//					System.out.println("KT loadmore keo scroll "+ loadMoreItem);
-//					
-//					for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-//						WebElement el1 = webElementListTemp.get((j));
-//						contentTotalList.add(el1.getText());
-//					}
-//
-//					System.out.println("Giá trị chuỗ tiếp theo sau kéo scroll: " + contentTotalList);
-//					
-//					if (isElementDisplayed(driver, allGetPinXpath)) {
-//						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-//							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailPinXpath)) {
-//								contentGetPinList
-//										.add(findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailPinXpath)
-//												.getText());
-//							}
-//						}
-//					}
-//
-//					if (isElementDisplayed(driver, allUnAnswerNoPinXpath)) {
-//						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-//							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath)) {
-//								contentGetUnAnswerNoPinList.add(findElementByXpath(driver,
-//										allItemXpath + '[' + j + ']' + tailUnAnswerNoPinXpath).getText());
-//							}
-//						}
-//						
-//						System.out.println("unanswer tiếp " + contentGetUnAnswerNoPinList);
-//					}
-//
-//					if (isElementDisplayed(driver, allAnswerNoPinXpath)) {
-//						for (int j = (size - (loadMoreItem - 1)); j <= size; j++) {
-//							if (isElementDisplayed(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)) {
-//								contentGetAnswerNoPinList.add(
-//										findElementByXpath(driver, allItemXpath + '[' + j + ']' + tailAnswerNoPinXpath)
-//												.getText());
-//							}
-//						}
-//					}
-//					break;
-//				}
-//			}
-//			lastItem = webElementListTemp.get(size - 1);
-//			System.out.println("Số item sau " + lastItem.getText());
-//			scrollToElement(driver, allItemXpath + '[' + size + "]");
-//			waitShortToElementInVisible(driver, CommonPageUI.LOADING_ICON);
-//			sleepInSecond(3);
-//		}
-//
-//		List<String> webElementAllCompare = new ArrayList<String>();
-//		webElementAllCompare.addAll(contentGetPinList);
-//		webElementAllCompare.addAll(contentGetUnAnswerNoPinList);
-//		webElementAllCompare.addAll(contentGetAnswerNoPinList);
-//		System.out.println("list tổng: " + contentTotalList);
-//		System.out.println("List sau sx:  " + webElementAllCompare);
-//		return webElementAllCompare.containsAll(contentTotalList);
-//	}
-
-	/**
-	 * Gets the list of page name on filter.
-	 *
-	 * @param driver              the driver
-	 * @param allXpathItemsInDrop the all page item in drop
+	 * @param allXpathItemsInDrop all locators in a drop-down list.
 	 * @return the list item in drop
 	 */
 	public List<String> getListItemsInDropdown(WebDriver driver, String allXpathItemsInDrop) {
-		List<WebElement> els = findElementsByXpath(driver, allXpathItemsInDrop);
+		List<WebElement> elements = findElementsByXpath(driver, allXpathItemsInDrop);
 		List<String> listItem = new ArrayList<String>();
-		for (WebElement item : els) {
+		for (WebElement item : elements) {
 			listItem.add(item.getText().trim());
-//			System.out.println("Số item trong ds: " + listItem);
 		}
 		return listItem;
 	}
 
 	/**
-	 * Checks if is compare 2 lists.
+	 * Check to see if the second list contains the first list.
 	 *
 	 * @param driver               the driver
 	 * @param theFirstListContent  the the first list content
@@ -2740,23 +2638,25 @@ public class mobioLibs {
 	 * @return true, if is compare 2 lists
 	 */
 	public boolean isCompare2Lists(WebDriver driver, List<String> theFirstListContent,
-			List<String> theSecondListLocator) {
-		return theSecondListLocator.containsAll(theFirstListContent);
+			List<String> theSecondListContent) {
+		return theSecondListContent.containsAll(theFirstListContent);
 	}
 
 	/**
-	 * Checks if is content in list.
+	 * Check to see if the value you are looking for in the list or not.
 	 *
 	 * @param driver              the driver
-	 * @param listContentXpath    the list content xpath
-	 * @param getContentToCompare the get content to compare
+	 * @param listContentXpath    the list content xpath. The purpose is to get a
+	 *                            list of values to compare.
+	 * @param getContentToCompare Get the content to compare, this content you want
+	 *                            to have in the list.
 	 * @return true, if is content in list
 	 */
 	public boolean isContentInList(WebDriver driver, String listContentXpath, String getContentToCompare) {
 		if (isElementDisplayed(driver, listContentXpath)) {
-			List<WebElement> finishedContent = findElementsByXpath(driver, listContentXpath);
+			List<WebElement> listContent = findElementsByXpath(driver, listContentXpath);
 			List<String> contentList = new ArrayList<String>();
-			for (WebElement content : finishedContent) {
+			for (WebElement content : listContent) {
 				contentList.add(content.getText());
 			}
 			return contentList.contains(getContentToCompare);

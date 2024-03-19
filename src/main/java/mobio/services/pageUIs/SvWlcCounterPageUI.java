@@ -30,8 +30,9 @@ public class SvWlcCounterPageUI {
     public static final String SOCIAL_ITEM_NOT_REPLY = "(//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-social-share-chat_reply-assignment-item)";
 
     public static final String SOCIAL_ITEM_CONTENT_NOT_REPLY = "(//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-social-share-chat_reply-assignment-item//span)";
-    public static final String SOCIAL_ITEM_ALL_ITEM = "(//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis'])";
-    public static final String SOCIAL_ITEM_CONTENT_ALL_ITEM = "(//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis']//span)";
+//    public static final String SOCIAL_ITEM_ALL_ITEM = "(//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis'])";
+    public static final String SOCIAL_ITEM_ALL_ITEM = "(//div[@key='message']//mo-libs-social-share-chat_reply-assignment-item)";
+    public static final String SOCIAL_ITEM_CONTENT_ALL_ITEM = "(//div[@key='message']//mo-libs-social-share-chat_reply-assignment-item//span)";
     public static final String SOCIAL_ITEM_CONTENT_ITEM = "//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[@class='mo-lib-ellipsis']//span[text()='%s']";
     public static final String SOCIAL_ITEM_CONTENT_FOCUSED_ITEM = "//div[contains(@class,'d-flex flex-column mo-lib-border-right-general')]//div[@class='mo-lib-tab-content-container']//div[contains(@class,'mo-libs-social-share-chat-reply-assignment-item-selected')]//div[@class='mo-lib-ellipsis']/span";
     public static final String SOCIAL_ITEM_REPLIED_SUCCESS = "(//i[contains(@class,'mo-icn-create-successful')]//ancestor::mo-libs-social-share-chat_reply-assignment-item)";
@@ -42,10 +43,13 @@ public class SvWlcCounterPageUI {
     public static final String SOCIAL_ITEM_PIN_TOOLTIP = "//button//mo-libs-shared-components-tooltip[contains(text(),'Ghim tin nhắn')]";
     public static final String SOCIAL_MESSAGE_REMOVE_PIN_TOOLTIP = "//button//mo-libs-shared-components-tooltip[contains(text(),'Bỏ ghim tin nhắn')]";
     public static final String SOCIAL_ITEM_ALL_CONTENT_PIN_ITEM = "(//i[@class='mo-icn-not_pin mo-lib-color-009cdb']//ancestor::mo-libs-social-share-chat_reply-assignment-item//div[@class='mo-lib-ellipsis']/span)";
-    public static final String TAIL_ALL_CONTENT_PIN_ITEM = "(//i[@class='mo-icn-not_pin mo-lib-color-009cdb']//ancestor::mo-libs-social-share-chat_reply-assignment-item//div[@class='mo-lib-ellipsis']/span)";
-    public static final String TAIL_UNANSWER_NO_PIN_ITEM = "(//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-social-share-chat_reply-assignment-item[not(.//i[@class='mo-icn-not_pin mo-lib-color-009cdb'])]//div[@class='mo-lib-ellipsis']/span)";
-    public static final String TAIL_ANSWERED_NO_PIN_ITEM = "(//i[contains(@class,'mo-icn-create-successful')]//ancestor::mo-libs-social-share-chat_reply-assignment-item[not(.//i[@class='mo-icn-not_pin mo-lib-color-009cdb'])]//div[@class='mo-lib-ellipsis']/span)";
-
+//    public static final String TAIL_ALL_CONTENT_PIN_ITEM = "(//i[@class='mo-icn-not_pin mo-lib-color-009cdb']//ancestor::mo-libs-social-share-chat_reply-assignment-item//div[@class='mo-lib-ellipsis']/span)";
+//    public static final String TAIL_UNANSWER_NO_PIN_ITEM = "(//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-social-share-chat_reply-assignment-item[not(.//i[@class='mo-icn-not_pin mo-lib-color-009cdb'])]//div[@class='mo-lib-ellipsis']/span)";
+//    public static final String TAIL_ANSWERED_NO_PIN_ITEM = "(//i[contains(@class,'mo-icn-create-successful')]//ancestor::mo-libs-social-share-chat_reply-assignment-item[not(.//i[@class='mo-icn-not_pin mo-lib-color-009cdb'])]//div[@class='mo-lib-ellipsis']/span)";
+    public static final String TAIL_UNANSWER_PIN_ITEM = "[(.//i[contains(@class,'mo-icn-not_pin')])]//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-shared-components-tooltip//span";
+    public static final String TAIL_ANSWERED_PIN_ITEM = "[(.//i[contains(@class,'mo-icn-not_pin')])]//i[contains(@class,'mo-icn-create-successful')]//ancestor::mo-libs-shared-components-tooltip//span";
+    public static final String TAIL_UNANSWER_NO_PIN_ITEM = "[not(.//i[contains(@class,'mo-icn-not_pin')])]//div[@class='mo-lib-color-ff5454']//ancestor::mo-libs-shared-components-tooltip//span";
+    public static final String TAIL_ANSWERED_NO_PIN_ITEM = "[not(.//i[contains(@class,'mo-icn-not_pin')])]//i[contains(@class,'mo-icn-create-successful')]//ancestor::mo-libs-shared-components-tooltip//span";
     // Sort
     public static final String FB_SORT_MENU = "//mo-libs-shared-components-dropdown//span[contains(@class,'mo-icn-sort_list')]";
    
