@@ -3,14 +3,14 @@ Feature: Web live chat and Others
   As a PO
   I want to login to application
   So that verify Web live chat page
-@80
+
   Scenario: TC01_FBCounter Delete all data before checking all TCs
     Given Go to Mobio site by "Admin" account
     And Go to the Social chat screen
     And Delete data to reset weblivechat module
     And Switch to Mobio site
     And Close all windows without parent
-@80
+
   Scenario: TC_01_Config Support Assignment in a Team_Only assign to online member
     Given Go to Mobio site by "Admin" account
     And Go to Social assignment settings screen
@@ -18,7 +18,7 @@ Feature: Web live chat and Others
     And Click on "Phân công trong nội bộ Team" rule to config
     And Click on "Cấu hình phân công Inbox" config type to assign in a team
     And Select only assign to online member
-    When Go to "<WLCSite>" web live chat site on other browser
+    When Go to "wlc0003" web live chat site on other browser
     And Create message by wlc on other browser
     And Close the second browser
 
@@ -63,7 +63,7 @@ Feature: Web live chat and Others
   #And Click wlc item on other browser
   #And Click on Block contact button
   #Then Verify the block contact of member in other team
-@80
+
   Scenario Outline: WLC_080_Add tag profile
     Given Go to Mobio site by "Admin" account
     When Go to "<WLCSite>" web live chat site on other browser
